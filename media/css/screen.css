@@ -1,0 +1,1340 @@
+html, button, input, select, textarea {font-family: Tahoma, sans-serif;}
+input, textarea, select {font-family: 'PT Mono', 'Courier New';    margin-right: .25em;    border-color: #a7a7a7;     border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;}
+body {
+    background: #F0F0F0;
+    padding-bottom: 150px;
+}
+hr {margin: 5px 0;}
+.header {
+    background: #717171;
+    box-shadow: 0px 3px 5px #888;
+    height: 32px;
+    margin-top: 31px;
+    position: fixed;
+    width: 100%;
+    z-index: 997;
+    top:0;
+}
+
+.header .category-head {
+    cursor: default;
+    padding: 6px 5px;
+    font-size:16px;
+    color: #e2e2e2;
+    margin: 0 5px 0 10px;
+    vertical-align: top;
+}
+
+.header .toolbox {
+    clear: both;
+    margin: 0px;
+    padding: 0;
+    overflow: hidden;
+    display:inline-block;
+}
+.category-head {
+    display: inline-block;
+}
+.header .toolbox li {
+    list-style: none;
+    font-size: 12px;
+    width: 40px;
+    height: 24px;
+    margin: 4px;
+    float: left;
+    display: block;
+    background-color: #606060;
+}
+.header .toolbox li:hover {
+    background-color: #3e3e3e;
+}
+.header .toolbox li span {
+    padding: 4px 10px;
+    color: #303030;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    cursor: default;
+    cursor: move;
+}
+
+.header .toolbox li {
+    background-image: url(../images/icons.png);
+    text-indent: -9999px;
+}
+
+.header .toolbox .SimpleButton { background-position: 0px 0;}
+.header .toolbox .RadioButton { background-position: -40px 0;}
+.header .toolbox .CheckBox { background-position: -80px 0;}
+.header .toolbox .ProgressBar { background-position: -120px 0;}
+.header .toolbox .SimpleBorder { background-position: -160px 0;}
+.header .toolbox .SimpleBar { background-position: -160px -24px;}
+.header .toolbox .CmdOk { background-position: -80px -24px;}
+.header .toolbox .CmdCancel { background-position: -120px -24px;}
+.header .toolbox .IndicatorCircle { background-position: -200px 0;}
+.header .toolbox .SimpleCross { background-position: -240px 0;}
+.header .toolbox .ListButton_Arrow { background-position: -200px -24px;}
+.header .toolbox .ListButton_Triangle { background-position: -240px -24px;}
+.header .toolbox .label { background-position: -280px 0;}
+.header .toolbox .line { background-position: -320px 0;}
+.header .toolbox .progressbar { background-position: -120px 0;}
+.header .toolbox .Valve {background-position: -400px 0;}
+.header .toolbox .Pump {background-position: -440px 0;}
+.header .toolbox .Vacuometer {background-position: -440px -26px;}
+.header .toolbox .LeakDetector {background-position: -480px -26px;}
+.header .toolbox .Compressor {background-position: -440px -52px;}
+.header .toolbox .RadiationHazard {background-position: -480px 0;}
+.header .toolbox .AirBlower {background-position: -520px 0;}
+.header .toolbox .FanBlower {background-position: -560px 0;}
+.header .toolbox .WaterPump {background-position: -600px 0;}
+.header .toolbox .TankLevel {background-position: -640px 0;}
+.header .toolbox .FlowMeter {background-position: -680px 0;}
+.header .toolbox .ManoMeter {background-position: -720px 0;}
+.header .toolbox .UniHeater {background-position: -760px 0;}
+
+.wrap {margin: 75px 0px 0px 250px;    display: inline-block;}
+article {
+    background: silver no-repeat;
+    width: 600px;
+    height: 600px;
+    box-shadow: 0 0 10px #bebebe;
+    float: left;
+}
+article:before {
+    content: '';
+    width: inherit;
+    height: inherit;
+    background: #0000001c;
+    position: absolute;
+    background: url(../images/dots.png) repeat;
+}
+.header h1 {
+    margin: 0;
+    padding: 10px;
+    font-size: 30px;
+    color: #5e5e5e;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+nav {
+    z-index: 999;
+    background-color: #fff6da;
+    position: fixed;
+    width: 100%;top:0;
+}
+.zoom {
+    float: right;
+	margin-top: 4px;
+	margin-right: 5px;
+}
+.zoomval {
+    display: inline-block;
+    width: 50px;
+    height: 19px;
+    text-align: center;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+.zoom span:hover {
+    background-color: #ffd244;
+}
+.ui-icon {
+    width: 24px;
+height: 24px;}
+.ui-icon-zoomin {
+    background-position: -192px -168px;
+}
+.ui-icon-zoomout {
+    background-position: -216px -168px;
+}
+.ui-icon-property {
+    background-position: -242px -217px;
+}
+.ui-icon-files {
+    background-position: -48px -146px;
+}
+.ui-icon-import {
+    background-position: -24px -145px;
+}
+.ui-icon-export {
+    background-position: -144px -146px;
+}
+.ui-icon-save {
+    background-position: -121px -146px;
+}
+.ui-icon-qu {
+    background-position: -72px -217px;
+}
+.ui-icon-copy {
+    background-position: -76px -150px;
+}
+.ui-icon-trash {
+    background-position: -268px -150px;
+}
+.ui-icon-list {
+    background-position: -173px -150px;
+}
+.ui-icon-help {
+    background-position: -51px -217px;
+}
+
+nav .menu-item > a span {
+    margin: -5px;
+}
+.logo {
+    padding: 5px 15px;
+    width: 217px;
+    font-weight: 600;
+}
+.logo img {
+    float: left;
+    padding: 0px 5px 0px 0px;
+}
+.logo-text {
+    display: inline-block;
+    color: #595958;
+}
+.logo-caption {
+    font-size: 12px;
+    font-weight: 200;
+    display: inline-block;
+}
+nav > div {display: inline-block;margin-top: 2px;}
+nav .menu-item > a {
+    font-size: 16px;
+    padding: 2px 10px;
+    color: #444444;
+    cursor: pointer;
+    background-color: #fee38d;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px grey;
+}
+nav .menu-item > a:hover {
+    background-color: #ffd244;
+}
+
+section {
+    position: absolute;
+    border: 1px solid #808080;
+    text-align: left;
+    display: none;
+    background-color: #e8e8e8;
+    z-index: 999;
+    -webkit-box-shadow: 2px 2px 7px #585858;
+    top: 31px;
+    font-size: 14px;
+}
+section h3 {
+    color: #414141;
+    background: #f3f3f3;
+    padding: 6px 10px;
+    margin: 0;
+    font-size: 16px;
+    text-align: left;
+}
+section p {
+    padding: 0px 0px 0;
+    margin: 2px 0;
+    font-size: 14px;
+}
+section#document-export, section#document-import {width: 80%;right: 10%;}
+section#documents li:hover, section#crc-help li:hover{
+    background: #dedede;
+}
+nav ul {
+    margin: 0;
+    width: 100%;
+}
+
+nav ul li {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    display: inline-block;
+    padding: 9px 0px 9px 10px;
+    color: #4a4a4a;
+    width: 66%;
+}
+
+nav ul li a.destroy {
+    float: right;
+    margin-right: 10px;
+}
+
+nav form {
+    padding: 10px;
+}
+
+nav form label {
+    display: block;
+    padding: 5px 0px;
+    font-weight: bold;
+}
+label#hasHeader {display: inline-block;}
+input[type="checkbox"]#hasHeader {
+    width: auto;
+}
+
+input:hover, textarea:hover, select:hover {
+    border-color: #0078D7;
+}
+
+nav form input, nav form select {
+    width: 98%;
+    padding: 3px;
+    border-radius: 3px;
+}
+nav form textarea {
+    width: 100%;
+}
+textarea#id_changelog {
+    width: -webkit-fill-available;
+    width: -moz-available;
+    padding: 0px 10px 10px 10px;
+    background: white;
+}
+
+nav #document-properties {
+    overflow: hidden;
+}
+
+nav .width, nav .height, nav .prefix, nav .generalmap_bit {
+    width: 50%;
+    float: left;
+    margin-top: 5px;
+}
+
+.left-col {
+    position: fixed;
+    width: 220px;
+	height: calc(100% - 95px);
+    overflow-y: auto;
+    border-top-right-radius: 5px;
+    top: 0;
+    margin-top: 75px;
+    background-color: #f3f3f3;
+    padding: .7em .7em;
+    z-index: 200;
+    left: 0;
+    box-shadow: 0 0 10px #bebebe;
+}
+.right-col {
+    position: fixed;
+    width: 0px;
+    right: 0;
+    top: 0;
+    margin-top: 63px;
+    background-color: #f3f3f3;
+    z-index:200;
+    box-shadow: 0 0 10px #bebebe;
+    border-bottom-left-radius: 5px;
+}
+
+.right-col:hover {
+    width: 300px;padding: .7em .7em;
+}
+
+.listArrow {
+    position: fixed;
+    width: 150px;
+    right: 0px;
+    background-color: #f3f3f3;
+    padding: 2px;
+    box-shadow: 0 0 10px #bebebe;
+    border-bottom-left-radius: 5px;
+}
+.listArrow h2 {
+    margin: 0px;
+}
+.sensor:focus {
+    border: 1px solid orange;
+    box-sizing: border-box;
+}
+
+.right-col:hover .listArrow {display:none;}
+.sensorList {
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.sensorList .sensor {
+    padding: 3px 0;
+}
+
+.sensorList .sensor:hover {
+    background: #dedede;
+}
+
+aside .ui-icon {
+    width: 17px;
+    height: 17px;
+    margin-bottom: -4px;
+
+}
+img#generalMap {
+    position: absolute;
+    left: 250px;
+    top: 75px;
+}
+.divButton {
+    padding: 4px;
+    margin: .5em 0 0;
+    cursor: pointer;
+    background-color: #717171;
+    color: white;
+    width: fit-content;
+    width: -moz-fit-content;
+    border-radius: 3px;
+    border: 1px solid;
+    border-color: #bbbbbb #252525 #424242 #bbbbbb;
+    display: inline-block;
+    font-family: Tahoma, sans-serif;
+    text-decoration: none;
+}
+
+.divButton:hover {
+    background-color: #292929;
+}
+
+input#id_models_file, input#id_doc_generalmap_select {
+    padding: 2px 5px;
+}
+input#id_doc_generalmap {display:none;}
+aside h2 {
+    font-weight: bold;
+    font-size: 1em;
+}
+aside h3 {
+    font-weight: bold;
+    font-size: 1em;
+    margin: .2em .2em;
+}
+select {
+    max-width: 100%;
+	width: 100%;
+    padding: 1px 1px;
+}
+select#id_type {
+    min-width: 80px;
+    padding: 1px 0px;
+}
+label {
+    cursor: pointer;
+    clear: both;
+    display: inline-block;
+}
+.line {margin-bottom:5px;}
+.line-param {
+    background: #d0d0d0;
+    padding: 2px;
+    padding-left: 7px;
+}
+.line-param label {font-size:12px; width: 45%;}
+.line.boolean, .line.Hint, .line.name {
+    font-weight: bold;
+}
+.line.top, .line.left {
+    width: 48%;
+    display: inline-block;
+}
+.line.height {
+    width: 49%;
+    display: inline-block;
+}
+
+.line.width {
+    width: 48%;
+    display: inline-block;
+}
+
+.line.led_attributes,
+.line.boolean.led,
+.line.button_attributes,
+.line.boolean.border,
+.line.border_attributes,
+.line.boolean.button,
+.line.valve_attributes,
+.line.pump_attributes,
+.line.vacuometer_attributes,
+.line.leakdetector_attributes,
+.line.indicatorcircle_attributes,
+.line.checkbox_attributes,
+.line.simplecross_attributes,
+.line.listbutton_arrow_attributes,
+.line.listbutton_triangle_attributes,
+.line.radio_attributes,
+.line.progressbar_attributes,
+.line.radiationhazard_attributes,
+.line.airblower_attributes,
+.line.fanblower_attributes,
+.line.waterpump_attributes,
+.line.tanklevel_attributes,
+.line.flowmeter_attributes,
+.line.manometer_attributes,
+.line.uniheater_attributes,
+.line.cmdOk_attributes,
+.line.bar_attributes {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #e8e8e8;
+}
+.line.led + .line.led_attributes,
+.line.button +.line.button_attributes,
+.line.border+.line.border_attributes,
+.line.simplecross+.line.simplecross_attributes,
+.line.radio+.line.radio_attributes,
+.line.progressbar + .line.progressbar_attributes {
+    border-top:0;
+}
+.line.boolean.led,
+.line.boolean.border,
+.line.boolean.button {
+    border-bottom:0;
+    margin-top:10px;
+    margin-bottom:0;
+ }
+.line .line {margin:0;}
+.line input[type="checkbox"] {
+    float: right;
+    margin: 4px 5px 0 0;
+        width: 15px;
+}
+aside form input, aside form select {
+    box-sizing: border-box;
+    width: 50%;
+}
+aside form input#id_name, aside form input#id_hint {
+    width: 100%;
+}
+aside .line.tools {
+    margin-left: 20px;
+    padding-left: 22px;
+    right: 0;
+    text-align: right;
+}
+aside a {
+    font-size: 17px;
+}
+
+aside a:hover {
+    background-color: #793232;
+    color: white;
+}
+
+
+.object {
+    position: absolute !important; /* prevent jquery ui draggable position definition */
+    cursor: move;
+    outline: none;
+    font-family: PT Mono;
+    color: black;
+    box-sizing: border-box;
+    font-kerning: none;
+}
+
+.object input {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    cursor: text;
+    border: 1px dotted;
+    font-family: PT Mono;
+    font-weight: bold;
+    box-sizing: border-box;
+    text-align: center;
+}
+.object .sensor {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 0px solid black;
+    overflow: hidden;
+}
+.object .SimpleButton {
+    background-color: #C0C0C0;
+    color: black;
+    border: 2px solid #FFF;
+    border-bottom: 2px solid #808080;
+    border-right: 2px solid #808080;
+    border-top-color: rgb(255, 255, 255) !important;
+    border-right-color: rgb(128, 128, 128) !important;
+    border-bottom-color: rgb(128, 128, 128) !important;
+    border-left-color: rgb(255, 255, 255) !important;
+}
+.object div.label {
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-53%);
+    border: 0px solid #808080;
+    display:none;
+    min-inline-size: max-content;
+}
+.led div.label {display:block;}
+.object .SimpleBorder {
+    color: black;
+    border: 2px solid #FFF;
+    font-weight: bold;
+    border: 2px solid #FFF;
+
+}
+
+.object .CheckBox .checkbox {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.object .CheckBox .checkbox:after {
+    content: '';
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    content: "";
+    width: calc(60%);
+    height: calc(32%);
+    background: transparent;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.object .RadioButton .radio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    content: "";
+    border: 3px solid #808080;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+.object .RadioButton .radio:before {
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    content: "";
+    width: calc(60%);
+    height: calc(60%);
+    background-color: black;
+    border-radius: 50%;
+}
+
+.object .IndicatorCircle .indicatorcircle {
+    width: 100%;
+    height: 100%;
+    border: 3px solid Black;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    box-sizing: border-box;
+    background-color:silver;
+}
+
+.object .dropArrow .dropArrow {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #808080;
+    box-sizing: border-box;
+}
+
+.object .dropArrow .dropArrow:after {
+    content: '';
+    position: absolute;
+    left: 33%;
+    top: 25%;
+    content: "";
+    width: calc(30%);
+    height: calc(30%);
+    background: transparent;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.object .dropTriangle .dropTriangle {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #808080;
+    box-sizing: border-box;
+}
+
+.object .dropTriangle .dropTriangle:after {
+    content: '';
+    position: absolute;
+    left: 33%;
+    top: 25%;
+    content: "";
+    width: calc(30%);
+    height: calc(30%);
+    background: transparent;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    background: url(../images/triangle.png);
+    background-size: cover;
+}
+
+.object .valve {width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    box-sizing: border-box;    background-size: 100%;background-repeat:no-repeat;}
+.object .pump,.object .uniheater,.object .AirBlower_Up,.object .AirBlower_Down,.object .AirBlower_Left,.object .AirBlower_Right,.object .FanBlower_Up,.object .FanBlower_Down,.object .FanBlower_Left,.object .FanBlower_Right,.object .WaterPump_Up,.object .WaterPump_Down,.object .WaterPump_Left,.object .WaterPump_Right, .radDaqLib, .ManoMeter.icon,.object .FlowMeter_Up,.object .FlowMeter_Down,.object .FlowMeter_Left,.object .FlowMeter_Right, .object .LeakDetector,.vacuometer.Penning.Penning_Up,.vacuometer.Penning.Penning_Down,.vacuometer.Penning.Penning_Left,.vacuometer.Penning.Penning_Right,.Compressor_Up,.Compressor_Right,.Compressor_Down,.Compressor_Left,.vacuometer.Ionization.Ionization_Up,.vacuometer.Ionization.Ionization_Down,.vacuometer.Ionization.Ionization_Right,.vacuometer.Ionization.Ionization_Left,.vacuometer.Thermal.Thermal_Up,.vacuometer.Thermal.Thermal_Down,.vacuometer.Thermal.Thermal_Right,.vacuometer.Thermal.Thermal_Left,.vacuometer.Thermal.Thermal_None,.object .Ionization,.object .Penning, .object .Type_VlvGateHor, .object .Type_VlvGateVer, .object .Type_RotGateHor, .object .Type_RotGateVer {width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    box-sizing: border-box;
+    background-size: 100%;
+    background-repeat:no-repeat;
+    background-image: url(../images/undefined.png);}
+.valve.Type_ThruWayHor {background-image: url(../images/Valve_ThruWayHor.png);}
+.valve.Type_ThruWayVer {background-image: url(../images/Valve_ThruWayVer.png);}
+.valve.Type_AngUpRight {background-image: url(../images/Valve_AngUpRight.png);}
+.valve.Type_AngUpLeft {background-image: url(../images/Valve_AngUpLeft.png);}
+.valve.Type_AngDownLeft {background-image: url(../images/Valve_AngDownLeft.png);}
+.valve.Type_AngDownRight {background-image: url(../images/Valve_AngDownRight.png);}
+.valve.Type_3WayUp {background-image: url(../images/Valve_3WayUp.png);}
+.valve.Type_3WayDown {background-image: url(../images/Valve_3WayDown.png);}
+.valve.Type_3WayLeft {background-image: url(../images/Valve_3WayLeft.png);}
+.valve.Type_3WayRight {background-image: url(../images/Valve_3WayRight.png);}
+.valve.Type_VlvGateHor.NoneOp {background-image: url(../images/Valve_VlvGateHor.png);}
+.valve.Type_VlvGateVer.NoneOp {background-image: url(../images/Valve_VlvGateVer.png);}
+.valve.Type_RotGateHor.NoneOp {background-image: url(../images/Valve_RotGateHor.png);}
+.valve.Type_RotGateVer.NoneOp {background-image: url(../images/Valve_RotGateVer.png);}
+.valve.Type_ThruWayHor.ManualOp {background-image: url(../images/Valve_ThruWayHor_ManualOp.png);}
+.valve.Type_ThruWayVer.ManualOp {background-image: url(../images/Valve_ThruWayVer_ManualOp.png);}
+.valve.Type_AngUpRight.ManualOp {background-image: url(../images/Valve_AngUpRight_ManualOp.png);}
+.valve.Type_AngUpLeft.ManualOp {background-image: url(../images/Valve_AngUpLeft_ManualOp.png);}
+.valve.Type_AngDownLeft.ManualOp {background-image: url(../images/Valve_AngDownLeft_ManualOp.png);}
+.valve.Type_AngDownRight.ManualOp {background-image: url(../images/Valve_AngDownRight_ManualOp.png);}
+.valve.Type_3WayUp.ManualOp {background-image: url(../images/Valve_3WayUp_ManualOp.png);}
+.valve.Type_3WayDown.ManualOp {background-image: url(../images/Valve_3WayDown_ManualOp.png);}
+.valve.Type_3WayLeft.ManualOp {background-image: url(../images/Valve_3WayLeft_ManualOp.png);}
+.valve.Type_3WayRight.ManualOp {background-image: url(../images/Valve_3WayRight_ManualOp.png);}}
+.valve.Type_ThruWayHor.SolenoidOp {background-image: url(../images/Valve_ThruWayHor_SolenoidOp.png);}
+.valve.Type_ThruWayVer.SolenoidOp {background-image: url(../images/Valve_ThruWayVer_SolenoidOp.png);}
+.valve.Type_AngUpRight.SolenoidOp {background-image: url(../images/Valve_AngUpRight_SolenoidOp.png);}
+.valve.Type_AngUpLeft.SolenoidOp {background-image: url(../images/Valve_AngUpLeft_SolenoidOp.png);}
+.valve.Type_AngDownLeft.SolenoidOp {background-image: url(../images/Valve_AngDownLeft_SolenoidOp.png);}
+.valve.Type_AngDownRight.SolenoidOp {background-image: url(../images/Valve_AngDownRight_SolenoidOp.png);}
+.valve.Type_3WayUp.SolenoidOp {background-image: url(../images/Valve_3WayUp_SolenoidOp.png);}
+.valve.Type_3WayDown.SolenoidOp {background-image: url(../images/Valve_3WayDown_SolenoidOp.png);}
+.valve.Type_3WayLeft.SolenoidOp {background-image: url(../images/Valve_3WayLeft_SolenoidOp.png);}
+.valve.Type_3WayRight.SolenoidOp {background-image: url(../images/Valve_3WayRight_SolenoidOp.png);}
+.valve.Type_ThruWayHor.MotorOp {background-image: url(../images/Valve_ThruWayHor_MotorOp.png);}
+.valve.Type_ThruWayVer.MotorOp {background-image: url(../images/Valve_ThruWayVer_MotorOp.png);}
+.valve.Type_AngUpRight.MotorOp {background-image: url(../images/Valve_AngUpRight_MotorOp.png);}
+.valve.Type_AngUpLeft.MotorOp {background-image: url(../images/Valve_AngUpLeft_MotorOp.png);}
+.valve.Type_AngDownLeft.MotorOp {background-image: url(../images/Valve_AngDownLeft_MotorOp.png);}
+.valve.Type_AngDownRight.MotorOp {background-image: url(../images/Valve_AngDownRight_MotorOp.png);}
+.valve.Type_3WayUp.MotorOp {background-image: url(../images/Valve_3WayUp_MotorOp.png);}
+.valve.Type_3WayDown.MotorOp {background-image: url(../images/Valve_3WayDown_MotorOp.png);}
+.valve.Type_3WayLeft.MotorOp {background-image: url(../images/Valve_3WayLeft_MotorOp.png);}
+.valve.Type_3WayRight.MotorOp {background-image: url(../images/Valve_3WayRight_MotorOp.png);}
+.valve.Type_ThruWayHor.PneumaticOp {background-image: url(../images/Valve_ThruWayHor_PneumaticOp.png);}
+.valve.Type_ThruWayVer.PneumaticOp {background-image: url(../images/Valve_ThruWayVer_PneumaticOp.png);}
+.valve.Type_AngUpRight.PneumaticOp {background-image: url(../images/Valve_AngUpRight_PneumaticOp.png);}
+.valve.Type_AngUpLeft.PneumaticOp {background-image: url(../images/Valve_AngUpLeft_PneumaticOp.png);}
+.valve.Type_AngDownLeft.PneumaticOp {background-image: url(../images/Valve_AngDownLeft_PneumaticOp.png);}
+.valve.Type_AngDownRight.PneumaticOp {background-image: url(../images/Valve_AngDownRight_PneumaticOp.png);}
+.valve.Type_3WayUp.PneumaticOp {background-image: url(../images/Valve_3WayUp_PneumaticOp.png);}
+.valve.Type_3WayDown.PneumaticOp {background-image: url(../images/Valve_3WayDown_PneumaticOp.png);}
+.valve.Type_3WayLeft.PneumaticOp {background-image: url(../images/Valve_3WayLeft_PneumaticOp.png);}
+.valve.Type_3WayRight.PneumaticOp {background-image: url(../images/Valve_3WayRight_PneumaticOp.png);}
+.pump.RotSingle.RotSingle_Up {background-image: url(../images/Pump_RotSingle_Up.png);}
+.pump.RotSingle.RotSingle_Down {background-image: url(../images/Pump_RotSingle_Down.png);}
+.pump.RotSingle.RotSingle_Left {background-image: url(../images/Pump_RotSingle_Left.png);}
+.pump.RotSingle.RotSingle_Right {background-image: url(../images/Pump_RotSingle_Right.png);}
+.pump.RotDouble.RotDouble_Up {background-image: url(../images/Pump_RotDouble_Up.png);}
+.pump.RotDouble.RotDouble_Down {background-image: url(../images/Pump_RotDouble_Down.png);}
+.pump.RotDouble.RotDouble_Left {background-image: url(../images/Pump_RotDouble_Left.png);}
+.pump.RotDouble.RotDouble_Right {background-image: url(../images/Pump_RotDouble_Right.png);}
+.pump.Turbomol.Turbomol_Down {background-image: url(../images/Pump_Turbomol_Down.png);}
+.pump.Turbomol.Turbomol_Left {background-image: url(../images/Pump_Turbomol_Left.png);}
+.pump.Turbomol.Turbomol_Right {background-image: url(../images/Pump_Turbomol_Right.png);}
+.pump.Turbomol.Turbomol_Up {background-image: url(../images/Pump_Turbomol_Up.png);}
+.pump.Roots.Roots_Down {background-image: url(../images/Pump_Roots_Down.png);}
+.pump.Roots.Roots_Left {background-image: url(../images/Pump_Roots_Left.png);}
+.pump.Roots.Roots_Right {background-image: url(../images/Pump_Roots_Right.png);}
+.pump.Roots.Roots_Up {background-image: url(../images/Pump_Roots_Up.png);}
+.pump.Diffusion.Diffusion_None {background-image: url(../images/Pump_Diffusion.png);}
+.pump.SputIon.SputIon_None {background-image: url(../images/Pump_SputIon.png);}
+.pump.Sublimation.Sublimation_None {background-image: url(../images/Pump_Sublimation.png);}
+.vacuometer.Penning.Penning_Up {background-image: url(../images/Vacuometer_Penning_Up.png);}
+.vacuometer.Penning.Penning_Down {background-image: url(../images/Vacuometer_Penning_Down.png);}
+.vacuometer.Penning.Penning_Right {background-image: url(../images/Vacuometer_Penning_Right.png);}
+.vacuometer.Penning.Penning_Left {background-image: url(../images/Vacuometer_Penning_Left.png);}
+.vacuometer.Ionization.Ionization_Up {background-image: url(../images/Vacuometer_Ionization_Up.png);}
+.vacuometer.Ionization.Ionization_Down {background-image: url(../images/Vacuometer_Ionization_Down.png);}
+.vacuometer.Ionization.Ionization_Right {background-image: url(../images/Vacuometer_Ionization_Right.png);}
+.vacuometer.Ionization.Ionization_Left {background-image: url(../images/Vacuometer_Ionization_Left.png);}
+.vacuometer.Thermal.Thermal_None {background-image: url(../images/Vacuometer_Thermal_None.png);}
+.LeakDetector.icon {background-image: url(../images/LeakDetector.png);}
+.Compressor .Compressor_Up {background-image: url(../images/Compressor_Up.png);}
+.Compressor .Compressor_Right {background-image: url(../images/Compressor_Right.png);}
+.Compressor .Compressor_Down {background-image: url(../images/Compressor_Down.png);}
+.Compressor .Compressor_Left {background-image: url(../images/Compressor_Left.png);}
+.uniheater.icon {background-image: url(../images/uniheater.png);}
+.radDaqLib.icon {background-image: url(../images/RadiationHazard.png);}
+.AirBlower .AirBlower_Up {background-image: url(../images/AirBlower_Up.png);}
+.AirBlower .AirBlower_Down {background-image: url(../images/AirBlower_Down.png);}
+.AirBlower .AirBlower_Left {background-image: url(../images/AirBlower_Left.png);}
+.AirBlower .AirBlower_Right {background-image: url(../images/AirBlower_Right.png);}
+.FanBlower .FanBlower_Up {background-image: url(../images/FanBlower_Up.png);}
+.FanBlower .FanBlower_Down {background-image: url(../images/FanBlower_Down.png);}
+.FanBlower .FanBlower_Left {background-image: url(../images/FanBlower_Left.png);}
+.FanBlower .FanBlower_Right {background-image: url(../images/FanBlower_Right.png);}
+.FlowMeter .FlowMeter_Up {background-image: url(../images/FlowMeter_Up.png);}
+.FlowMeter .FlowMeter_Down {background-image: url(../images/FlowMeter_Down.png);}
+.FlowMeter .FlowMeter_Left {background-image: url(../images/FlowMeter_Left.png);}
+.FlowMeter .FlowMeter_Right {background-image: url(../images/FlowMeter_Right.png);}
+.WaterPump .WaterPump_Up {background-image: url(../images/WaterPump_Up.png);}
+.WaterPump .WaterPump_Down {background-image: url(../images/WaterPump_Down.png);}
+.WaterPump .WaterPump_Left {background-image: url(../images/WaterPump_Left.png);}
+.WaterPump .WaterPump_Right {background-image: url(../images/WaterPump_Right.png);}
+.ManoMeter.icon {background-image: url(../images/ManoMeter.png);}
+.cmdOk {background-image: url(../images/cmdOk.png);background-size: contain;background-repeat: no-repeat;}
+.cmdCancel {background-image: url(../images/cmdCancel.png);background-size: contain;background-repeat: no-repeat;}
+.object .simplecross {
+    position: absolute;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+.tankDaqLib .TankLevel {width: 100%;
+    height: 57%;
+    position: absolute;
+    background-color: lime;
+    bottom: 0;border-top:2px solid;
+	border-radius: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.sensor .simplecross:before, .sensor .simplecross:after {
+    position: absolute;
+    left: calc(49%);
+    content: "";
+    background: #333;
+    width: 1px;
+    height: 120%;
+    top: -9%;
+}
+.sensor .simplecross:before {
+    transform: rotate(45deg);
+}
+.sensor .simplecross:after {
+    transform: rotate(-45deg);
+}
+.object .text-input {
+    height: 100%;
+}
+
+.sensor.led.custom {
+    border: 2px dashed gray;
+    background-image: url(../images/custom.png);
+}
+
+.sensor img {
+    height: 100%;
+    vertical-align: top;
+}
+
+.aspect_ratio {
+    position: absolute;
+    width: auto;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+}
+
+.aspect_ratio_right {
+    right: 0;
+    left: auto;
+}
+
+.object .text-input label {
+    cursor: move;
+    color: black;
+    font-weight:bold;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-53%);
+    width: 100%;
+    display: block;
+}
+
+.object .text-input .input {
+    width: 100%;
+    height: 100%;
+    background-color: #e8e8e8;
+    border: 0px solid #808080;
+    font-family: PT Mono;
+    box-sizing: border-box;
+}
+
+.object .combobox {
+    width: 100%;
+    background-color: #e8e8e8;
+    overflow: hidden;
+    min-width: 120px;
+    border: 3px solid #383838;
+    border-radius: 5px;
+}
+.object .combobox .text {
+    float: left;
+    width: 70%;
+    padding: 3px 5px 3px;
+}
+
+.object .combobox .opener {
+    position: absolute;
+    right: 5px;
+    top: 11px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 8px 0 8px;
+    border-color: #383838 transparent transparent transparent;
+    text-indent: -9999px;
+
+}
+
+.object .hscrollbar {
+    width: 100%;
+    height: 30px;
+    background-color: #e8e8e8;
+    overflow: hidden;
+    min-width: 120px;
+    border: 3px solid #383838;
+    border-radius: 5px;
+}
+
+.object .hscrollbar .trough {
+    height: 100%;
+    width: 30px;
+    background-color: black;
+}
+
+.object .hscrollbar .left,
+.object .hscrollbar .right {
+    position: absolute;
+    top: 11px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    text-indent: -9999px;
+}
+
+.object .hscrollbar .left {
+    left: 5px;
+    border-width: 8px 12px 8px 0;
+    border-color: transparent #383838 transparent transparent;
+}
+
+.object .hscrollbar .right {
+    right: 5px;
+    border-width: 8px 0 8px 12px;
+    border-color: transparent transparent transparent #383838;
+}
+
+.object .ProgressBar {
+    width: 100%;
+    position: relative;
+}
+
+.object .ProgressBar:before {
+    position: absolute;
+    content: "";
+    width: 57%;
+    height: 100%;
+    background-color: lime;
+}
+.object .ProgressBar.Hor0:before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    bottom: 0;
+    height: 57%;
+    background-color: lime;
+}
+.object fieldset {
+    height: 100%;
+    width: 100%;
+    border: 3px solid #383838;
+    background-color: #e8e8e8;
+}
+
+.object fieldset legend {
+   margin: 0 0 0 20px;
+}
+
+.object fieldset .content {
+    height: 100%;
+}
+
+.object fieldset .content:before {
+    content: " ";
+}
+
+.object.preview {
+    z-index: 1;
+}
+
+.object.preview .heading {
+    width: 400px;
+}
+
+.object.preview table {
+    width: 250px;
+}
+
+.object .heading {
+    margin: 0;
+}
+
+.object .paragraph {
+    width: 100%;
+}
+
+.object.preview .paragraph {
+    width: 300px;
+}
+
+.object .paragraph p {
+    padding: 5px;
+    margin: 0;
+}
+
+.object .image {
+    background-color: white;
+    border: 2px solid #dedede;
+
+}
+
+.object .shape {
+    width: 100%;
+    height: 100%;
+    border: 3px solid #383838;
+    border-radius: 0;
+}
+
+.object.circle .shape  {
+    border-radius: 50%;
+}
+
+.ui-resizable-handle {
+    bottom: -4px;
+    right: -4px;
+    border-radius: 50%;
+    background: orange;
+    height: 10px;
+    width: 10px;
+    visibility: hidden;
+}
+.object:focus {border:1px solid orange;box-sizing: border-box;}
+.object:focus .ui-resizable-handle {
+    visibility: visible;
+}
+
+.shape ~ .ui-resizable-handle {
+    right: -5px;
+    bottom: -5px;
+}
+
+#id_models {
+   width: 100%;
+   height:calc(100vh - 192px);
+}
+#id_models_crc {
+   width: 99%;
+   font-size: 10pt;
+   font-family: 'PT Mono', 'Courier New';
+   overflow: auto;
+   vertical-align: top;
+   margin-right: .25em;
+   -webkit-writing-mode: horizontal-tb !important;
+   text-rendering: auto;
+   color: -internal-light-dark(black, white);
+   text-indent: 0px;
+   text-shadow: none;
+   display: inline-block;
+   appearance: textarea;
+   -webkit-rtl-ordering: logical;
+   flex-direction: column;
+   cursor: text;
+   white-space: pre-wrap;
+   overflow-wrap: break-word;
+   border-width: 1px;
+   border-style: solid;
+   padding: 2px;
+   border-color: rgb(118 118 118 / 63%);
+   height:calc(100vh - 180px);
+   background-color:white;
+}
+
+#about p {
+    padding: 0px 10px;
+}
+
+.documents:hover #documents {
+    display: block;
+}
+.properties:hover #document-properties {
+    display: block;
+}
+.import-export:hover #document-import-export {
+    display: block;
+}
+#document-import-export:hover, #document-properties:hover, #documents:hover {
+    display: block;
+}
+
+footer {
+    position:fixed;
+    bottom: 0px;
+    right: 0;
+    width: calc(100% - 260px);
+    margin: 10px 10px 0 0;
+    background-color: #ECECEC;
+    z-index: 200;
+    box-shadow: 0 0 10px #bebebe;
+    border-radius: 5px;
+    max-height:250px;
+}
+footer:hover {max-height:initial;}
+footer h2 {
+    font-weight: bold;
+    font-size: 1em;
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+footer .delete {
+    margin: 0;
+}
+.taglist {
+}
+.tags-params {
+    margin: 0px 6px 6px 6px;
+    width: calc(100% - 6px);
+}
+.tags-params-index {width: 7ch;}
+.taglist-header {
+    background: #f3f3f3;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    padding-left: 10px;
+}
+footer table td {
+    padding: 3px 5px;
+}
+
+.table-scroll {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.tags-params tr td {
+    border-right: 1px solid #bebebe;
+}
+
+.tags-params tr:hover {
+    background: #dedede;
+}
+
+.tags-params tr:first-of-type:hover {
+    background: #ECECEC;
+}
+
+footer table input {
+    padding: 2px 4px;
+    width: 100%;
+    font-size:14px;
+    box-sizing: border-box;
+}
+.delete, .destroy {
+    display: inline-block;
+    color: white;
+    background-color: #b74949;
+    padding: 3px 8px;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.destroy:hover, .delete:hover {
+    background-color: #793232;
+    color: white;
+}
+
+.reset {
+    color: white;
+    background-color: #b74949;
+}
+
+.add-tag, .copy {
+    display: inline-block;
+    color: white;
+    background-color: #525252;
+    padding: 3px 8px;
+    text-decoration: none;
+    margin: 3px 0;
+    font-size: 14px;
+    border-radius: 3px;
+    margin-left: 1em;
+}
+.add-tag:hover, .copy:hover {
+    background-color: #298c37;
+}
+
+.draggable {
+    width: 90px;
+    height: 80px;
+    padding: 5px;
+    position:absolute;
+    background:gold;
+    border:1px solid #444;
+}
+
+.statusBar {
+    bottom: 8px;
+    display: block;
+    position: fixed;
+    background: #f0f0f0;
+}
+input#id_grid_divider {
+    width: 2ch;
+    margin-left: 1em;
+}
+.ui-icon {
+    display: inline-block;
+    padding-bottom: -3px;
+    margin-bottom: -2px;
+}
+
+.palette-color-picker-button {
+    width: 17px;
+    height: 17px;
+    margin: 0px 0 -5px 0;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    box-shadow: none;
+    background: linear-gradient(53deg,#ff0000, #8c08f9, #15ffe9,#e6ff15);
+    /* right: 2px; */
+    border-radius: 3px;
+}
+
+.palette-color-picker-bubble .swatch {
+	position: relative;
+    display: block;
+    font: inherit;
+    width: inherit;
+    color: white;
+	padding: 3px;
+	box-sizing: border-box;
+    padding-top: 0%;
+    margin: 1% 1%;
+    outline: 0px;
+    border: 1px solid #fff;
+    border-radius:1px;
+	text-shadow: 1px 1px grey;
+}
+.palette-color-picker-bubble {
+    margin: 0;
+    position: fixed;
+    bottom: calc(50% - 45px);
+    width: 120px;
+    height: 60%;
+    right: 10px;
+    top: 130px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 1px 20px 1px 1px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.palette-color-picker-bubble .swatch.active {
+    outline-color: orange;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px orange;
+}
+.palette-color-picker-bubble:after, .palette-color-picker-bubble:before {content:none;}
+.circleDaqLib {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 50%;
+}
+.tankDaqLib {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 12px;
+}
+
+.colored {
+    color: #9400FF;
+    font-style: inherit;
+    width: 100%;
+    display: inline-block;
+    background: #F2F4FF;
+}
+
+.colored2 {color: #FF0000;}
+
+@media screen and (max-width: 1434px){
+    .left-col {margin-top: 115px;height: calc(100% - 135px);}
+    .wrap {margin-top: 115px;}
+    img#generalMap {top: 115px;}
+    .header {height: auto;}
+    .right-col {margin-top:100px;}
+}

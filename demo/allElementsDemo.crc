@@ -1,0 +1,1604 @@
+[Circuit]
+GeneralMap =  ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_600_700_4_silver.bmp
+Hint = allElementsDemo
+ToolBarHeight = 0
+[]
+
+[ConfigFileList] ; Include the Painter GUI Library
+ConfigFile = ~~\Resource\DaqSite\Default\Painter.crc
+[]
+
+[SensorList]
+Sensor = LINE.C585
+[LINE.C585]
+Pos = 5, 5
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_100_1_24_black.bmp 
+Hint = allElementsDemo
+[]
+
+[SensorList]
+Sensor = LABEL.C591
+[LABEL.C591]
+Pos = 110, 5
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_100_25_24_aqua.bmp Label
+Hint = allElementsDemo
+[]
+
+[SensorList]
+Sensor = BUTTON.C597
+[BUTTON.C597]
+Pos = 5, 35
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black
+Painter(v) = (glButtonBit=0)+(glButtonBevel=1)+(glButtonMoveX=1)+(glButtonMoveY=1)
+Painter(v) = [Painter(v).GuiLib.SimpleButton]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_100_20_24_silver.bmp Button
+Hint = Sensor Button.c597
+[]
+
+[SensorList]
+Sensor = RADIO.C77
+[RADIO.C77]
+Pos = 110, 35
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:8\Color:Black
+Painter(v) = (glRadioValue=0)+(glRadioColor=clWhite) 
+Painter(v) = [Painter(v).GuiLib.RadioButton]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_14_10_24_silver_PTMono.bmp RadioButton
+Hint = Sensor Radio.c77
+[]
+
+[SensorList]
+Sensor = CHECK.C83
+[CHECK.C83]
+Pos = 110, 50
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:8\Color:Black
+Painter(v) = (glCheckBoxBit=0)+(glCheckBoxColor=clWhite)
+Painter(v) = [Painter(v).GuiLib.CheckBox]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_11_12_24_silver_PTMono.bmp CheckBox
+Hint = Sensor Check.c83
+[]
+
+[SensorList]
+Sensor = PROGRESS.C93
+[PROGRESS.C93]
+Pos = 230, 5
+LED = 20, 3, 0, %20.3f, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
+Painter(v) = (glProgBarMin=0)+(glProgBarMax=100)+(glProgBarHor=1)+(glProgBarColor=clLime)+(glProgBarBevel=0)
+Painter(v) = [Painter(v).GuiLib.ProgressBar]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_100_30_24_silver.bmp 
+Hint = Sensor Progress.c93
+[]
+
+[SensorList]
+Sensor = BORDER.C99
+[BORDER.C99]
+Pos = 230, 40
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
+Painter(v) = (glBorderBevel=1)+(glBorderColor=clGray)
+Painter(v) = [Painter(v).GuiLib.SimpleBorder]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_90_20_24_silver.bmp 
+Hint = Sensor Border.c99
+[]
+
+[SensorList]
+Sensor = CMDOK.C109
+[CMDOK.C109]
+Pos = 10, 80
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:8\Color:Black
+Painter(v) = (glCmdOkLineWidth=1)+(glCmdOkLineColor=clGreen)+(glCmdOkFillColor=clLime)
+Painter(v) = [Painter(v).GuiLib.Cmd.Ok]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_8_20_24_silver_PTMono.bmp %%A0%2B%2B%2BПрименить
+Hint = Sensor CmdOk.c109
+[]
+
+[SensorList]
+Sensor = CMDCANCEL.C115
+[CMDCANCEL.C115]
+Pos = 145, 80
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
+Painter(v) = (glCmdCancelLineWidth=1)+(glCmdCancelLineColor=clGreen)+(glCmdCancelFillColor=clLime)
+Painter(v) = [Painter(v).GuiLib.Cmd.Cancel]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_8_20_24_silver_PTMono.bmp %%A0%2B%2B%2BПрименить
+Hint = Sensor CmdCancel.c115
+[]
+
+[SensorList]
+Sensor = CIRCLE.C121
+[CIRCLE.C121]
+Pos = 335, 5
+Painter(v) = (glButtonBit=0)+(glButtonBevel=1)+(glButtonMoveX=2)+(glButtonMoveY=2)
+Painter(v) = (glCircleBevel=0)+(glCircleWidth=1)+(glCircleFaceColor=clBlack)
+Painter(v) = (glCircleBackColor=eq(v,1)*clLime+eq(v,0)*clRed)
+Painter(v) = (glCircleBackColor=glCircleBackColor+eq(glCircleBackColor,0)*clSilver)
+Painter(v) = [Painter(v).GuiLib.Indicator.Circle]
+Painter(v) = [Painter(v).GuiLib.SimpleButton]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Circle.c121
+[]
+
+[SensorList]
+Sensor = CROSS.C127
+[CROSS.C127]
+Pos = 377, 5
+Painter(v) = (glCrossBevel=2)+(glCrossWidth=1)+(glCrossColor=clBlack)
+Painter(v) = [Painter(v).GuiLib.SimpleCross]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_18_18_24_white.bmp 
+Hint = Sensor Cross.c127
+[]
+
+[SensorList]
+Sensor = LISTBUTTON.ARROW.C133
+[LISTBUTTON.ARROW.C133]
+Pos = 280, 85
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black
+Painter(v) = (glListBtnArrowLeft=0)+(glListBtnArrowLineColor=clBlack)+(glListBtnArrowLineWidth=2)+(glListBtnArrowBorderWidth=1)+(glListBtnArrowBorderColor=clGray)
+Painter(v) = [Painter(v).GuiLib.ListButton.Arrow]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_15_16_24_white_PTMono.bmp List+1+
+Hint = Sensor ListButton.Arrow.c133
+[]
+
+[SensorList]
+Sensor = LISTBUTTON.TRIANGLE.C139
+[LISTBUTTON.TRIANGLE.C139]
+Pos = 475, 85
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black
+Painter(v) = (glListBtnTriangleLeft=0)+(glListBtnTriangleLineColor=clBlack)+(glListBtnTriangleFillColor=clGray)+(glListBtnTriangleBorderWidth=1)+(glListBtnTriangleBorderColor=clGray)
+Painter(v) = [Painter(v).GuiLib.ListButton.Triangle]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_9_16_24_white_PTMono.bmp List+1+
+Hint = Sensor ListButton.Triangle.c139
+[]
+
+[SensorList]
+Sensor = VALVE.C149
+[VALVE.C149]
+Pos = 5, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.ThruWayHor.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C154
+[VALVE.C154]
+Pos = 40, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.ThruWayVer.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C159
+[VALVE.C159]
+Pos = 75, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngUpLeft.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C164
+[VALVE.C164]
+Pos = 110, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngUpRight.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C169
+[VALVE.C169]
+Pos = 145, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngDownLeft.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C182
+[VALVE.C182]
+Pos = 180, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngDownRight.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C187
+[VALVE.C187]
+Pos = 215, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayUp.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C192
+[VALVE.C192]
+Pos = 250, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayDown.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C197
+[VALVE.C197]
+Pos = 285, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayLeft.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C202
+[VALVE.C202]
+Pos = 315, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayRight.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C207
+[VALVE.C207]
+Pos = 355, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.VlvGateHor.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C212
+[VALVE.C212]
+Pos = 390, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.VlvGateVer.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C217
+[VALVE.C217]
+Pos = 425, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.RotGateHor.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C222
+[VALVE.C222]
+Pos = 460, 125
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.RotGateVer.LimSwNone.NoneOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C229
+[VALVE.C229]
+Pos = 5, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.ThruWayHor.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C234
+[VALVE.C234]
+Pos = 5, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.ThruWayHor.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C243
+[VALVE.C243]
+Pos = 5, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.ThruWayHor.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C248
+[VALVE.C248]
+Pos = 5, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.ThruWayHor.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C257
+[VALVE.C257]
+Pos = 40, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.ThruWayVer.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C262
+[VALVE.C262]
+Pos = 40, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.ThruWayVer.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C269
+[VALVE.C269]
+Pos = 40, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.ThruWayVer.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C274
+[VALVE.C274]
+Pos = 40, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.ThruWayVer.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C297
+[VALVE.C297]
+Pos = 75, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngUpLeft.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C302
+[VALVE.C302]
+Pos = 75, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngUpLeft.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C307
+[VALVE.C307]
+Pos = 75, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngUpLeft.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C312
+[VALVE.C312]
+Pos = 75, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngUpLeft.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C331
+[VALVE.C331]
+Pos = 110, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngUpRight.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C336
+[VALVE.C336]
+Pos = 110, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngUpRight.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C341
+[VALVE.C341]
+Pos = 110, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngUpRight.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C346
+[VALVE.C346]
+Pos = 110, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngUpRight.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C365
+[VALVE.C365]
+Pos = 145, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngDownLeft.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C370
+[VALVE.C370]
+Pos = 145, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngDownLeft.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C375
+[VALVE.C375]
+Pos = 145, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngDownLeft.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C380
+[VALVE.C380]
+Pos = 145, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngDownLeft.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C399
+[VALVE.C399]
+Pos = 180, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngDownRight.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C404
+[VALVE.C404]
+Pos = 180, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngDownRight.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C414
+[VALVE.C414]
+Pos = 180, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngDownRight.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C423
+[VALVE.C423]
+Pos = 180, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.AngDownRight.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = PUMP.C437
+[PUMP.C437]
+Pos = 5, 325
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.RotSingle.None]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C442
+[PUMP.C442]
+Pos = 40, 325
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.RotDouble.None]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C447
+[PUMP.C447]
+Pos = 75, 325
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Turbomol.None]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C452
+[PUMP.C452]
+Pos = 110, 325
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Roots.None]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C457
+[PUMP.C457]
+Pos = 145, 325
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Diffusion.None]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C462
+[PUMP.C462]
+Pos = 180, 325
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.SputIon.None]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C471
+[PUMP.C471]
+Pos = 215, 325
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Sublimation.None]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C480
+[PUMP.C480]
+Pos = 5, 355
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.RotSingle.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C485
+[PUMP.C485]
+Pos = 5, 385
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.RotSingle.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C490
+[PUMP.C490]
+Pos = 5, 415
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.RotSingle.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C525
+[PUMP.C525]
+Pos = 5, 445
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.RotSingle.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C532
+[PUMP.C532]
+Pos = 40, 355
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.RotDouble.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C537
+[PUMP.C537]
+Pos = 40, 385
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.RotDouble.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C542
+[PUMP.C542]
+Pos = 40, 415
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.RotDouble.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C547
+[PUMP.C547]
+Pos = 40, 445
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.RotDouble.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C560
+[PUMP.C560]
+Pos = 75, 355
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Turbomol.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C565
+[PUMP.C565]
+Pos = 75, 385
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Turbomol.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C570
+[PUMP.C570]
+Pos = 75, 415
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Turbomol.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C575
+[PUMP.C575]
+Pos = 75, 445
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Turbomol.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C602
+[PUMP.C602]
+Pos = 110, 355
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Roots.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C607
+[PUMP.C607]
+Pos = 110, 385
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Roots.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C612
+[PUMP.C612]
+Pos = 110, 415
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Roots.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C617
+[PUMP.C617]
+Pos = 110, 445
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Roots.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C638
+[PUMP.C638]
+Pos = 145, 355
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Diffusion.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C643
+[PUMP.C643]
+Pos = 145, 385
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Diffusion.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C648
+[PUMP.C648]
+Pos = 145, 415
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Diffusion.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C653
+[PUMP.C653]
+Pos = 145, 445
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Diffusion.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C674
+[PUMP.C674]
+Pos = 180, 445
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.SputIon.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C685
+[PUMP.C685]
+Pos = 180, 355
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.SputIon.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C690
+[PUMP.C690]
+Pos = 180, 385
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.SputIon.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C695
+[PUMP.C695]
+Pos = 180, 415
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.SputIon.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C706
+[PUMP.C706]
+Pos = 215, 355
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Sublimation.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C711
+[PUMP.C711]
+Pos = 215, 385
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Sublimation.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C716
+[PUMP.C716]
+Pos = 215, 415
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Sublimation.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = PUMP.C721
+[PUMP.C721]
+Pos = 215, 445
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = [Painter(v).GostLib.Pump.Sublimation.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Pump.c437
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C749
+[VACUOMETER.C749]
+Pos = 5, 490
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Penning.None]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C754
+[VACUOMETER.C754]
+Pos = 40, 490
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Ionization.None]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C759
+[VACUOMETER.C759]
+Pos = 75, 490
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Thermal.None]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C776
+[VACUOMETER.C776]
+Pos = 5, 520
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Penning.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C781
+[VACUOMETER.C781]
+Pos = 5, 550
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Penning.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C786
+[VACUOMETER.C786]
+Pos = 5, 610
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Penning.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C791
+[VACUOMETER.C791]
+Pos = 5, 580
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Penning.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C348
+[VACUOMETER.C348]
+Pos = 40, 520
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Ionization.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C353
+[VACUOMETER.C353]
+Pos = 40, 550
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Ionization.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C358
+[VACUOMETER.C358]
+Pos = 40, 580
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Ionization.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C363
+[VACUOMETER.C363]
+Pos = 40, 610
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Ionization.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C406
+[VACUOMETER.C406]
+Pos = 75, 520
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Thermal.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C411
+[VACUOMETER.C411]
+Pos = 75, 550
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Thermal.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C416
+[VACUOMETER.C416]
+Pos = 75, 580
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Thermal.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = VACUOMETER.C421
+[VACUOMETER.C421]
+Pos = 75, 610
+Painter(v) = (glVacuometerBevel=4)+(glVacuometerFillColor=clGray)+(glVacuometerLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Vacuometer.Thermal.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Vacuometer.c749
+[]
+
+[SensorList]
+Sensor = LEAKDETECTOR.C447
+[LEAKDETECTOR.C447]
+Pos = 116, 489
+Painter(v) = (glLeakDetBevel=4)+(glLeakDetFillColor=clGray)+(glLeakDetLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.LeakDetector]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_30_30_24_silver.bmp 
+Hint = Sensor LeakDetector.c447
+[]
+
+[SensorList]
+Sensor = COMPRESSOR.C493
+[COMPRESSOR.C493]
+Pos = 155, 490
+Painter(v) = (glCompressorBevel=4)+(glCompressorFillColor=clGray)+(glCompressorLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Compressor.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Compressor.c493
+[]
+
+[SensorList]
+Sensor = COMPRESSOR.C498
+[COMPRESSOR.C498]
+Pos = 155, 520
+Painter(v) = (glCompressorBevel=4)+(glCompressorFillColor=clGray)+(glCompressorLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Compressor.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Compressor.c493
+[]
+
+[SensorList]
+Sensor = COMPRESSOR.C503
+[COMPRESSOR.C503]
+Pos = 155, 550
+Painter(v) = (glCompressorBevel=4)+(glCompressorFillColor=clGray)+(glCompressorLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Compressor.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Compressor.c493
+[]
+
+[SensorList]
+Sensor = COMPRESSOR.C508
+[COMPRESSOR.C508]
+Pos = 155, 580
+Painter(v) = (glCompressorBevel=4)+(glCompressorFillColor=clGray)+(glCompressorLineColor=clBlack)
+Painter(v) = [Painter(v).GostLib.Compressor.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Compressor.c493
+[]
+
+[SensorList]
+Sensor = RADIATIONHAZARD.C535
+[RADIATIONHAZARD.C535]
+Pos = 510, 120
+Painter(v) = (glRadiationHazardBevel=2)+(glRadiationHazardBackColor=clYellow)+(glRadiationHazardFillColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.RadiationHazard]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor RadiationHazard.c535
+[]
+
+[SensorList]
+Sensor = AIRBLOWER.C541
+[AIRBLOWER.C541]
+Pos = 270, 330
+Painter(v) = (glAirBlowerBevel=2)+(glAirBlowerLineWidth=2)+(glAirBlowerFillColor=clSilver)+(glAirBlowerLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.AirBlower.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor AirBlower.c541
+[]
+
+[SensorList]
+Sensor = AIRBLOWER.C550
+[AIRBLOWER.C550]
+Pos = 320, 330
+Painter(v) = (glAirBlowerBevel=2)+(glAirBlowerLineWidth=2)+(glAirBlowerFillColor=clAqua)+(glAirBlowerLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.AirBlower.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor AirBlower.c541
+[]
+
+[SensorList]
+Sensor = AIRBLOWER.C555
+[AIRBLOWER.C555]
+Pos = 370, 330
+Painter(v) = (glAirBlowerBevel=2)+(glAirBlowerLineWidth=2)+(glAirBlowerFillColor=clSilver)+(glAirBlowerLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.AirBlower.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor AirBlower.c541
+[]
+
+[SensorList]
+Sensor = AIRBLOWER.C560
+[AIRBLOWER.C560]
+Pos = 420, 330
+Painter(v) = (glAirBlowerBevel=2)+(glAirBlowerLineWidth=2)+(glAirBlowerFillColor=clSilver)+(glAirBlowerLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.AirBlower.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor AirBlower.c541
+[]
+
+[SensorList]
+Sensor = FANBLOWER.C584
+[FANBLOWER.C584]
+Pos = 270, 380
+Painter(v) = (glFanBlowerBevel=2)+(glFanBlowerLineWidth=2)+(glFanBlowerFillColor=clSilver)+(glFanBlowerLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.FanBlower.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor FanBlower.c584
+[]
+
+[SensorList]
+Sensor = FANBLOWER.C589
+[FANBLOWER.C589]
+Pos = 320, 380
+Painter(v) = (glFanBlowerBevel=2)+(glFanBlowerLineWidth=2)+(glFanBlowerFillColor=clSilver)+(glFanBlowerLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.FanBlower.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor FanBlower.c584
+[]
+
+[SensorList]
+Sensor = FANBLOWER.C594
+[FANBLOWER.C594]
+Pos = 370, 380
+Painter(v) = (glFanBlowerBevel=2)+(glFanBlowerLineWidth=2)+(glFanBlowerFillColor=clSilver)+(glFanBlowerLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.FanBlower.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor FanBlower.c584
+[]
+
+[SensorList]
+Sensor = FANBLOWER.C599
+[FANBLOWER.C599]
+Pos = 420, 380
+Painter(v) = (glFanBlowerBevel=2)+(glFanBlowerLineWidth=2)+(glFanBlowerFillColor=clSilver)+(glFanBlowerLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.FanBlower.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor FanBlower.c584
+[]
+
+[SensorList]
+Sensor = WATERPUMP.C619
+[WATERPUMP.C619]
+Pos = 270, 430
+Painter(v) = (glWaterPumpBevel=2)+(glWaterPumpLineWidth=2)+(glWaterPumpFillColor=clSilver)+(glWaterPumpLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.WaterPump.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor WaterPump.c619
+[]
+
+[SensorList]
+Sensor = WATERPUMP.C624
+[WATERPUMP.C624]
+Pos = 320, 430
+Painter(v) = (glWaterPumpBevel=2)+(glWaterPumpLineWidth=2)+(glWaterPumpFillColor=clSilver)+(glWaterPumpLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.WaterPump.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor WaterPump.c619
+[]
+
+[SensorList]
+Sensor = WATERPUMP.C629
+[WATERPUMP.C629]
+Pos = 370, 430
+Painter(v) = (glWaterPumpBevel=2)+(glWaterPumpLineWidth=2)+(glWaterPumpFillColor=clSilver)+(glWaterPumpLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.WaterPump.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor WaterPump.c619
+[]
+
+[SensorList]
+Sensor = WATERPUMP.C634
+[WATERPUMP.C634]
+Pos = 420, 430
+Painter(v) = (glWaterPumpBevel=2)+(glWaterPumpLineWidth=2)+(glWaterPumpFillColor=clSilver)+(glWaterPumpLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.WaterPump.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor WaterPump.c619
+[]
+
+[SensorList]
+Sensor = TANKLEVEL.C648
+[TANKLEVEL.C648]
+Pos = 510, 175
+TagEval(v) = (glTankLevelPercent=v)
+Painter(v) = (glTankLevelBevel=2)+(glTankLevelLineWidth=2)+(glTankLevelFillColor=clTeal)+(glTankLevelBackColor=clSilver)+(glTankLevelLineColor=clBlack)+(glTankLevelPercent=15)
+Painter(v) = [Painter(v).DaqLib.TankLevel]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor TankLevel.c648
+[]
+
+[SensorList]
+Sensor = FLOWMETER.C654
+[FLOWMETER.C654]
+Pos = 270, 480
+Painter(v) = (glFlowMeterBevel=2)+(glFlowMeterLineWidth=2)+(glFlowMeterFillColor=clSilver)+(glFlowMeterLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.FlowMeter.Up]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor FlowMeter.c654
+[]
+
+[SensorList]
+Sensor = FLOWMETER.C664
+[FLOWMETER.C664]
+Pos = 320, 480
+Painter(v) = (glFlowMeterBevel=2)+(glFlowMeterLineWidth=2)+(glFlowMeterFillColor=clSilver)+(glFlowMeterLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.FlowMeter.Down]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor FlowMeter.c654
+[]
+
+[SensorList]
+Sensor = FLOWMETER.C669
+[FLOWMETER.C669]
+Pos = 370, 480
+Painter(v) = (glFlowMeterBevel=2)+(glFlowMeterLineWidth=2)+(glFlowMeterFillColor=clSilver)+(glFlowMeterLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.FlowMeter.Left]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor FlowMeter.c654
+[]
+
+[SensorList]
+Sensor = FLOWMETER.C674
+[FLOWMETER.C674]
+Pos = 420, 480
+Painter(v) = (glFlowMeterBevel=2)+(glFlowMeterLineWidth=2)+(glFlowMeterFillColor=clSilver)+(glFlowMeterLineColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.FlowMeter.Right]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor FlowMeter.c654
+[]
+
+[SensorList]
+Sensor = MANOMETER.C692
+[MANOMETER.C692]
+Pos = 510, 230
+Painter(v) = (glManoMeterBevel=2)+(glManoMeterLineWidth=2)+(glManoMeterFillColor=clSilver)+(glManoMeterLineColor=clBlack)+(glManoMeterAngle=45)
+Painter(v) = [Painter(v).DaqLib.ManoMeter]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor ManoMeter.c692
+[]
+
+[SensorList]
+Sensor = UNIHEATER.C698
+[UNIHEATER.C698]
+Pos = 510, 280
+Painter(v) = (glButtonBit=0)+(glButtonBevel=3)+(glButtonMoveX=2)+(glButtonMoveY=2)
+Painter(v) = (glUniHeaterBevel=2)+(glUniHeaterColor=clBlack)
+Painter(v) = [Painter(v).DaqLib.UniHeater]
+Painter(v) = [Painter(v).GuiLib.SimpleButton]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_48_48_24_silver.bmp 
+Hint = Sensor UniHeater.c698
+[]
+
+[SensorList]
+Sensor = VALVE.C705
+[VALVE.C705]
+Pos = 215, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayUp.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C710
+[VALVE.C710]
+Pos = 215, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayUp.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C715
+[VALVE.C715]
+Pos = 215, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayUp.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C720
+[VALVE.C720]
+Pos = 215, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayUp.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C739
+[VALVE.C739]
+Pos = 250, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayDown.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C744
+[VALVE.C744]
+Pos = 250, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayDown.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C749
+[VALVE.C749]
+Pos = 250, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayDown.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C754
+[VALVE.C754]
+Pos = 250, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayDown.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C779
+[VALVE.C779]
+Pos = 285, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayLeft.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C784
+[VALVE.C784]
+Pos = 285, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayLeft.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C789
+[VALVE.C789]
+Pos = 285, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayLeft.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C794
+[VALVE.C794]
+Pos = 285, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayLeft.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C813
+[VALVE.C813]
+Pos = 315, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayRight.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C818
+[VALVE.C818]
+Pos = 315, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayRight.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C823
+[VALVE.C823]
+Pos = 315, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayRight.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C828
+[VALVE.C828]
+Pos = 315, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.3WayRight.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C843
+[VALVE.C843]
+Pos = 355, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.VlvGateHor.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C848
+[VALVE.C848]
+Pos = 355, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.VlvGateHor.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C853
+[VALVE.C853]
+Pos = 355, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.VlvGateHor.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C858
+[VALVE.C858]
+Pos = 355, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.VlvGateHor.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C873
+[VALVE.C873]
+Pos = 390, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.VlvGateVer.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C878
+[VALVE.C878]
+Pos = 390, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.VlvGateVer.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C883
+[VALVE.C883]
+Pos = 390, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.VlvGateVer.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C888
+[VALVE.C888]
+Pos = 390, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.VlvGateVer.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C895
+[VALVE.C895]
+Pos = 425, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.RotGateHor.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C906
+[VALVE.C906]
+Pos = 425, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.RotGateHor.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C911
+[VALVE.C911]
+Pos = 425, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.RotGateHor.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C916
+[VALVE.C916]
+Pos = 425, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.RotGateHor.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C923
+[VALVE.C923]
+Pos = 460, 160
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.RotGateVer.LimSwNone.ManualOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C928
+[VALVE.C928]
+Pos = 460, 195
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.RotGateVer.LimSwNone.SolenoidOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C933
+[VALVE.C933]
+Pos = 460, 230
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.RotGateVer.LimSwNone.MotorOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = VALVE.C938
+[VALVE.C938]
+Pos = 460, 265
+Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
+Painter(v) = [Painter(v).GostLib.Valve.RotGateVer.LimSwNone.PneumaticOp]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
+Hint = Sensor Valve.c149
+[]
+
+    
