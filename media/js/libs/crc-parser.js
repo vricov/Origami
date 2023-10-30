@@ -96,14 +96,14 @@ function ConvertModel(data){
                 format['mockups'][i]['tags'][tag-1]['type'] = 'ledbmp';
                 format['mockups'][i]['tags'][tag-1]['width'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",2)[1]+'ch';
                 format['mockups'][i]['tags'][tag-1]['height'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",3)[2]+'pt';
-                format['mockups'][i]['tags'][tag-1]['label'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\ledbmp", "").split(" ",2)[1];
+                format['mockups'][i]['tags'][tag-1]['label'] = value[sensor]['Tag#'+tag].replace(/^.*\.bmp/, "").trim();
                 format['mockups'][i]['tags'][tag-1]['bit'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",4)[3];
                 format['mockups'][i]['tags'][tag-1]['color'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",5)[4].match(/[a-zA-Z0-9_$]+/)[0];
             } else if (TagType == 'barbmp') {
                 format['mockups'][i]['tags'][tag-1]['type'] = 'barbmp';
                 format['mockups'][i]['tags'][tag-1]['width'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",2)[1];
                 format['mockups'][i]['tags'][tag-1]['height'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",3)[2];
-                format['mockups'][i]['tags'][tag-1]['label'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\barbmp", "").split(" ",2)[1];
+                format['mockups'][i]['tags'][tag-1]['label'] = value[sensor]['Tag#'+tag].replace(/^.*\.bmp/, "").trim();
                 format['mockups'][i]['tags'][tag-1]['bit'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",4)[3];
                 format['mockups'][i]['tags'][tag-1]['color'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",5)[4].match(/[a-zA-Z0-9_$]+/)[0];
             } else {
@@ -115,8 +115,14 @@ function ConvertModel(data){
                 format['mockups'][i]['tags'][tag-1]['color'] = 'Silver';
             }
             
+            if (format['mockups'][i]['tags'][tag-1]['label'] != undefined) 
+                if (format['mockups'][i]['tags'][tag-1]['label'][0] == '"') {
+                    // format['mockups'][i]['tags'][tag-1]['label'] = format['mockups'][i]['tags'][tag-1]['label'].replace(/"/g, '');
+                    format['mockups'][i]['tags'][tag-1]['label'] = format['mockups'][i]['tags'][tag-1]['label'].slice(1,-1).replace(/""/g, '"');;
+                } else {
+                    format['mockups'][i]['tags'][tag-1]['label'] = format['mockups'][i]['tags'][tag-1]['label'].replace(/\+/g, " ").replace(/\%2C/g, ",").replace(/\%2B/g, "+").replace(/\%%/g, "%").replace(/\%&nbsp;/g, " ");
+                }
             
-            if (format['mockups'][i]['tags'][tag-1]['label'] != undefined) format['mockups'][i]['tags'][tag-1]['label'] = format['mockups'][i]['tags'][tag-1]['label'].replace(/\+/g, " ").replace(/\%2C/g, ",").replace(/\%2B/g, "+").replace(/\%%/g, "%").replace(/\%&nbsp;/g, " ");
             tag++;
         }
         if (value[sensor]['TagEval(v)']) {

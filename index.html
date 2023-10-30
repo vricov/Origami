@@ -129,6 +129,9 @@
                 <p>Built with Backbone, Backbone-LocalStorage, Backbone-Nested, Underscore and Handlebars.</p>
                 <p></p>
                 <textarea name="textarea" rows="30" id="id_changelog" disabled>
+30.10.2023
++ Отказ от URL кодировки в надписях в соответствии с новым представлением .crc в CRW-DAQ. Файлы с URL кодировкой текста будут при импорте преобразуются в новый формат
+
 29.03.2023
 + Изменения в пользовательском интерфейсе
 + При активном сенсоре нажатие клавиши пробел поворачивает сенсор. Особенно актуально при использовании сенсоров типа line. Такая же горячая клавиша используется в AltiumDesigner (?*)
@@ -438,7 +441,7 @@
 				
 				</td>
                 <td><input type="text" id="tags_<%= i %>_color" name="color_<%= i %>" id-attribute="<%= i %>" value="<%= tags[tag].color %>"/></td>
-                <td><input type="text" id="tags_<%= i %>_label" name="label" id-attribute="<%= i %>" value="<%= tags[tag].label %>" /></td>
+                <td><input type="text" id="tags_<%= i %>_label" name="label" id-attribute="<%= i %>" value="<%= tags[tag].label.replace(/"/g, '&quot;') %>" /></td>
                 <td><a class="divButton delete" id-attribute="<%= i %>" href="#">X</a></td>
             </tr>
         <% i = i + 1; }  %>
@@ -483,6 +486,7 @@ ToolBarHeight <i class="colored2">=</i> 0
 <i class="colored">[ConfigFileList] ; Include the Painter GUI Library</i>
 ConfigFile <i class="colored2">=</i> ~~\Resource\DaqSite\Default\Painter.crc
 <i class="colored">[]</i>
+
 {{#if startupscript}}
 <i class="colored">[Circuit.StartupScript]</i>
 {{& startupscript}}
@@ -606,7 +610,7 @@ Painter(v) <i class="colored2">=</i> (glBorderBevel={{border_attributes.0.glBord
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.SimpleBorder]
 {{/border}}
 {{#tags}}
-Tag#{{inc @index}} <i class="colored2">=</i> {{id}}, {{^custom}}~~\Resource\DaqSite\StdLib\Bitmaps\\{{custom}}{{type}}_{{ch width}}_{{pt height}}_{{bit}}_{{replaceFuncColorsLower color}}{{spacers ../led_attributes.0.led_font type}}.bmp{{/custom}}{{#custom}}{{../custom}}{{/custom}} {{labelformat label}}
+Tag#{{inc @index}} <i class="colored2">=</i> {{id}}, {{^custom}}~~\Resource\DaqSite\StdLib\Bitmaps\\{{custom}}{{type}}_{{ch width}}_{{pt height}}_{{bit}}_{{replaceFuncColorsLower color}}{{spacers ../led_attributes.0.led_font type}}.bmp{{/custom}}{{#custom}}{{../custom}}{{/custom}} {{quoted label}}
 {{/tags}}
 Hint <i class="colored2">=</i> {{& hint}}
 <i class="colored">[]</i>

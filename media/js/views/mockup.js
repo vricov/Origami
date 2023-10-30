@@ -1,16 +1,11 @@
 //This is the view for the mockup elements (button, checkbox, etc.)
-Handlebars.registerHelper('labelformat', function(text) {
+Handlebars.registerHelper('quoted', function(text) {
     text = Handlebars.Utils.escapeExpression(text);
     text = text.toString();
-    text = text.replace(/\%/g, '%%');
-    // text = text.replace(/\s+/g, '%20');
-    // text = text.replaceAll(',', '%2C');
-    // text = text.replaceAll('+', '%2B');
-    text = text.replace(/\,/g, '%2C');
-    text = text.replace(/\+/g, '%2B');
-    // text = text.replace(/\ /g, '%&nbsp;');
-    text = text.replace(/\s+/g, '+');
-    
+    if (text.length>0) {
+        text = text.replace(/&quot;/g, '&quot;&quot;');
+        text = '"' + text + '"';
+    }
     return new Handlebars.SafeString(text);
 });
         
