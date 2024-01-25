@@ -14,6 +14,13 @@ Handlebars.registerHelper('underlines', function(text) {
     text = text.toString();
     text = text.replace(/\s+/g, '_');
     return new Handlebars.SafeString(text);
+});   
+      
+Handlebars.registerHelper('unspace', function(text) {
+    text = Handlebars.Utils.escapeExpression(text);
+    text = text.toString();
+    text = text.replace(' ','&nbsp');
+    return new Handlebars.SafeString(text);
 });        
 
 Handlebars.registerHelper('spacers', function(text, bmptype) {

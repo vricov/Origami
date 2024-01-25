@@ -124,11 +124,14 @@
             <a class="about"><span class="ui-icon ui-icon-help"></span></a>
             <section id="about">
                 <h3>О программе</h3>
-                <p>Copyright (c) 2020-2023 Alexey Zhirunov rvricov@gmail.com.</p>
+                <p>Copyright (c) 2020-2024 Alexey Zhirunov rvricov@gmail.com.</p>
                 <p>Основано на ПО "Mockup-designer" Copyright (c) 2015 Fatih Erikli <http://fatiherikli.github.com/mockup-designer/>, лицензия <a href="LICENSE">MIT</a>.</p>
                 <p>Built with Backbone, Backbone-LocalStorage, Backbone-Nested, Underscore and Handlebars.</p>
                 <p></p>
                 <textarea name="textarea" rows="30" id="id_changelog" disabled>
+25.01.2024
++ С новой кодировкой в надписях нет необходимости заменять пробелы в начале или конце неразрывными пробелами. Под это дело поправлено ихз визуальное отображение, раньше они не отображались
+
 30.10.2023
 + Отказ от URL кодировки в надписях в соответствии с новым представлением .crc в CRW-DAQ. Файлы с URL кодировкой текста будут при импорте преобразуются в новый формат
 
@@ -471,7 +474,7 @@
 			{{#flowmeter}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="circleDaqLib FlowMeter_{{flowmeter_attributes.0.Orientation}}" style="border-width: {{flowmeter_attributes.0.glFlowMeterLineWidth}}px;border-color: {{colorRGB flowmeter_attributes.0.glFlowMeterLineColor}};background-color: {{colorRGB flowmeter_attributes.0.glFlowMeterFillColor}};"></div></div>{{/flowmeter}}
 			{{#manometer}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="circleDaqLib" style="border-width: {{manometer_attributes.0.glManoMeterLineWidth}}px;border-color: {{colorRGB manometer_attributes.0.glManoMeterLineColor}};background-color: {{colorRGB manometer_attributes.0.glManoMeterFillColor}};"><div class="ManoMeter icon"></div></div></div>{{/manometer}}
 			{{#uniheater}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="uniheater icon"></div></div>{{/uniheater}}
-            <div class="label" {{^progressbar}}data-attribute="tags.0.label"{{/progressbar}} >{{#progressbar}}{{^tags.0.label}}57.0{{/tags.0.label}}{{/progressbar}}{{tags.0.label}}</div>
+            <div class="label" {{^progressbar}}data-attribute="tags.0.label"{{/progressbar}} >{{#progressbar}}{{^tags.0.label}}57.0{{/tags.0.label}}{{/progressbar}}{{unspace tags.0.label}}</div>
         </div>
     </script>
     
