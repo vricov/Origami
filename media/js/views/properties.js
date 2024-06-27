@@ -21,6 +21,7 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
         $('#id_top_label').html('Y:');
         $('#id_left_label').html('X:');
         $('#id_tageval_label').html('TagEval(v):');
+        $('#id_painter_label').html('Painter(v):');
         $('#id_hint_label').html('Подсказка (hint):');
 
       //## LED

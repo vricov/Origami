@@ -129,6 +129,9 @@
                 <p>Built with Backbone, Backbone-LocalStorage, Backbone-Nested, Underscore and Handlebars.</p>
                 <p></p>
                 <textarea name="textarea" rows="30" id="id_changelog" disabled>
+27.06.2024
++ Дополнительное поле Painter в свойствах сенсора
+
 25.01.2024
 + С новой кодировкой в надписях нет необходимости заменять пробелы в начале или конце неразрывными пробелами. Под это дело поправлено ихз визуальное отображение, раньше они не отображались
 
@@ -505,6 +508,9 @@ LED <i class="colored2">=</i> {{led_attributes.0.led_wid}}, {{led_attributes.0.l
 {{/led}}
 {{#if tageval}}
 TagEval(v) <i class="colored2">=</i> {{& tageval}}
+{{/if}}
+{{#if painter}}
+Painter(v) <i class="colored2">=</i> {{& painter}}
 {{/if}}
 {{#button}}
 Painter(v) <i class="colored2">=</i> (glButtonBit={{button_attributes.0.glButtonBit}})+(glButtonBevel={{button_attributes.0.glButtonBevel}})+(glButtonMoveX={{button_attributes.0.glButtonMoveX}})+(glButtonMoveY={{button_attributes.0.glButtonMoveY}})

@@ -32,6 +32,9 @@ usemockups.fixtures.toolbox = [
                 "name":"tageval"
             },
             {
+                "name":"painter"
+            },
+            {
                 "name":"tags",
                 "hidden":true,
                 "default":[
@@ -86,6 +89,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"tags",
@@ -165,6 +171,9 @@ usemockups.fixtures.toolbox = [
                 "name":"tageval"
             },
             {
+                "name":"painter"
+            },
+            {
                 "name":"tags",
                 "hidden":true,
                 "default":[
@@ -230,6 +239,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"tags",
@@ -299,6 +311,9 @@ usemockups.fixtures.toolbox = [
                 "name":"tageval"
             },
             {
+                "name":"painter"
+            },
+            {
                 "name":"tags",
                 "hidden":false,
                 "default":[
@@ -364,6 +379,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"tags",
@@ -444,6 +462,9 @@ usemockups.fixtures.toolbox = [
                 "name":"tageval"
             },
             {
+                "name":"painter"
+            },
+            {
                 "name":"tags",
                 "hidden":true,
                 "default":[
@@ -509,6 +530,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"tags",
@@ -587,6 +611,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"tags",
@@ -677,6 +704,9 @@ usemockups.fixtures.toolbox = [
                 "name":"tageval"
             },
             {
+                "name":"painter"
+            },
+            {
                 "name":"tags",
                 "hidden":true,
                 "default":[
@@ -753,6 +783,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"tags",
@@ -833,6 +866,9 @@ usemockups.fixtures.toolbox = [
                 "name":"tageval"
             },
             {
+                "name":"painter"
+            },
+            {
                 "name":"tags",
                 "hidden":true,
                 "default":[
@@ -909,6 +945,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"tags",
@@ -989,6 +1028,9 @@ usemockups.fixtures.toolbox = [
                 "name":"tageval"
             },
             {
+                "name":"painter"
+            },
+            {
                 "name":"tags",
                 "hidden":true,
                 "default":[
@@ -1055,6 +1097,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"tags",
@@ -1136,6 +1181,9 @@ usemockups.fixtures.toolbox = [
                 "name":"tageval"
             },
             {
+                "name":"painter"
+            },
+            {
                 "name":"tags",
                 "hidden":true,
                 "default":[
@@ -1213,6 +1261,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"tags",
@@ -1294,6 +1345,9 @@ usemockups.fixtures.toolbox = [
                 "name":"tageval"
             },
             {
+                "name":"painter"
+            },
+            {
                 "name":"tags",
                 "hidden":true,
                 "default":[
@@ -1371,6 +1425,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"tags",
@@ -1462,6 +1519,9 @@ usemockups.fixtures.toolbox = [
                 "name":"tageval"
             },
             {
+                "name":"painter"
+            },
+            {
                 "name":"radiationhazard",
                 "type":"boolean",
                 "hidden":true,
@@ -1549,6 +1609,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"airblower",
@@ -1640,6 +1703,9 @@ usemockups.fixtures.toolbox = [
                 "name":"tageval"
             },
             {
+                "name":"painter"
+            },
+            {
                 "name":"fanblower",
                 "type":"boolean",
                 "hidden":true,
@@ -1727,6 +1793,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"waterpump",
@@ -1819,6 +1888,9 @@ usemockups.fixtures.toolbox = [
 				"default":"(glTankLevelPercent=v)"
             },
             {
+                "name":"painter"
+            },
+            {
                 "name":"tanklevel",
                 "type":"boolean",
                 "hidden":true,
@@ -1906,6 +1978,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"flowmeter",
@@ -1997,6 +2072,9 @@ usemockups.fixtures.toolbox = [
                 "name":"tageval"
             },
             {
+                "name":"painter"
+            },
+            {
                 "name":"manometer",
                 "type":"boolean",
                 "hidden":true,
@@ -2084,6 +2162,9 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name":"tageval"
+            },
+            {
+                "name":"painter"
             },
             {
                 "name":"uniheater",
