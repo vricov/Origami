@@ -66,6 +66,15 @@ Handlebars.registerHelper('replaceFuncColors', function(text, value) {
     return new Handlebars.SafeString(text);
 });
 
+Handlebars.registerHelper('ifNeedCl', function(text, value) {
+    text = Handlebars.Utils.escapeExpression(text);
+    text = text.toString();
+    if (text.length<21) {
+        text = 'cl'+text;
+    }
+    return new Handlebars.SafeString(text);
+});
+
 Handlebars.registerHelper('toUpperCase', function(text, value) {
     text = Handlebars.Utils.escapeExpression(text);
     text = text.toString().toUpperCase();
