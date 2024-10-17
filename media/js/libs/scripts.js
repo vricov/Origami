@@ -75,3 +75,9 @@ $("#id_grid").change(function(e){
 		gridDivider = 5;
 	} 
 });
+
+document.addEventListener("keydown", function(e) {
+    if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.key) > -1) {
+        e.preventDefault();
+    }
+},false);
