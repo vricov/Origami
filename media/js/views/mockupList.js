@@ -74,23 +74,28 @@ usemockups.views.MockupList = Backbone.View.extend({
         })).render()
     },
 
-    updateSort: function (event, model, position) {
+    updateSort: function (event, position) {
+        var models = this.model.document.models;
+        var model = this.model;
+        var oldIndex = model.get('ordinal');
+
         this.model.document.remove(model);
-        // this.model.destroy();
-        // console.log(this.model.document);  
-        this.model.document.each(function (model, index) {
-            var ordinal = index;
-            if (index >= position) {
-                ordinal += 1;
+
+        if (oldIndex < position) {
+            for (var i = oldIndex; i < position; i++) {
+                models[i].set('ordinal', i);
             }
-            model.set('ordinal', ordinal);
-        });
+        } else {
+            for (var i = position; i < oldIndex; i++) {
+                models[i].set('ordinal', i + 1);
+            }
+        }
 
         model.set('ordinal', position);
         this.model.document.add(model, { at: position });
-
-        this.render();
+        // this.render(); //removed, because it will re-render the entire view
     },
+
 
     detach: function () {
         this.$el.remove();
