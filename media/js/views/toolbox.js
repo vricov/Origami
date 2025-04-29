@@ -20,7 +20,8 @@ usemockups.views.Tool = Backbone.View.extend({
             cursorAt: { left: 10 },
             helper: function () {
                 return new usemockups.views.ToolPreview({
-                    tool: usemockups.toolbox.get($(this).data("tool"))}).render().el
+                    tool: usemockups.toolbox.get($(this).data("tool"))
+                }).render().el
             }
         }).data("tool", this.model.get("name"));
 
@@ -63,7 +64,7 @@ usemockups.views.ToolPreview = Backbone.View.extend({
     render: function () {
         this.$el.addClass(this.tool.get("name"));
         var attributes = this.tool.get_attributes();
-		
+
         this.$el.html(HandlebarToolPreview(attributes));
         if (attributes.width)
             this.$el.width(attributes.width);

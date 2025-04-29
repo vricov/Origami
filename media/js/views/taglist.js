@@ -2,15 +2,32 @@ var HandlebarTag = Handlebars.compile($("#taglist-form-template").html());
 //taglist Dialog for single elements of the mockup
 usemockups.views.TagListDialog = Backbone.View.extend({
     el: "aside form",
-    events: {
-        'submit': 'submit',
-    },
     initialize: function () {
         this.on("update_for_attribute", this.update_for_attribute);
         this.on("update_for_sizes", this.update_for_sizes);
+        this.$el.sortable({
+            axis: "y",
+            handle: "span.handler",
+            update: function (event, ui) {
+                var sorted_ids = $(this).sortable("toArray", {
+                    attribute: "id-attribute"
+                });
+                var sorted_tags = [];
+                _.each(sorted_ids, function (id) {
+                    var tag = _.findWhere(this.model.get("tags"), {
+                        "id-attribute": id
+                    });
+                    sorted_tags.push(tag);
+                }, this);
+
+                this.model.set({
+                    tags: sorted_tags
+                });
+            }.bind(this)
+        });
     },
     render: function () {
-        
+
         this.$el.html(HandlebarTag({
             "attributes": this.get_attributes()
         })).find("input").change(function (ui) {
@@ -26,7 +43,7 @@ usemockups.views.TagListDialog = Backbone.View.extend({
             } else {
                 var data = this.model.get(input.attr("data-attribute"));
                 data[0][input.attr("name")] = value;
-                this.model.set({[input.attr("data-attribute")]: data});
+                this.model.set({ [input.attr("data-attribute")]: data });
             }
         }.bind(this));
 
@@ -37,12 +54,12 @@ usemockups.views.TagListDialog = Backbone.View.extend({
 
         return this;
     },
-    set_measuredSizes: function (measuredSizes){
-      this.measuredSizes = measuredSizes;
-      return this;
+    set_measuredSizes: function (measuredSizes) {
+        this.measuredSizes = measuredSizes;
+        return this;
     },
     update_for_attribute: function (field) {
-        this.$el.find("#id_"  + field.data("attribute")).val(field.val());
+        this.$el.find("#id_" + field.data("attribute")).val(field.val());
     },
     update_for_sizes: function (size) {
         if (this.model.has("tags[0].height"))
@@ -60,7 +77,7 @@ usemockups.views.TagListDialog = Backbone.View.extend({
             return _.extend({
                 "value": value
             }, attribute);
-        },this)
+        }, this)
     },
     submit: function () {
         return false;
