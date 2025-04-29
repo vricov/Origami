@@ -1,6 +1,6 @@
 var HandlebarTag = Handlebars.compile($("#taglist-form-template").html());
-//taglist Dialog for single elements of the mockup
-usemockups.views.TagListDialog = Backbone.View.extend({
+//taglist Dialog for single elements of the sensor
+usesensors.views.TagListDialog = Backbone.View.extend({
     el: "aside form",
     initialize: function () {
         this.on("update_for_attribute", this.update_for_attribute);

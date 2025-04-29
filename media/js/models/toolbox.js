@@ -1,4 +1,4 @@
-usemockups.models.Tool = Backbone.Model.extend({
+usesensors.models.Tool = Backbone.Model.extend({
     idAttribute: "name",
     defaults: {
         attributes: [],
@@ -8,7 +8,7 @@ usemockups.models.Tool = Backbone.Model.extend({
     },
     initialize: function () {
     },
-    get_attributes: function (mockup) {
+    get_attributes: function (sensor) {
         var attributes = {};
         _.forEach(this.get("attributes"), function (attribute) {
             var value, default_value;
@@ -20,8 +20,8 @@ usemockups.models.Tool = Backbone.Model.extend({
             } else {
                 default_value = attribute.default;
             }
-            if (mockup)
-                value = mockup.get(attribute.name);
+            if (sensor)
+                value = sensor.get(attribute.name);
 
             if (value === undefined)
                 value = default_value;
@@ -33,6 +33,6 @@ usemockups.models.Tool = Backbone.Model.extend({
     }
 });
 
-usemockups.collections.Toolbox = Backbone.Collection.extend({
-    model: usemockups.models.Tool
+usesensors.collections.Toolbox = Backbone.Collection.extend({
+    model: usesensors.models.Tool
 });

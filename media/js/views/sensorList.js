@@ -1,4 +1,4 @@
-var HandlebarMockupList = Handlebars.compile($("#sensor-list").html());
+var HandlebarsensorList = Handlebars.compile($("#sensor-list").html());
 
 usesensors.views.sensorList = Backbone.View.extend({
     tagName: "ul",
@@ -12,7 +12,7 @@ usesensors.views.sensorList = Backbone.View.extend({
     initialize: function () {
         this.model.on("change", this.render, this);
         this.model.on("change:position", this.render, this);
-        this.tool = usemockups.toolbox.get(this.model.get("tool")); //gets which kind of mockup element it is (called tool, since they are created via tools). Get model via text string like "text"(for text tool) ,since the toolbox-model�s ids are actually human readable text strings for the represented tools.
+        this.tool = usesensors.toolbox.get(this.model.get("tool")); //gets which kind of sensor element it is (called tool, since they are created via tools). Get model via text string like "text"(for text tool) ,since the toolbox-model�s ids are actually human readable text strings for the represented tools.
         this.model.on("destroy", this.detach, this);
         this.model.document = this.model.collection;
     },
@@ -27,7 +27,7 @@ usesensors.views.sensorList = Backbone.View.extend({
         this.$el.children().remove();
         // usesensors.collections.sensors
         // this.model.collection.each(this.appendModelView,this);
-        this.$el.html(HandlebarMockupList(this.model.get_attributes()));
+        this.$el.html(HandlebarsensorList(this.model.get_attributes()));
 
         this.$el.bind("click mousedown", function (event) {
             this.$el.focus();
@@ -42,7 +42,7 @@ usesensors.views.sensorList = Backbone.View.extend({
         return this;
     },
     appendModelView: function (model) {
-        var el = new usemockups.View.Item({ model: model }).render().el;
+        var el = new usesensors.View.Item({ model: model }).render().el;
         console.log(el);
         this.$el.append(el)
     },
@@ -52,24 +52,24 @@ usesensors.views.sensorList = Backbone.View.extend({
     },
 
     show_property_dialog: function () {
-        if (usemockups.active_property_dialog &&
-            usemockups.active_property_dialog.model === this.model) {
+        if (usesensors.active_property_dialog &&
+            usesensors.active_property_dialog.model === this.model) {
             return;
         }
 
-        if (usemockups.active_property_dialog) {
-            usemockups.active_property_dialog.undelegateEvents();
+        if (usesensors.active_property_dialog) {
+            usesensors.active_property_dialog.undelegateEvents();
         }
 
-        if (usemockups.active_tags_dialog) {
-            usemockups.active_tags_dialog.undelegateEvents();
+        if (usesensors.active_tags_dialog) {
+            usesensors.active_tags_dialog.undelegateEvents();
         }
 
-        usesensors.active_property_dialog = (new usemockups.views.PropertyDialog({
+        usesensors.active_property_dialog = (new usesensors.views.PropertyDialog({
             "model": this.model
         })).render()
 
-        usesensors.active_tags_dialog = (new usemockups.views.TagsDialog({
+        usesensors.active_tags_dialog = (new usesensors.views.TagsDialog({
             "model": this.model
         })).render()
     },

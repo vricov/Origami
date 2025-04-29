@@ -20,14 +20,14 @@
             <div class="logo-caption">Visual CRC Editor</div>
         </div>
         <div class="menu-item">
-            <a class="documents"><span class="ui-icon ui-icon-files"></span> Мнемосхемы</a>
+            <a class="documents"><span class="ui-icon ui-icon-files"></span> Схемы</a>
             <section id="documents">
-                <h3>Мнемосхемы</h3>
+                <h3>Схемы</h3>
                 <ul class="mnemolist"></ul>
-                <h3>Создать мнемосхему</h3>
+                <h3>Создать схему</h3>
                 <form>
                     <input type="text" name="title" id="id_title" />
-                    <input type="submit" value="Создать" class="divButton">
+                    <input type="button" value="Создать" class="divButton">
                 </form>
             </section>
         </div>
@@ -35,7 +35,7 @@
             <section id="document-properties">
                 <h3>Свойства мнемосхемы</h3>
                 <form>
-                    <label for="id_title">Имя</label>
+                    <label for="id_title">Имя</label><br>
                     <input type="text" name="title" id="id_doc_title" />
                     <img src="" width="200" style="display:none;" />
                     <label for="id_startupscript">GeneralMap</label>
@@ -89,8 +89,8 @@
                 <h3>Импорт проекта</h3>
                 <form>
                     <p>Импортирование происходит в <strong>CRC</strong> формате. Можно открыть файл или скопировать код
-                        сенсоров вручную в поле ниже.</p>
-                    <input type="file" id="id_models_file" value="открыть в окне" accept=".crc" class="divButton" />
+                        сенсоров вручную в поле ниже. <input type="file" id="id_models_file" value="открыть в окне" accept=".crc" class="divButton" /></p>
+                    
                     <div value="Импортировать в проект" id="import" class="divButton">Импортировать в проект</div>
                     <div value="Очистить проект" id="clearProject" class="divButton reset">Очистить проект</div><br><br>
                     <textarea name="textarea" rows="30" id="id_models"></textarea>
@@ -106,7 +106,7 @@
                         for="hasHeader" id="hasHeader">Включить "шапку"</label>
                     <form>
                         <!-- <textarea name="textarea" rows="30" id="id_models_crc"></textarea> -->
-                        <div id="id_models_crc" disabled></div>
+                        <div id="id_models_crc"></div>
                         <div type="submit" value="Копировать в буфер" id="copyCRC" class="divButton">Копировать всё
                         </div>
                         <div type="submit" value="Сохранить в файл" onclick="savetofile('id_models_crc', 'crc')"
@@ -132,7 +132,7 @@
             <section id="about">
                 <h3>О программе</h3>
                 <p>Copyright (c) 2020-2024 Alexey Zhirunov rvricov@gmail.com.</p>
-                <p>Основано на ПО "Mockup-designer" Copyright (c) 2015 Fatih Erikli
+                <p>Основано на ПО "Sensor-designer" Copyright (c) 2015 Fatih Erikli
                     <http: //fatiherikli.github.com/mockup-designer />, лицензия <a href="license">MIT</a>.
                 </p>
                 <p>Built with Backbone, Backbone-LocalStorage, Backbone-Nested, Underscore and Handlebars.</p>
@@ -511,7 +511,7 @@ ConfigFile <i class="colored2">=</i> ~~\Resource\DaqSite\Default\Painter.crc
 {{& startupscript}}
 <i class="colored">[]</i>
 {{/if}}{{/if}}
-{{#mockups}}
+{{#sensors}}
 <i class="colored">[SensorList]</i>
 Sensor <i class="colored2">=</i> {{toUpperCase name}}
 <i class="colored">[{{toUpperCase name}}]</i>
@@ -634,7 +634,7 @@ Tag#{{inc @index}} <i class="colored2">=</i> {{id}}, {{^custom}}~~\Resource\DaqS
 Hint <i class="colored2">=</i> {{& hint}}
 <i class="colored">[]</i>
 
-{{/mockups}}
+{{/sensors}}
     </script>
 
     <script src="media/js/libs/jquery-1.8.2.min.js"></script>
@@ -651,8 +651,8 @@ Hint <i class="colored2">=</i> {{& hint}}
 
     <script type="text/javascript">
         var title = undefined;
-        // namespace definition
-        var usemockups = {
+        // sensor definition
+        var usesensors = {
             models: {},
             collections: {},
             routers: {},
@@ -663,24 +663,24 @@ Hint <i class="colored2">=</i> {{& hint}}
     </script>
 
     <script src="media/js/fixtures/demo-document.js"></script>
-    <script src="media/js/fixtures/toolbox.js"></script>
     <script src="media/js/routers/document.js"></script>
     <script src="media/js/models/document.js"></script>
-    <script src="media/js/models/mockup.js"></script>
+    <script src="media/js/models/sensor.js"></script>
     <script src="media/js/models/toolbox.js"></script>
     <script src="media/js/views/document.js"></script>
+    <script src="media/js/views/taglist.js"></script>
     <script src="media/js/views/toolbox.js"></script>
-    <script src="media/js/views/mockup.js"></script>
-    <script src="media/js/views/mockuplist.js"></script>
+    <script src="media/js/views/sensor.js"></script>
+    <script src="media/js/views/sensorList.js"></script>
     <script src="media/js/views/properties.js"></script>
     <script src="media/js/views/tags.js"></script>
     <script type="text/javascript">
 
-        usemockups.toolbox = new usemockups.collections.Toolbox(usemockups.fixtures.toolbox);
+        usesensors.toolbox = new usesensors.collections.Toolbox(usesensors.fixtures.toolbox);
 
         $(function () {
-            var documents = new usemockups.collections.Documents(); //create an empty document collection
-            var router = new usemockups.routers.Document({
+            var documents = new usesensors.collections.Documents(); //create an empty document collection
+            var router = new usesensors.routers.Document({
                 documents: documents
             });
 
@@ -688,7 +688,7 @@ Hint <i class="colored2">=</i> {{& hint}}
                 pushState: false // !!(window.history && window.history.pushState)
             });
 
-            new usemockups.views.Navigation({
+            new usesensors.views.Navigation({
                 router: router,
                 model: documents
             });

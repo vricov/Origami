@@ -8,8 +8,8 @@ function getCharWidth(font) {
     return metrics.width;
 }
 
-//Property Dialog for single elements of the mockup
-usemockups.views.TagsDialog = Backbone.View.extend({
+//Property Dialog for single elements of the sensor
+usesensors.views.TagsDialog = Backbone.View.extend({
     el: "footer",
     template: $("#taglist-form-template").html(),
     events: {

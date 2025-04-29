@@ -1,7 +1,7 @@
 //this is the main document view (the "viewport" or "canvas" where the actual content is created)
 let readResult = '';
-usemockups.views.Page = Backbone.View.extend({
-    "el": "article",
+usesensors.views.Page = Backbone.View.extend({
+    "el": "article", //this needs to be changed from article to something else because of conflicts with html5 article element
 
     sensor_count: 0,
 
@@ -13,10 +13,10 @@ usemockups.views.Page = Backbone.View.extend({
     },
 
     add_sensor: function (sensor, options) {
-        var sensor_view = new (usemockups.views.Sensor)({
+        var sensor_view = new (usesensors.views.Sensor)({
             model: sensor
         });
-        var sensorList_view = new (usemockups.views.SensorList)({
+        var sensorList_view = new (usesensors.views.SensorList)({
             model: sensor
         });
         var sensorListEl = sensorList_view.render(options).el;
@@ -31,20 +31,20 @@ usemockups.views.Page = Backbone.View.extend({
     },
 
 
-    render_mockups: function () {
+    render_sensors: function () {
         this.$el.empty();
         $(".sensorList").empty();
 
         _.forEach(this.model.sensors.models, function (model) {
             this.add_sensor(model, { focus: true, show_property_dialog: false });
         }, this);
-        this.model.mockups.off("reset");
+        this.model.sensors.off("reset");
         this.model.save(); // save after adding all elements
         if (!$('.sensorList').data('sortable')) {
             $('.sensorList').sortable({
-                // consider using update instead of stop
+ // consider using update instead of stop
                 update: function (event, ui) {
-                    ui.item.data('model').trigger('update-sort', ui.item.index());
+ ui.item.data('model').trigger('update-sort', ui.item.index());
                 }
             }).data('sortable', true);
         }
@@ -61,7 +61,7 @@ usemockups.views.Page = Backbone.View.extend({
 
     render: function () {
         this.resize_document();
-        var zoom = Number($('article').attr('zoom'));
+        var zoom = Number(this.$el.attr('zoom'));
         this.$el.droppable({
             accept: ".toolbox li",
             drop: function (event, ui) {
@@ -69,7 +69,7 @@ usemockups.views.Page = Backbone.View.extend({
                     top = Math.round(ui.offset.top - this.$el.offset().top) / zoom,
                     tool_name = ui.draggable.data("tool");
 
-                var sensor = new usemockups.models.Sensor({
+                var sensor = new usesensors.models.Sensor({
                     top: top,
                     left: left,
                     tool: tool_name
@@ -89,42 +89,42 @@ usemockups.views.Page = Backbone.View.extend({
 });
 
 //this is the main view of the app (with toolbars, the document itself ("page") etc.)
-usemockups.views.Document = Backbone.View.extend({
+usesensors.views.Document = Backbone.View.extend({
     el: "body",
 
     events: {
-        "change article": "update_zoom",
+        "change article": "update_zoom", // This might need to be changed depending on the 'el' name change above
     },
 
     render: function () {
-        (new usemockups.views.Toolbox({
-            model: usemockups.toolbox
+        (new usesensors.views.Toolbox({
+            model: usesensors.toolbox
         })).render();
 
-        this.article = (new usemockups.views.Page({
+        this.article = (new usesensors.views.Page({
             model: this.model
         }));
         this.article.render();
 
-        this.edit_form = new usemockups.views.DocumentEditForm({
-            model: this.model
+        this.edit_form = new usesensors.views.DocumentEditForm({
+ model: this.model
         });
         this.edit_form.render();
 
-        this.import_form = new usemockups.views.DocumentImportForm({
+        this.import_form = new usesensors.views.DocumentImportForm({
             model: this.model
         });
         this.import_form.render();
 
-        this.export_form = new usemockups.views.DocumentExportForm({
+        this.export_form = new usesensors.views.DocumentExportForm({
             model: this.model
         });
         this.export_form.render();
-    },
+ },
     update_zoom: function () {
-        this.article = (new usemockups.views.Page({
+        this.article = (new usesensors.views.Page({
             model: this.model
-        }));
+ }));
         if ($('img#generalMap').attr('zoom') == undefined) $('img#generalMap').attr('original_width', $('img#generalMap').width());
         var zoom = Number(this.article.$el.attr('zoom'));
         $('img#generalMap').css('width', $('img#generalMap').attr('original_width') * zoom);
@@ -132,8 +132,8 @@ usemockups.views.Document = Backbone.View.extend({
     },
 });
 
-//this is the view of items of documents (select and destroy functions)
-usemockups.views.NavigationItem = Backbone.View.extend({
+ //this is the view of items of documents (select and destroy functions)
+usesensors.views.NavigationItem = Backbone.View.extend({
     tagName: "li",
     template: $("#navigation-item-template").html(),
     events: {
@@ -158,7 +158,7 @@ usemockups.views.NavigationItem = Backbone.View.extend({
 });
 
 //this is the view of a form to create a new document
-usemockups.views.NewDocumentForm = Backbone.View.extend({
+usesensors.views.NewDocumentForm = Backbone.View.extend({
     el: "nav #documents form",
     events: {
         "submit": "submit_form"
@@ -166,7 +166,7 @@ usemockups.views.NewDocumentForm = Backbone.View.extend({
     submit_form: function () {
         var title = this.$el.find("#id_title");
         if (title) {
-            (new usemockups.models.Document()).save({ title: title.val() }, {
+            (new usesensors.models.Document()).save({ title: title.val() }, {
                 success: function (model) {
                     this.model.add(model);
                     title.val("");
@@ -178,10 +178,10 @@ usemockups.views.NewDocumentForm = Backbone.View.extend({
 });
 
 //view for setting document properties
-usemockups.views.DocumentEditForm = Backbone.View.extend({
+usesensors.views.DocumentEditForm = Backbone.View.extend({
     el: "nav #document-properties",
     events: {
-        "submit": "submit_form",
+        "submit": "submit_form"
     },
     initialize: function () {
         this.model.on("importDone", this.render, this);
@@ -222,10 +222,10 @@ usemockups.views.DocumentEditForm = Backbone.View.extend({
 });
 
 // http://stackoverflow.com/questions/13294216/exporting-backbone-js-collection-to-plain-text-on-hard-disk-importing-back
-usemockups.views.DocumentImportForm = Backbone.View.extend({
+usesensors.views.DocumentImportForm = Backbone.View.extend({
     el: "nav #document-import",
     events: {
-        "click #import": "import_form",
+        "click #import": "import_document",
         "change": "open_file",
         "click #clearProject": "clearProject",
     },
@@ -240,14 +240,14 @@ usemockups.views.DocumentImportForm = Backbone.View.extend({
         this.$el.find("#id_models_ori").val("");
     },
 
-    import_form: function () {
+    import_document: function () {
         val = ConvertModel($("#id_models").val());
         var sensors = JSON.parse(this.$el.find("#id_models_ori").val());
         if (sensors.title) this.model.attributes.title = sensors.title;
         if (sensors.width) this.model.attributes.width = sensors.width;
         if (sensors.height) this.model.attributes.height = sensors.height;
-        if (mockups.startupscript) this.model.attributes.startupscript = mockups.startupscript;
-        this.model.mockups.add(mockups.mockups);
+        if (sensors.startupscript) this.model.attributes.startupscript = sensors.startupscript;
+        this.model.sensors.add(sensors.sensors);
         this.model.save();
         this.model.trigger('importDone');
         console.log('-/- IMPORT DONE -/-');
@@ -273,7 +273,7 @@ usemockups.views.DocumentImportForm = Backbone.View.extend({
     },
     clearProject: function () {
         while (model = this.model.sensors.first()) {
-            model.destroy();
+ model.destroy();
         }
     },
 
@@ -288,7 +288,7 @@ usemockups.views.DocumentImportForm = Backbone.View.extend({
 
 var HandlebarsTemplate = Handlebars.compile($("#crc-template").html());
 // http://stackoverflow.com/questions/13294216/exporting-backbone-js-collection-to-plain-text-on-hard-disk-importing-back
-usemockups.views.DocumentExportForm = Backbone.View.extend({
+usesensors.views.DocumentExportForm = Backbone.View.extend({
     el: "nav #document-export",
     events: {},
 
@@ -313,7 +313,7 @@ usemockups.views.DocumentExportForm = Backbone.View.extend({
     }
 });
 
-usemockups.views.Navigation = Backbone.View.extend({
+usesensors.views.Navigation = Backbone.View.extend({
     el: "nav",
     events: {
         "click a.documents": "toggle_documents",
@@ -327,9 +327,9 @@ usemockups.views.Navigation = Backbone.View.extend({
         this.model.on("reset", this.render, this);
         this.model.on("add", this.add_document_item, this);
         this.model.fetch({ ajaxSync: true });
-    },
-    add_document_item: function (model) {
-        this.$el.find(".mnemolist").append((new usemockups.views.NavigationItem({
+ },
+    add_document_item: function(model) {
+        this.$el.find(".mnemolist").append((new usesensors.views.NavigationItem({
             model: model,
             router: this.options.router,
             parent: this
@@ -337,9 +337,9 @@ usemockups.views.Navigation = Backbone.View.extend({
     },
     render: function () {
 
-        _.forEach(this.model.models, this.add_document_item, this);
+        _.forEach(this.model.models, this.add_document_item, this); // Assuming this is meant to add sensor items
 
-        new usemockups.views.NewDocumentForm({
+        new usesensors.views.NewDocumentForm({
             model: this.model
         }).render();
     },

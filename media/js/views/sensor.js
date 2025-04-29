@@ -138,7 +138,7 @@ function zoomValuePt(value, zoom) {
 }
 
 var Handlebarsensor = Handlebars.compile($("#universal-template").html());
-usemockups.views.sensor = Backbone.View.extend({
+usesensors.views.sensor = Backbone.View.extend({
     tagName: "div",
     className: "object",
     events: {
@@ -150,7 +150,7 @@ usemockups.views.sensor = Backbone.View.extend({
         this.model.on("change", this.render, this);
         this.model.on("change:top", this.render, this);
         this.article = $("article");
-        this.tool = usemockups.toolbox.get(this.model.get("tool")); //gets which kind of mockup element it is (called tool, since they are created via tools). Get model via text string like "text"(for text tool) ,since the toolbox-model�s ids are actually human readable text strings for the represented tools.
+        this.tool = usesensors.toolbox.get(this.model.get("tool")); //gets which kind of sensor element it is (called tool, since they are created via tools). Get model via text string like "text"(for text tool) ,since the toolbox-model�s ids are actually human readable text strings for the represented tools.
         this.model.on("destroy", this.detach, this);
         this.model.document = this.model.collection;
     },
@@ -194,7 +194,7 @@ usemockups.views.sensor = Backbone.View.extend({
                 });
                 this.model.trigger('change');
             }.bind(this)
-        }).html(HandlebarMockup(this.model.get_attributes()));
+        }).html(HandlebarSensor(this.model.get_attributes()));
 
         // this.$el.find("[data-attribute]").dblclick(function (event) {
         // var attribute = $(event.target).data("attribute");
@@ -209,8 +209,8 @@ usemockups.views.sensor = Backbone.View.extend({
         // var input = $(event.target);
         // this.model.set(input.data("attribute"), input.val());
         // }.bind(this)).keyup(function (event) {
-        // usemockups.active_property_dialog.trigger("update_for_attribute", $(event.target));
-        // usemockups.active_tags_dialog.trigger("update_for_attribute", $(event.target));
+        // usesensors.active_property_dialog.trigger("update_for_attribute", $(event.target));
+        // usesensors.active_tags_dialog.trigger("update_for_attribute", $(event.target));
         // }.bind(this));
         // }.bind(this))
 
@@ -258,7 +258,7 @@ usemockups.views.sensor = Backbone.View.extend({
                     ui.size.height = ui.originalSize.height;
                 if (!this.model.has("tags[0].width"))
                     ui.size.width = ui.originalSize.width;
-                usemockups.active_tags_dialog.trigger("update_for_sizes", ui.size);
+                usesensors.active_tags_dialog.trigger("update_for_sizes", ui.size);
             }.bind(this),
             stop: function (event, ui) {
                 var zoom = Number(this.article.attr('zoom'));
@@ -298,26 +298,26 @@ usemockups.views.sensor = Backbone.View.extend({
         return this;
     },
     show_property_dialog: function () {
-        if (usemockups.active_property_dialog &&
-            usemockups.active_property_dialog.model === this.model) {
+        if (usesensors.active_property_dialog &&
+            usesensors.active_property_dialog.model === this.model) {
             return;
         }
 
-        if (usemockups.active_property_dialog) {
-            usemockups.active_property_dialog.undelegateEvents();
+        if (usesensors.active_property_dialog) {
+            usesensors.active_property_dialog.undelegateEvents();
         }
 
-        if (usemockups.active_tags_dialog) {
-            usemockups.active_tags_dialog.undelegateEvents();
+        if (usesensors.active_tags_dialog) {
+            usesensors.active_tags_dialog.undelegateEvents();
         }
 
         var measuredSizes = { height: this.$el.height(), width: this.$el.width() };
 
-        usemockups.active_property_dialog = (new usemockups.views.PropertyDialog({
+        usesensors.active_property_dialog = (new usesensors.views.PropertyDialog({
             "model": this.model
         })).set_measuredSizes(measuredSizes).render()
 
-        usemockups.active_tags_dialog = (new usemockups.views.TagsDialog({
+        usesensors.active_tags_dialog = (new usesensors.views.TagsDialog({
             "model": this.model
         })).set_measuredSizes(measuredSizes).render()
 

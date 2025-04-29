@@ -4,7 +4,7 @@ usesensors.views.Tool = Backbone.View.extend({
     initialize: function () {
         this.className = this.model.get("name")
     },
-    get_label: function () {
+    get_label: function() {
         return this.model.get("label") || this.model.get("name")
     },
     render: function () {
@@ -18,8 +18,8 @@ usesensors.views.Tool = Backbone.View.extend({
             cursor: "move",
             stack: "article",
             cursorAt: { left: 10 },
-            helper: function () {
-                return new usemockups.views.ToolPreview({
+            helper: function() {
+                return new usesensors.views.ToolPreview({
                     tool: usesensors.toolbox.get($(this).data("tool"))
                 }).render().el
             }
@@ -43,7 +43,7 @@ usesensors.views.Toolbox = Backbone.View.extend({
 
         _.forEach(this.model.models, function (tool) {
             (new usesensors.views.Tool({
-                model: tool
+ model: tool
             }).render().$el.appendTo(".toolbox." + tool.get("category")));
         }, this);
         return this;

@@ -1,7 +1,7 @@
-usemockups.models.Document = Backbone.Model.extend({
+usesensors.models.Document = Backbone.Model.extend({
     localStorage: new Backbone.LocalStorage('documents'),
     defaults: {
-        "mockups": [],
+        "sensors": [],
         "title": "untitled",
         "startupscript": "",
         "generalmap": "",
@@ -12,24 +12,24 @@ usemockups.models.Document = Backbone.Model.extend({
         "width": 700,
         "height": 600
     },
-    initialize: function () {
-        this.mockups = new usemockups.collections.Mockups;
-        this.mockups.on("add remove persist", this.persist, this);
+    initialize: function() {
+        this.sensors = new usesensors.collections.Sensors;
+        this.sensors.on("add remove persist", this.persist, this);
     },
-    persist: function () {
-        this.set("mockups", this.mockups.toJSON());
+    persist: function() {
+        this.set("sensors", this.sensors.toJSON());
         this.save();
     },
-    parse: function (result) {
-        if (this.mockups && !this.mockups.length)
-            this.mockups.reset(result.mockups);
+    parse: function(result) {
+        if (this.sensors && !this.sensors.length)
+            this.sensors.reset(result.sensors);
         return result;
     }
 
 });
 
-usemockups.collections.Documents = Backbone.Collection.extend({
-    model: usemockups.models.Document,
+usesensors.collections.Documents = Backbone.Collection.extend({
+    model: usesensors.models.Document,
     localStorage: new Backbone.LocalStorage('documents')
 
 });

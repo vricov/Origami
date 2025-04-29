@@ -1,6 +1,6 @@
-// Property Dialog for single elements of the mockup
+// Property Dialog for single elements of the sensor
 // Файл содержит локализацию параметров, а так же предопределенные выпадающие списки
-usemockups.views.PropertyDialog = Backbone.View.extend({
+usesensors.views.PropertyDialog = Backbone.View.extend({
   el: "aside form",
   template: $("#property-form-template").html(),
   events: {
