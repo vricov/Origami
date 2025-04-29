@@ -1,4 +1,4 @@
-//This is the view for the sensor elements (button, checkbox, etc.)
+//This is the view for the mockup elements (button, checkbox, etc.)
 Handlebars.registerHelper('quoted', function (text) {
     text = Handlebars.Utils.escapeExpression(text);
     text = text.toString();
@@ -137,9 +137,9 @@ function zoomValuePt(value, zoom) {
     return value;
 }
 
-var HandlebarSensor = Handlebars.compile($("#universal-template").html());
-usemockups.views.Sensor = Backbone.View.extend({
-    tagName: "div", 
+var HandlebarMockup = Handlebars.compile($("#universal-template").html());
+usemockups.views.Mockup = Backbone.View.extend({
+    tagName: "div",
     className: "object",
     events: {
         "click": "show_property_dialog",
@@ -149,7 +149,7 @@ usemockups.views.Sensor = Backbone.View.extend({
     initialize: function () {
         this.model.on("change", this.render, this);
         this.model.on("change:top", this.render, this);
-        this.article = $("article"); 
+        this.article = $("article");
         this.tool = usemockups.toolbox.get(this.model.get("tool")); //gets which kind of mockup element it is (called tool, since they are created via tools). Get model via text string like "text"(for text tool) ,since the toolbox-model�s ids are actually human readable text strings for the represented tools.
         this.model.on("destroy", this.detach, this);
         this.model.document = this.model.collection;
@@ -194,7 +194,7 @@ usemockups.views.Sensor = Backbone.View.extend({
                 });
                 this.model.trigger('change');
             }.bind(this)
-        }).html(HandlebarSensor(this.model.get_attributes()));
+        }).html(HandlebarMockup(this.model.get_attributes()));
 
         // this.$el.find("[data-attribute]").dblclick(function (event) {
         // var attribute = $(event.target).data("attribute");
@@ -328,7 +328,7 @@ usemockups.views.Sensor = Backbone.View.extend({
     },
 
     /*
-     * Moves the sensor if the key was an arrow key.
+     * Moves the mockup if the key was an arrow key.
      */
     keydown_move: function (e) {
         var movements = {
@@ -351,7 +351,7 @@ usemockups.views.Sensor = Backbone.View.extend({
     },
 
     /*
-     * Rotate the sensor if the key was an space key.
+     * Rotate the mockup if the key was an space key.
      */
     keydown_rotate: function (e) {
         if (e.keyCode == 32) {
@@ -361,7 +361,7 @@ usemockups.views.Sensor = Backbone.View.extend({
     },
 
     /*
-     * Deletes the sensor if the key was the del key.
+     * Deletes the mockup if the key was the del key.
      */
     keydown_destroy: function (e) {
         if (e.keyCode == 46) {

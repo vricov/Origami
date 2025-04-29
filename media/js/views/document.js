@@ -3,29 +3,29 @@ let readResult = '';
 usemockups.views.Page = Backbone.View.extend({
     "el": "article",
 
-    mockup_count: 0,
+    sensor_count: 0,
 
     initialize: function () {
-        this.model.mockups.on("add", this.add_mockup, this);
-        this.model.mockups.on("reset", this.render_mockups, this);
+        this.model.sensors.on("add", this.add_sensor, this);
+        this.model.sensors.on("reset", this.render_sensors, this);
         this.model.on("change:width change:height", this.resize_document, this);
-        this.render_mockups();
+        this.render_sensors();
     },
 
-    add_mockup: function (mockup, options) {
-        var mockup_view = new (usemockups.views.Mockup)({
-            model: mockup
+    add_sensor: function (sensor, options) {
+        var sensor_view = new (usemockups.views.Sensor)({
+            model: sensor
         });
-        var mockupList_view = new (usemockups.views.MockupList)({
-            model: mockup
+        var sensorList_view = new (usemockups.views.SensorList)({
+            model: sensor
         });
-        var mockupListEl = mockupList_view.render(options).el;
-        mockupList_view.$el.data('model', mockup);
+        var sensorListEl = sensorList_view.render(options).el;
+        sensorList_view.$el.data('model', sensor);
 
-        this.$el.append(mockup_view.render(options).el);
-        $(".sensorList").append(mockupListEl);
+        this.$el.append(sensor_view.render(options).el);
+        $(".sensorList").append(sensorListEl);
 
-        mockup_view.$el.attr("tabindex", this.mockup_count++);
+        sensor_view.$el.attr("tabindex", this.sensor_count++);
         // this.model.save(); // Removed this, to make only one call after adding all elements
         return this;
     },
@@ -35,8 +35,8 @@ usemockups.views.Page = Backbone.View.extend({
         this.$el.empty();
         $(".sensorList").empty();
 
-        _.forEach(this.model.mockups.models, function (model) {
-            this.add_mockup(model, { focus: true, show_property_dialog: false });
+        _.forEach(this.model.sensors.models, function (model) {
+            this.add_sensor(model, { focus: true, show_property_dialog: false });
         }, this);
         this.model.mockups.off("reset");
         this.model.save(); // save after adding all elements
@@ -69,19 +69,19 @@ usemockups.views.Page = Backbone.View.extend({
                     top = Math.round(ui.offset.top - this.$el.offset().top) / zoom,
                     tool_name = ui.draggable.data("tool");
 
-                var mockup = new usemockups.models.Mockup({
+                var sensor = new usemockups.models.Sensor({
                     top: top,
                     left: left,
                     tool: tool_name
                 });
-                mockup.attributes.name = mockup.attributes.name + '.' + mockup.cid;
-                mockup.attributes.hint = 'Sensor ' + mockup.attributes.name;
-                if (this.model.get("prefix") != '') { mockup.attributes.name = this.model.get("prefix") + '.' + mockup.attributes.name }
-                if ((mockup.attributes.tool == 'line') || (mockup.attributes.tool == 'label')) {
-                    mockup.attributes.hint = this.model.get("title");
+                sensor.attributes.name = sensor.attributes.name + '.' + sensor.cid;
+                sensor.attributes.hint = 'Sensor ' + sensor.attributes.name;
+                if (this.model.get("prefix") != '') { sensor.attributes.name = this.model.get("prefix") + '.' + sensor.attributes.name }
+                if ((sensor.attributes.tool == 'line') || (sensor.attributes.tool == 'label')) {
+                    sensor.attributes.hint = this.model.get("title");
                 }
-                this.model.mockups.add(mockup);
-                this.model.save();
+                this.model.sensors.add(sensor);
+                this.model.save_document();
                 this.render();
             }.bind(this)
         });
@@ -242,10 +242,10 @@ usemockups.views.DocumentImportForm = Backbone.View.extend({
 
     import_form: function () {
         val = ConvertModel($("#id_models").val());
-        var mockups = JSON.parse(this.$el.find("#id_models_ori").val());
-        if (mockups.title) this.model.attributes.title = mockups.title;
-        if (mockups.width) this.model.attributes.width = mockups.width;
-        if (mockups.height) this.model.attributes.height = mockups.height;
+        var sensors = JSON.parse(this.$el.find("#id_models_ori").val());
+        if (sensors.title) this.model.attributes.title = sensors.title;
+        if (sensors.width) this.model.attributes.width = sensors.width;
+        if (sensors.height) this.model.attributes.height = sensors.height;
         if (mockups.startupscript) this.model.attributes.startupscript = mockups.startupscript;
         this.model.mockups.add(mockups.mockups);
         this.model.save();
@@ -272,7 +272,7 @@ usemockups.views.DocumentImportForm = Backbone.View.extend({
         return false;
     },
     clearProject: function () {
-        while (model = this.model.mockups.first()) {
+        while (model = this.model.sensors.first()) {
             model.destroy();
         }
     },
@@ -299,7 +299,7 @@ usemockups.views.DocumentExportForm = Backbone.View.extend({
         // makes sure previous content is voided
         this.$el.find("#id_models_crc").val("");
 
-        if (typeof this.model.mockups !== 'undefined' && this.model.mockups.length > 0) {
+        if (typeof this.model.sensors !== 'undefined' && this.model.sensors.length > 0) {
             $('#id_models_crc').html(HandlebarsTemplate(this.model.toJSON()));
         }
     },
