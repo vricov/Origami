@@ -1,4 +1,4 @@
-//This is the view for the mockup elements (button, checkbox, etc.)
+//This is the view for the sensor elements (button, checkbox, etc.)
 Handlebars.registerHelper('quoted', function (text) {
     text = Handlebars.Utils.escapeExpression(text);
     text = text.toString();
@@ -137,8 +137,8 @@ function zoomValuePt(value, zoom) {
     return value;
 }
 
-var HandlebarMockup = Handlebars.compile($("#universal-template").html());
-usemockups.views.Mockup = Backbone.View.extend({
+var Handlebarsensor = Handlebars.compile($("#universal-template").html());
+usemockups.views.sensor = Backbone.View.extend({
     tagName: "div",
     className: "object",
     events: {
@@ -328,7 +328,7 @@ usemockups.views.Mockup = Backbone.View.extend({
     },
 
     /*
-     * Moves the mockup if the key was an arrow key.
+     * Moves the sensor if the key was an arrow key.
      */
     keydown_move: function (e) {
         var movements = {
@@ -351,7 +351,7 @@ usemockups.views.Mockup = Backbone.View.extend({
     },
 
     /*
-     * Rotate the mockup if the key was an space key.
+     * Rotate the sensor if the key was an space key.
      */
     keydown_rotate: function (e) {
         if (e.keyCode == 32) {
@@ -360,8 +360,8 @@ usemockups.views.Mockup = Backbone.View.extend({
         }
     },
 
-    /*
-     * Deletes the mockup if the key was the del key.
+    /* 
+     * Deletes the sensor if the key was the del key.
      */
     keydown_destroy: function (e) {
         if (e.keyCode == 46) {

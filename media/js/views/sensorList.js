@@ -1,7 +1,7 @@
 var HandlebarMockupList = Handlebars.compile($("#sensor-list").html());
 
-usemockups.views.MockupList = Backbone.View.extend({
-    tagName: "div",
+usesensors.views.sensorList = Backbone.View.extend({
+    tagName: "ul",
     className: "sensor",
     events: {
         'click': 'show_property_dialog',
@@ -11,7 +11,7 @@ usemockups.views.MockupList = Backbone.View.extend({
     },
     initialize: function () {
         this.model.on("change", this.render, this);
-        this.model.on("change:top", this.render, this);
+        this.model.on("change:position", this.render, this);
         this.tool = usemockups.toolbox.get(this.model.get("tool")); //gets which kind of mockup element it is (called tool, since they are created via tools). Get model via text string like "text"(for text tool) ,since the toolbox-model�s ids are actually human readable text strings for the represented tools.
         this.model.on("destroy", this.detach, this);
         this.model.document = this.model.collection;
@@ -25,7 +25,7 @@ usemockups.views.MockupList = Backbone.View.extend({
             show_property_dialog: true
         }, rendering_options);
         this.$el.children().remove();
-        // usemockups.collections.Mockups
+        // usesensors.collections.sensors
         // this.model.collection.each(this.appendModelView,this);
         this.$el.html(HandlebarMockupList(this.model.get_attributes()));
 
@@ -65,11 +65,11 @@ usemockups.views.MockupList = Backbone.View.extend({
             usemockups.active_tags_dialog.undelegateEvents();
         }
 
-        usemockups.active_property_dialog = (new usemockups.views.PropertyDialog({
+        usesensors.active_property_dialog = (new usemockups.views.PropertyDialog({
             "model": this.model
         })).render()
 
-        usemockups.active_tags_dialog = (new usemockups.views.TagsDialog({
+        usesensors.active_tags_dialog = (new usemockups.views.TagsDialog({
             "model": this.model
         })).render()
     },

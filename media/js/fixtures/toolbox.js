@@ -1,4 +1,4 @@
-usemockups.fixtures.toolbox = [
+usesensors.fixtures.toolbox = [
     {
         "name": "line",
         "category": "Tools",
@@ -41,7 +41,7 @@ usemockups.fixtures.toolbox = [
             // {
             // "name":"hint",
             // "default":"line sensor"
-            // }
+            // } // keep using sensor here
         ]
     },
     {
@@ -118,7 +118,7 @@ usemockups.fixtures.toolbox = [
             },
             {
                 "name": "hint",
-                "default": "label sensor"
+                "default": "label sensor" // keep using sensor here
             }
         ]
     },

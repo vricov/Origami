@@ -1,4 +1,4 @@
-usemockups.models.Mockup = Backbone.NestedModel.extend({
+usemockups.models.Sensor = Backbone.NestedModel.extend({
     idAttribute: "_id",
     defaults: {
         top: 0,

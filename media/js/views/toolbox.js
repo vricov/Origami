@@ -1,5 +1,5 @@
 //the tools/kinds-of-elements
-usemockups.views.Tool = Backbone.View.extend({
+usesensors.views.Tool = Backbone.View.extend({
     tagName: "li",
     initialize: function () {
         this.className = this.model.get("name")
@@ -20,7 +20,7 @@ usemockups.views.Tool = Backbone.View.extend({
             cursorAt: { left: 10 },
             helper: function () {
                 return new usemockups.views.ToolPreview({
-                    tool: usemockups.toolbox.get($(this).data("tool"))
+                    tool: usesensors.toolbox.get($(this).data("tool"))
                 }).render().el
             }
         }).data("tool", this.model.get("name"));
@@ -29,7 +29,7 @@ usemockups.views.Tool = Backbone.View.extend({
     }
 });
 
-usemockups.views.Toolbox = Backbone.View.extend({
+usesensors.views.Toolbox = Backbone.View.extend({
     el: "div.header",
     render: function () {
 
@@ -42,7 +42,7 @@ usemockups.views.Toolbox = Backbone.View.extend({
         }, this);
 
         _.forEach(this.model.models, function (tool) {
-            (new usemockups.views.Tool({
+            (new usesensors.views.Tool({
                 model: tool
             }).render().$el.appendTo(".toolbox." + tool.get("category")));
         }, this);
@@ -52,7 +52,7 @@ usemockups.views.Toolbox = Backbone.View.extend({
 });
 
 var HandlebarToolPreview = Handlebars.compile($("#universal-template").html());
-usemockups.views.ToolPreview = Backbone.View.extend({
+usesensors.views.ToolPreview = Backbone.View.extend({
 
     tagName: "div",
     className: "object preview",
