@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CRC Parse</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+
+</head>
+<body style="background-color: #e0dbd5;">
+    <p>Утилита для тестирования работы парсера <a href="../index.html">Origami</a>.</p><p>Сам парсер теперь встроен в редактор.</p><hr>
+    <input type="file" id="id_models_file" style="width:100%;display:inline-block;" value="открыть в окне" class="divButton" onchange="open_file()"/>
+    <textarea name="textarea" rows="50" style="width:49%;display:inline-block;" id="id_models"></textarea>
+    
+    <textarea name="textarea" rows="50" style="width:48%;display:inline-block;" id="id_models_ori"></textarea>
+    <script src="../media/js/libs/jquery-1.8.2.min.js"></script>
+    <script src="../media/js/libs/jquery-ui-1.9.0.min.js"></script>
+    <script src="../media/js/libs/underscore-1.4.2.min.js"></script>
+    <script src="../media/js/libs/backbone-0.9.2.min.js"></script>
+    <script src="../media/js/libs/backbone-nested.js"></script>
+    <script src="../media/js/libs/handlebars.min.js"></script>
+    <script src="../media/js/libs/palette-color-picker.js"></script>
+    <script src="../media/js/libs/scripts.js"></script>
+    <script src="../media/js/libs/crc-parser.js"></script>
+    <script src="../media/js/persistance/local-storage.js"></script>
+<script>
+    function open_file() {
+        var files = $("#id_models_file");
+        let file = files[0].files[0];
+        let reader = new FileReader();
+        reader.readAsText(file, 'cp1251');
+        
+        reader.onload = function() {
+            readResult = reader.result;
+            $("#id_models").val(readResult);
+            $("#id_models").attr("disabled", true);
+            
+            val = ConvertModel(readResult);
+            //console.log(JSON.stringify(val, null, 2));
+        }; 
+        reader.onerror = function() {
+            console.log(reader.error);
+        };
+        return false;
+    }
+</script>
+
+</body>
+</html>
+ 

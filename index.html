@@ -1,0 +1,682 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Origami - Visual CRC Editor for CRW-DAQ</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" href="media/css/jquery-ui-1.9.1.css" />
+    <link type="text/css" rel="stylesheet" href="media/css/h5bp.css" />
+	<link type="text/css" rel="stylesheet" href="media/css/palette-color-picker.css" />
+	<link type="text/css" rel="stylesheet" href="media/css/screen.css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- layout -->
+    <nav>
+        <div class="logo">
+            <img src="favicon.ico" width="18px" height="18px">
+            <div class="logo-text">Origami</div>
+            <div class="logo-caption">Visual CRC Editor</div>
+        </div>
+        <div class="menu-item">
+            <a class="documents"><span class="ui-icon ui-icon-files"></span> Мнемосхемы</a>
+            <section id="documents">
+                <h3>Мнемосхемы</h3>
+                <ul class="mnemolist"></ul>
+                <h3>Создать мнемосхему</h3>
+                <form>
+                    <input type="text" name="title" id="id_title" />
+                    <input type="submit" value="Создать" class="divButton">
+                </form>
+            </section>
+        </div>
+        <div class="menu-item"><a class="properties"><span class="ui-icon ui-icon-property"></span> Свойства</a>
+            <section id="document-properties">
+                <h3>Свойства мнемосхемы</h3>
+                <form>
+                    <label for="id_title">Имя</label>
+                    <input type="text" name="title" id="id_doc_title" />
+                    <img src="" width="200" style="display:none;" />
+                    <label for="id_startupscript">GeneralMap</label>
+                    В случае, если изображение <strong>.bmp</strong> слишком большое, рекомендуется использовать формат <strong>.png</strong><br>
+                    <input type="file" name="generalmap_select" id="id_doc_generalmap_select" onchange="readURL(this.files[0])" accept=".bmp,.png" class="divButton"/>
+                    <input type="text" name="generalmap" id="id_doc_generalmap" />
+                    <div type="submit" value="Сброс" id="id_doc_generalmap_reset" class="divButton reset">Сброс</div>
+                    <hr>
+                    <div class="generalmap_bit">
+                        <label for="id_generalmap_bit">Default general map BIT</label>
+                        <!-- <input type="number" name="generalmap_bit" id="id_doc_generalmap_bit" /> -->
+                        
+                        <select id="id_doc_generalmap_bit" name="generalmap_bit" id-attribute="0" value="4">
+                            <option value="1">1 бит</option>
+                            <option value="4">4 бита</option>
+                            <option value="8">8 бит</option>
+                            <option value="15">15 бит</option>
+                            <option value="16">16 бит</option>
+                            <option value="24">24 бита</option>
+                        </select>
+                    </div>
+                    
+                    <div class="prefix">
+                        <label for="id_prefix">Префикс тегов</label>
+                        <input type="text" name="prefix" id="id_doc_prefix" />
+                    </div>
+                    
+                    <label for="id_startupscript">StartupScript</label>
+                    <textarea name="textarea" rows="7" name="startupscript" id="id_doc_startupscript"></textarea>
+    
+
+    
+                    <div class="width">
+                        <label for="id_width">Ширина (px)</label>
+                        <input type="number" name="width" id="id_doc_width" />
+                    </div>
+    
+                    <div class="height">
+                        <label for="id_height">Высота (px)</label>
+                        <input type="number" name="height" id="id_doc_height" />
+                    </div>
+    
+                    <input type="submit" value="Сохранить" class="divButton" id="save">
+    
+                </form>
+            </section>
+        </div>
+        <div class="menu-item">
+            <a class="import"><span class="ui-icon ui-icon-import"></span> Импорт</a>
+            <section id="document-import">
+                <h3>Импорт проекта</h3>
+                <form>
+                    <p>Импортирование происходит в <strong>CRC</strong> формате. Можно открыть файл или скопировать код сенсоров вручную в поле ниже.</p>
+                    <input type="file" id="id_models_file" value="открыть в окне" accept=".crc" class="divButton"/>
+                    <div value="Импортировать в проект" id="import" class="divButton">Импортировать в проект</div>
+                    <div value="Очистить проект" id="clearProject" class="divButton reset">Очистить проект</div><br><br>
+					<textarea name="textarea" rows="30" id="id_models"></textarea>
+                    <textarea name="textarea" rows="30" id="id_models_ori" style="display:none;"></textarea>
+                </form>
+            </section>
+        </div>
+        <div class="menu-item">
+            <a class="export"><span class="ui-icon ui-icon-export"></span> Экспорт в CRC</a>
+            <section id="document-export">
+                <h3>Экспорт в CRC</h3>
+                <form><input type="checkbox" id="hasHeader" name="hasHeader" onclick="$('#save').submit();"><label for="hasHeader" id="hasHeader">Включить "шапку"</label> 
+                <form>
+                    <!-- <textarea name="textarea" rows="30" id="id_models_crc"></textarea> -->
+                    <div id="id_models_crc" disabled></div>
+                    <div type="submit" value="Копировать в буфер" id="copyCRC" class="divButton">Копировать всё</div>
+                    <div type="submit" value="Сохранить в файл" onclick="savetofile('id_models_crc', 'crc')" class="divButton">Сохранить в файл</div>
+                </form>
+            </section>
+        </div>
+        <div class="menu-item">
+            <a class="help"><span class="ui-icon ui-icon-qu"></span> Справка</a>
+            <section id="crc-help">
+                <h3>Справка</h3>
+                <ul>
+                    <li><a href="../../painter/painter.htm" target="_blank">Справка по интерпретатору Painter(v)</a></li>
+                    <li><a href="../../painter/guilib.htm" target="_blank">Библиотека GuiLib</a></li>
+                    <li><a href="../../painter/gostlib.htm" target="_blank">Библиотека GostLib</a></li>
+                    <li><a href="../../painter/daqlib.htm" target="_blank">Библиотека DaqLib</a></li>
+                </ul>
+            </section>
+        </div>
+        <div class="menu-item">
+            <a class="about"><span class="ui-icon ui-icon-help"></span></a>
+            <section id="about">
+                <h3>О программе</h3>
+                <p>Copyright (c) 2020-2024 Alexey Zhirunov rvricov@gmail.com.</p>
+                <p>Основано на ПО "Mockup-designer" Copyright (c) 2015 Fatih Erikli <http://fatiherikli.github.com/mockup-designer/>, лицензия <a href="license">MIT</a>.</p>
+                <p>Built with Backbone, Backbone-LocalStorage, Backbone-Nested, Underscore and Handlebars.</p>
+                <p></p>
+                <textarea name="textarea" rows="30" id="id_changelog" disabled>
+25.01.2024
++ С новой кодировкой в надписях нет необходимости заменять пробелы в начале или конце неразрывными пробелами. Под это дело поправлено их визуальное отображение, раньше они не отображались
+
+30.10.2023
++ Отказ от URL кодировки в надписях в соответствии с новым представлением .crc в CRW-DAQ. Файлы с URL кодировкой текста будут при импорте преобразуются в новый формат
+
+29.03.2023
++ Изменения в пользовательском интерфейсе
++ При активном сенсоре нажатие клавиши пробел поворачивает сенсор. Особенно актуально при использовании сенсоров типа line. Такая же горячая клавиша используется в AltiumDesigner (?*)
+
+20.03.2023
++ Парсер Compressor, Vacuometer (Ionization, Thermal), Cmd.Ok, Cmd.Cancel
+
+16.03.2023
++ Частично добавлены новые типы сенсоров: Compressor, Vacuometer (Ionization, Thermal), Cmd.Ok, Cmd.Cancel. Нужно доработать парсер
++ Множественные оптимизации кода
++ Исправление ошибок с некоторыми элементами ledbmp
++ Обновлен allElementsDemo.crc
+
+07.11.2022
++ Обработка исключения "NS_ERROR_FILE_CORRUPTED". Эта проблема возникает только в браузере Mozilla Firefox при некорректном завершении браузера
+
+27.04.2022
++ Косметические изменения интерфейса: панель тегов, панель свойств, эффект "прилипания" сенсора
++ Названия сенсоров теперь генерируются в верхнем регистре
+
+25.04.2022
++ Косметические изменения интерфейса
+
+22.04.2022
++ Первая реализация возможности сортировки списка сенсоров [отключено]
+
+21.04.2022
++ Прокрутка списка тегов при очень большом его количестве
++ Исправлены проблемы генерации CRC кода сенсора SimpleBar совместно со свойствами Border
++ Добавлена возможность выбора битности подложки главной мнемосхемы, в случае если используется стандартное изображение
++ Сенсоры типа Line и Label теперь по умолчанию имеют свойство hint равное названию мнемосхемы
++ В свойствах мнемосхемы добавлен новый параметр "Префикс сенсоров", при не пустом значении поля префикс добавляется к названию всех новых сенсоров
+
+20.04.2022
++ Сенсорам типа SimpleBar добавлены атрибуты Border
+
+04.04.2022
++ Мелкое исправление регистра цвета в тегах
+
+28.03.2022
++ Различные исправления, направленые в основном на правильное отображение элементов в редакторе
+
+22.03.2022
++ Наименования цветов теперь начинаются с заглавной буквы
+
+21.03.2022
++ Добавлены новые графические элементы: ListButton.Arrow, ListButton.Triangle, Pump.Sublimation, Vacuometer.Penning (парсинг, отображение, локализация)
+
+18.03.2022
++ Изменен порядок отображения секции Tag# при генерации CRC
+
+15.02.2022
++ Поддержка отображения цветов из библиотек ColFun.crc и ColJFw.crc
+
+16.12.2021
++ Исправлено отображение шрифта и замера шрифта на сенсорах типа 'ProgressBar'
+
+08.12.2021
++ Не добавлялся постфикс при копировании сенсора кнопкой
++ Парсер больше не выдает ошибку на секцию "SensorList-"
++ Панель свойств сенсора прокручивается, если не все свойства влезают в экран
+
+18.11.2021
++ Корректная обработка парсером координаты '0'
++ Вкладки Импорт/Экспорт в полный экран
++ Обновление информации во вкладке "Свойства" после импорта CRC файла
+
+09.11.2021
++ Добавлена панель со списком сенсоров, позволяющая по клику перейти к свойствам невидимого/незаметного сенсора
++ Исправлена давняя проблема с сохранением измененных параметров вновь созданных элементов
++ Оптимизация кода
++ Оптимизация интерфейса
+
+19.10.2021
++ Добавлена возможность импорта мнемосхем содержащих свои bmp файлы. Но так как браузер не может получить bmp файл для отображения, и размеры сенсора зависят от размера изображения в bmp формате, то на месте начальных координат такого сенсора будет отображаться "заглушка" 30 x 30px.
++ В свойствах сенсора есть появилась возможность указать тип "своё" с указанием пути файла вместо ledbmp и barbmp.
+
+22.09.2021
++ Добавлена возможность отключать "шапку" при генерации crc кода мнемосхемы
++ Добавлена корректная обработка знака "+" в подписях сенсоров (включая ипорт)
++ Добавлена подсветка синтаксиса (аналогично подсветке в Notepad++)
++ Мелкие добавления/исправления/оптимизации
+
+21.09.2021
++ Добавлена корректная обработка запятых в надписях сенсоров (включая импорт)
++ Fix Исправлены ошибки в работе парсера CRC
++ Уточнен алгоритм отображения размеров ledbmp
+
+17.09.2021
++ Fix Исправлена проблема, при которой не изменялось значение поля ширины сенсора при изменении размеров сенсора. (Н. Гурин)
++ Приведены значения свой сенсоров по умолчанию в соответствии с документацией Painter(v). (Н. Гурин)
+
+01.07.2021
++ Fix Исправлены ошибки в парсере: свойства glPumpSpeedBit, glPumpErrorBit теперь импортируются верно. Исправлена проблема с парсингом надписей
+
+25.06.2021
++ Fix Исправление в формировании crc: убран аргумент font у тегов с типом barbmp
+
+04.06.2021
++ Косметические исправления палитры цветов и палитры сенсоров
++ Доработан сенсор Cross
+
+12.05.2021
++ Добавлен новый элемент SimpleBar: парсинг, отображение, свойства
+
+05.04.2021
++ Fix Обнаружена и исправлена проблема некорректного отображения свойства LimitSwitch
+
+19.02.2021
++ Fix исправлена проблема при которой в некоторых случаях пропадает цветовая палитра в тегах
+
+18.02.2021
++ Fix Исправлена проблема парсера CRC: не верно определялся параметр Orientation у сенсора Pump
++ Fix При изменении размера сенсора с ledbmp размеры сенсора теперь отображаются верно (ch и pt)
+
+17.02.2021
++ Переработан интерфейс zoom
++ Параметр "битность" у тегов теперь в виде выпадающего списка
++ Fix Исправление работы функциональных цветов (в crc выводится ближайший именованный цвет)
+
+16.02.2021
++ Fix Исправление ошибок
+
+12.02.2021-15.02.2021
++ Продолжение работы над парсером
++ Продолжение работы над палитрой. Добавлены все поддерживаемые цвета
++ Добавлена возможность увеличения (zoom)
++ Добавлены элементы библиотеки DaqLib: отображение, формирование crc и чтение из crc
++ Fix Исправление ошибок
+
+08.02.2021
++ Продолжение работы над парсером
++ Палитра цветов
++ Fix Исправлена работа функции копирования элемента
+
+04.02.2021
++ Парсер парсер встроен в основной интерфейс
+- Убран интерфейс импорта/экспорта промежуточного ori формата
++ Парсер теперь понимает ширину, высоту окна, а так же название мнемосхемы и секцию StartupScript
++ Fix Множественные исправления проблем парсера
+
+02.02.2021-03.02.2021
++ Добавлен первый рабочий прототип парсера CRC файлов (parse.html)
++ Fix Различные исправления
+
+01.02.2021
++ Исправление элемента Progressbar
++ Доработан интерфейс тегов
++ Fix Исправлены ошибки
+
+30.01.2021
++ Переработан интерфейс свойств вывода
+
+29.01.2021
++ Добавлена возможность выравнивания сенсоров по сетке (размер сетки можно редактировать, по умолчанию 5px)
++ Добавлены всплывающие подсказки у некоторых полей
++ Доработано поле led_style, исправлены ошибки отображения этого эффекта
+
+27.01.2021
++ Координаты сенсора записываются через запятую
++ Убавлен эффект "прилипания" сенсоров друг к другу
+
+# Добавлен в CRW-DAQ 23.01.2021
+
+23.01.2021
++ Добавлен файл лицензии
++ Добавлена иконка favicon [Alexey Kuryakin kouriakine@mail.ru]
++ Добавлена кнопка очистки проекта во вкладку "Импорт"
++ Fix Исправлено наименование параметра led_dig [Alexey Kuryakin kouriakine@mail.ru]
++ Fix Исправления в алгоритме изменения размера сенсоров с ledbmp
+
+22.01.2021
++ Косметические изменения интерфейса
++ Fix расположение больших GeneralMap
++ Fix отсутствующий параметр None у свойства Orientation в элементе GostLib.Pump
++ Fix множество исправлений
+
+21.01.2021 
++ New установлен фильтр на тип файлов для импорта и GeneralMap
++ Параметр bit у тегов по умолчанию теперь 24
++ Fix сокращен список тегов при создании Button, Border, Indicator
++ Fix исправлена генерация суффикса при копировании элементов
++ Fix предосмотр элементов при перетаскивании
++ Fix инкримент значения при добавлении тега
++ Fix исправлена проблема с изменением параметров мнемосхемы, если не выбран GeneralMap
+				</textarea>
+            </section>
+        </div>
+        <div class="zoom">
+            <span class="ui-icon ui-icon-zoomout minus"></span>
+			<div class="zoomval">100%</div>
+            <span class="ui-icon ui-icon-zoomin plus"></span>
+        </div>
+    </nav>
+
+    <div class="header">
+    </div>
+
+    <aside class="left-col">
+		<div class="input"><input type="checkbox" id="id_grid" name="grid"><label for="id_grid">Выровнять по сетке</label><input type="text" id="id_grid_divider" name="grid_divider" value="5"><label for="id_grid_divider">px</label></div>
+		<hr/>
+        <!-- <h2>Свойства сенсора</h2> -->
+        <form class="properties">Сенсор не выбран</form>
+        <div class="statusBar"></div>
+    </aside>
+    
+    <aside class="right-col">
+        <div class="listArrow"><h2><span class="ui-icon ui-icon-list"></span>Список сенсоров</h2></div>
+        <div class="sensorList">
+        </div>
+    </aside>
+    
+    <div class="wrap"><image src="" id="generalMap"/><article zoom="1"></article></div>
+    
+    <footer></footer>
+    
+    
+
+    <!-- templates -->
+
+    <script type="text/html" id="navigation-item-template">
+        <a class="show" href="#document/<%= id %>"><%= title %></a>
+        <a class="divButton destroy" href="#">Удалить</a>
+    </script>
+
+    <script type="text/html" id="property-form-template">
+    <% for (var attribute in attributes) { %>
+        <% if (!attributes[attribute].hidden) { %>
+        <% if (!(attributes[attribute].name == "tags")) { %>
+        <div class="line <%= attributes[attribute].type %> <%= attributes[attribute].name %>">
+
+        <% if (attributes[attribute].type == "boolean") { %>
+            <input type="checkbox" id="id_<%= attributes[attribute].name %>"
+               name="<%= attributes[attribute].name %>"
+               <% if (attributes[attribute].value) { %> checked="checked" <% } %> />
+       <% } else if (typeof attributes[attribute].default === "object") { %>
+            <label id="id_<%= attributes[attribute].name %>_label" for="id_<%= attributes[attribute].name %>"><%= attributes[attribute].name %></label>
+            <% for (key in attributes[attribute].value[0]) { %>
+                <div class="line line-param <%= key %>">
+                <label id="id_<%= attributes[attribute].name %>_<%= key %>_label" for="id_<%= attributes[attribute].name %>_<%= key %>"><%= key %></label>
+                <input <% if ($.isNumeric(attributes[attribute].value[0][key])) { %>type="number"<% } else {%> type="text" <% }%> id="id_<%= key %>"
+            name="<%= key %>" data-attribute="<%= attributes[attribute].name %>"
+            value="<%= attributes[attribute].value[0][key] %>" />
+                </div>
+            <% } %>
+       <% } else { %>
+            <label id="id_<%= attributes[attribute].name %>_label" for="id_<%= attributes[attribute].name %>"><%= attributes[attribute].name %></label>
+            <input <% if ($.isNumeric(attributes[attribute].value)) { %>type="number"<% } else {%> type="text" <% }%>id="id_<%= attributes[attribute].name %>"
+               name="<%= attributes[attribute].name %>"
+               value="<%= attributes[attribute].value %>" />
+        <% } %>
+        </div>
+        <% } %><% } %>
+    <% } %>
+
+        <div class="line tools">
+        <a class="divButton copy" href="#"><span class="ui-icon ui-icon-copy"></span> Копировать</a>
+        <a class="divButton delete" href="#"><span class="ui-icon ui-icon-trash"></span> Удалить</a>
+        </div>
+        
+        
+    </script>
+    
+    <script type="text/html" id="taglist-form-template">
+    <form class="taglist">
+        <div class="taglist-header">
+            <h2>Теги сенсора</h2>
+            <a class="divButton add-tag" href="#">Добавить тег</a>
+        </div>
+        <table class="tags-params">
+            <thead>
+                <tr>
+                    <th colspan="2" >Значение</th>
+                    <th>Тип</th>
+                    <th>Ширина</th>
+                    <th>Высота</th>
+                    <th>Битность</th>
+                    <th>Цвет</th>
+                    <th colspan="2">Текст</th>
+                </tr>
+            </thead>
+            <tbody class="table-scroll">
+        <% var i = 0 ; for (var tag in tags) {  %>
+            <tr class="tags-item">
+                <td>Tag#<%= i+1 %></td>
+                <td class="tags-params-index"><input type="number" id="tags_<%= i %>_id" name="id" id-attribute="<%= i %>" value="<%= tags[tag].id %>" /></td>
+                <td><select id="id_type" name="type" id-attribute="<%= i %>" value="<%= tags[tag].type %>">
+                    <option value="barbmp">barbmp</option>
+                    <option value="ledbmp">ledbmp</option>
+                    <option value="custom">своё</option>
+                </select></td>
+                <% if (tags[tag].type == 'custom') {  %>
+                <td colspan="2"><input type="text" id="tags_<%= i %>_custom" name="custom" id-attribute="<%= i %>" value="<%= tags[tag].custom %>"  placeholder="Путь к своему .bmp файлу" title="Примеры правильного указания путей:<ol><li><code>~~\Resource\DaqSite\ StdLib\Bitmaps\ barbmp_20_20_24_silver.bmp</code></li><li><code>..\Bitmaps\ctrl_logo.bmp</code></li></ol>"/></td>
+                <% } else { %>
+                <td><input type="text" id="tags_<%= i %>_width" name="width" id-attribute="<%= i %>" value="<%= tags[tag].width %>" /></td>
+                <td><input type="text" id="tags_<%= i %>_height" name="height" id-attribute="<%= i %>" value="<%= tags[tag].height %>" /></td>
+                <% } %>
+                <td>
+				
+				<select id="tags_<%= i %>_bit" name="bit" id-attribute="<%= i %>" value="<%= tags[tag].bit %>">
+                    <option value="24">24</option>
+                    <option value="16">16</option>
+					<option value="8">8</option>
+					<option value="4">4</option>
+					<option value="1">1</option>
+                </select>
+				
+				</td>
+                <td><input type="text" id="tags_<%= i %>_color" name="color_<%= i %>" id-attribute="<%= i %>" value="<%= tags[tag].color %>"/></td>
+                <td><input type="text" id="tags_<%= i %>_label" name="label" id-attribute="<%= i %>" value="<%= tags[tag].label.replace(/"/g, '&quot;') %>" /></td>
+                <td><a class="divButton delete" id-attribute="<%= i %>" href="#">X</a></td>
+            </tr>
+        <% i = i + 1; }  %>
+            </tbody>
+        </table>
+    </form>
+    </script>
+    <script type="text/html" id="universal-template">
+        <div class="sensor {{name}}{{#led}} led{{/led}}{{#button}} SimpleButton{{/button}}{{#radio}} checked RadioButton{{/radio}}{{#checkbox}} checked CheckBox{{/checkbox}}{{#progressbar}} ProgressBar{{/progressbar}} {{#if progressbar_attributes.0.glProgBarHor}}Hor{{progressbar_attributes.0.glProgBarHor}}{{/if}}{{#border}} border{{/border}}{{#simplecross}} simplecross{{/simplecross}}{{#listbutton_triangle}} dropTriangle{{/listbutton_triangle}}{{#listbutton_arrow}} dropArrow{{/listbutton_arrow}}{{#bar}} simplebar{{/bar}}{{#indicatorcircle}} IndicatorCircle{{/indicatorcircle}}{{#cmdOk}} cmdOk{{/cmdOk}}{{#cmdCancel}} cmdCancel{{/cmdCancel}}{{#compressor}} Compressor{{/compressor}}{{#radiationhazard}} RadiationHazard{{/radiationhazard}}{{#airblower}} AirBlower{{/airblower}}{{#fanblower}} FanBlower{{/fanblower}}{{#waterpump}} WaterPump{{/waterpump}}{{#tanklevel}} TankLevel{{/tanklevel}}{{#flowmeter}} FlowMeter{{/flowmeter}}{{#manometer}} ManoMeter{{/manometer}}{{#uniheater}} UniHeater{{/uniheater}}{{#ifEquals 'custom' tags.0.type}} custom{{/ifEquals}}" style="position: initial;background-color:{{colorRGB tags.0.color}};{{#bar}} background-color:{{bar_attributes.0.glBarColor}};{{/bar}}{{#radiationhazard}}background-color:{{colorRGB radiationhazard_attributes.0.glRadiationHazardBackColor}};{{/radiationhazard}}{{#led}}font-family:{{led_attributes.0.led_font}};{{font-style led_attributes.0.led_style}} color:{{colorRGB led_attributes.0.led_color}};font-size:{{zoom led_attributes.0.led_size}}pt;{{/led}}{{#button}}border-width:{{zoom button_attributes.0.glButtonBevel}}pt;{{/button}}{{#border}}border-width:{{zoom border_attributes.0.glBorderBevel}}pt;border-color:{{colorRGB border_attributes.0.glBorderColor}};{{/border}}{{#progressbar}}padding:{{progressbar_attributes.0.glProgBarBevel}}pt;{{/progressbar}}{{#indicatorcircle}}padding:{{indicatorcircle_attributes.0.glCircleBevel}}pt;{{/indicatorcircle}}">
+            {{#radio}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="radio" style="background-color:{{colorRGB radio_attributes.0.glRadioColor}};"></div></div>{{/radio}}
+            {{#checkbox}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="checkbox" style="background-color:{{colorRGB checkbox_attributes.0.glCheckBoxColor}};"></div></div>{{/checkbox}}
+            {{#simplecross}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="simplecross"></div></div>{{/simplecross}}
+            {{#listbutton_arrow}}<div class="aspect_ratio {{#ifEquals '0' listbutton_arrow_attributes.0.glListBtnArrowLeft}} aspect_ratio_right{{/ifEquals}}"><img src="media/images/aspect1to1.png"/><div class="dropArrow" style="border-width:{{listbutton_arrow_attributes.0.glListBtnArrowBorderWidth}}px;border-color:{{colorRGB listbutton_arrow_attributes.0.glListBtnArrowBorderColor}}"></div></div>{{/listbutton_arrow}}
+            {{#listbutton_triangle}}<div class="aspect_ratio {{#ifEquals '0' listbutton_triangle_attributes.0.glListBtnTriangleLeft}} aspect_ratio_right{{/ifEquals}}"><img src="media/images/aspect1to1.png"/><div class="dropTriangle" style="border-width:{{listbutton_triangle_attributes.0.glListBtnTriangleBorderWidth}}px;border-color:{{colorRGB listbutton_triangle_attributes.0.glListBtnTriangleBorderColor}}"></div></div>{{/listbutton_triangle}}
+            {{#indicatorcircle}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="indicatorcircle" style="border-width:{{indicatorcircle_attributes.0.glCircleWidth}}pt;border-color:{{colorRGB indicatorcircle_attributes.0.glCircleFaceColor}};background-color:{{colorRGB indicatorcircle_attributes.0.glCircleBackColor}};"></div></div>{{/indicatorcircle}}
+            {{#valve}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="valve Type_{{valve_attributes.0.ValveType}} {{valve_attributes.0.ValveDrive}}"></div></div>{{/valve}}
+            {{#pump}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="pump {{pump_attributes.0.PumpType}} {{pump_attributes.0.PumpType}}_{{pump_attributes.0.Orientation}}"></div></div>{{/pump}}
+            {{#vacuometer}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="vacuometer {{vacuometer_attributes.0.VacuometerType}} {{vacuometer_attributes.0.VacuometerType }}_{{vacuometer_attributes.0.Orientation}}"></div></div>{{/vacuometer}}
+            {{#compressor}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="compressor compressor_{{compressor_attributes.0.Orientation}}"></div></div>{{/compressor}}
+            {{#leakdetector}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="LeakDetector icon"></div></div>{{/leakdetector}}
+            {{#compressor}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="compressor Compressor_{{compressor_attributes.0.Orientation}}"></div></div>{{/compressor}}
+			{{#radiationhazard}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="radDaqLib icon"></div></div>{{/radiationhazard}}
+			{{#airblower}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="circleDaqLib AirBlower_{{airblower_attributes.0.Orientation}}" style="border-width: {{airblower_attributes.0.glAirBlowerLineWidth}}px;border-color: {{colorRGB airblower_attributes.0.glAirBlowerLineColor}};background-color: {{colorRGB airblower_attributes.0.glAirBlowerFillColor}};"></div></div>{{/airblower}}
+			{{#fanblower}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="circleDaqLib FanBlower_{{fanblower_attributes.0.Orientation}}" style="border-width: {{fanblower_attributes.0.glFanBlowerLineWidth}}px;border-color: {{colorRGB fanblower_attributes.0.glFanBlowerLineColor}};background-color: {{colorRGB fanblower_attributes.0.glFanBlowerFillColor}};"></div></div>{{/fanblower}}
+			{{#waterpump}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="circleDaqLib WaterPump_{{waterpump_attributes.0.Orientation}}" style="border-width: {{waterpump_attributes.0.glWaterPumpLineWidth}}px;border-color: {{colorRGB waterpump_attributes.0.glWaterPumpLineColor}};background-color: {{colorRGB waterpump_attributes.0.glWaterPumpFillColor}};"></div></div>{{/waterpump}}
+			{{#tanklevel}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="tankDaqLib" style="border-width: {{tanklevel_attributes.0.glTankLevelLineWidth}}px;border-color: {{colorRGB tanklevel_attributes.0.glTankLevelLineColor}};background-color: {{colorRGB tanklevel_attributes.0.glTankLevelBackColor}};"><div class="TankLevel" style="border-width: {{tanklevel_attributes.0.glTankLevelLineWidth}}px;border-color: {{colorRGB tanklevel_attributes.0.glTankLevelLineColor}};background-color: {{colorRGB tanklevel_attributes.0.glTankLevelFillColor}};height:{{tanklevel_attributes.0.glTankLevelPercent}}%;"></div></div></div>{{/tanklevel}}
+			{{#flowmeter}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="circleDaqLib FlowMeter_{{flowmeter_attributes.0.Orientation}}" style="border-width: {{flowmeter_attributes.0.glFlowMeterLineWidth}}px;border-color: {{colorRGB flowmeter_attributes.0.glFlowMeterLineColor}};background-color: {{colorRGB flowmeter_attributes.0.glFlowMeterFillColor}};"></div></div>{{/flowmeter}}
+			{{#manometer}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="circleDaqLib" style="border-width: {{manometer_attributes.0.glManoMeterLineWidth}}px;border-color: {{colorRGB manometer_attributes.0.glManoMeterLineColor}};background-color: {{colorRGB manometer_attributes.0.glManoMeterFillColor}};"><div class="ManoMeter icon"></div></div></div>{{/manometer}}
+			{{#uniheater}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="uniheater icon"></div></div>{{/uniheater}}
+            <div class="label" {{^progressbar}}data-attribute="tags.0.label"{{/progressbar}} >{{#progressbar}}{{^tags.0.label}}57.0{{/tags.0.label}}{{/progressbar}}{{unspace tags.0.label}}</div>
+        </div>
+    </script>
+    
+    <script type="text/html" id="sensor-list">{{name}}</script>
+    
+    <script type="text/html" id="crc-template">{{#if hasHeader}}<i class="colored">[Circuit]</i>
+{{#if generalmap_name}}GeneralMap <i class="colored2">=</i> ..\Bitmaps\\{{&generalmap_name}}{{else}}GeneralMap <i class="colored2">=</i>  ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_{{width}}_{{height}}_{{generalmap_bit}}_silver.bmp{{/if}}
+Hint <i class="colored2">=</i> {{title}}
+ToolBarHeight <i class="colored2">=</i> 0
+<i class="colored">[]</i>
+
+<i class="colored">[ConfigFileList] ; Include the Painter GUI Library</i>
+ConfigFile <i class="colored2">=</i> ~~\Resource\DaqSite\Default\Painter.crc
+<i class="colored">[]</i>
+
+{{#if startupscript}}
+<i class="colored">[Circuit.StartupScript]</i>
+{{& startupscript}}
+<i class="colored">[]</i>
+{{/if}}{{/if}}
+{{#mockups}}
+<i class="colored">[SensorList]</i>
+Sensor <i class="colored2">=</i> {{toUpperCase name}}
+<i class="colored">[{{toUpperCase name}}]</i>
+Pos <i class="colored2">=</i> {{left}}, {{top}}
+{{#led}}
+LED <i class="colored2">=</i> {{led_attributes.0.led_wid}}, {{led_attributes.0.led_dig}}, {{led_attributes.0.led_val}}, {{& led_attributes.0.led_fmt}}, Name:{{underlines led_attributes.0.led_font}}\Style:[{{led_attributes.0.led_style}}]\Size:{{led_attributes.0.led_size}}\Color:{{replaceFuncColors led_attributes.0.led_color}}
+{{/led}}
+{{#if tageval}}
+TagEval(v) <i class="colored2">=</i> {{& tageval}}
+{{/if}}
+{{#button}}
+Painter(v) <i class="colored2">=</i> (glButtonBit={{button_attributes.0.glButtonBit}})+(glButtonBevel={{button_attributes.0.glButtonBevel}})+(glButtonMoveX={{button_attributes.0.glButtonMoveX}})+(glButtonMoveY={{button_attributes.0.glButtonMoveY}})
+{{/button}}
+{{#radio}}
+Painter(v) <i class="colored2">=</i> (glRadioValue={{radio_attributes.0.glRadioValue}})+(glRadioColor=cl{{replaceFuncColors radio_attributes.0.glRadioColor}}) 
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.RadioButton]
+{{/radio}}
+{{#checkbox}}
+Painter(v) <i class="colored2">=</i> (glCheckBoxBit={{checkbox_attributes.0.glCheckBoxBit}})+(glCheckBoxColor=cl{{replaceFuncColors checkbox_attributes.0.glCheckBoxColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.CheckBox]
+{{/checkbox}}
+{{#label}}
+{{/label}}
+{{#progressbar}}
+Painter(v) <i class="colored2">=</i> (glProgBarMin={{progressbar_attributes.0.glProgBarMin}})+(glProgBarMax={{progressbar_attributes.0.glProgBarMax}})+(glProgBarHor={{progressbar_attributes.0.glProgBarHor}})+(glProgBarColor=cl{{replaceFuncColors progressbar_attributes.0.glProgBarColor}})+(glProgBarBevel={{progressbar_attributes.0.glProgBarBevel}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.ProgressBar]
+{{/progressbar}}
+{{#bar}}
+Painter(v) <i class="colored2">=</i> (glBarColor=cl{{bar_attributes.0.glBarColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.SimpleBar]
+{{/bar}}
+{{#cmdOk}}
+Painter(v) <i class="colored2">=</i> (glCmdOkLineWidth={{cmdOk_attributes.0.glCmdOkLineWidth}})+(glCmdOkLineColor=cl{{cmdOk_attributes.0.glCmdOkLineColor}})+(glCmdOkFillColor=cl{{cmdOk_attributes.0.glCmdOkFillColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Ok]
+{{/cmdOk}}
+{{#cmdCancel}}
+Painter(v) <i class="colored2">=</i> (glCmdCancelLineWidth={{cmdCancel_attributes.0.glCmdCancelLineWidth}})+(glCmdCancelLineColor=cl{{cmdCancel_attributes.0.glCmdCancelLineColor}})+(glCmdCancelFillColor=cl{{cmdCancel_attributes.0.glCmdCancelFillColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Cancel]
+{{/cmdCancel}}
+{{#indicatorcircle}}
+Painter(v) <i class="colored2">=</i> (glCircleBevel={{indicatorcircle_attributes.0.glCircleBevel}})+(glCircleWidth={{indicatorcircle_attributes.0.glCircleWidth}})+(glCircleFaceColor=cl{{replaceFuncColors indicatorcircle_attributes.0.glCircleFaceColor}})
+Painter(v) <i class="colored2">=</i> (glCircleBackColor=eq(v,1)*clLime+eq(v,0)*clRed)
+Painter(v) <i class="colored2">=</i> (glCircleBackColor=glCircleBackColor+eq(glCircleBackColor,0)*cl{{replaceFuncColors indicatorcircle_attributes.0.glCircleBackColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Indicator.Circle]
+{{/indicatorcircle}}
+{{#simplecross}}
+Painter(v) <i class="colored2">=</i> (glCrossBevel={{simplecross_attributes.0.glCrossBevel}})+(glCrossWidth={{simplecross_attributes.0.glCrossWidth}})+(glCrossColor=cl{{replaceFuncColors simplecross_attributes.0.glCrossColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.SimpleCross]
+{{/simplecross}}
+{{#listbutton_arrow}}
+Painter(v) <i class="colored2">=</i> (glListBtnArrowLeft={{listbutton_arrow_attributes.0.glListBtnArrowLeft}})+(glListBtnArrowLineColor=cl{{replaceFuncColors listbutton_arrow_attributes.0.glListBtnArrowLineColor}})+(glListBtnArrowLineWidth={{listbutton_arrow_attributes.0.glListBtnArrowLineWidth}})+(glListBtnArrowBorderWidth={{listbutton_arrow_attributes.0.glListBtnArrowBorderWidth}})+(glListBtnArrowBorderColor=cl{{replaceFuncColors listbutton_arrow_attributes.0.glListBtnArrowBorderColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.ListButton.Arrow]
+{{/listbutton_arrow}}
+{{#listbutton_triangle}}
+Painter(v) <i class="colored2">=</i> (glListBtnTriangleLeft={{listbutton_triangle_attributes.0.glListBtnTriangleLeft}})+(glListBtnTriangleLineColor=cl{{replaceFuncColors listbutton_triangle_attributes.0.glListBtnTriangleLineColor}})+(glListBtnTriangleFillColor=cl{{replaceFuncColors listbutton_triangle_attributes.0.glListBtnTriangleFillColor}})+(glListBtnTriangleBorderWidth={{listbutton_triangle_attributes.0.glListBtnTriangleBorderWidth}})+(glListBtnTriangleBorderColor=cl{{replaceFuncColors listbutton_triangle_attributes.0.glListBtnTriangleBorderColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.ListButton.Triangle]
+{{/listbutton_triangle}}
+{{#valve}}
+Painter(v) <i class="colored2">=</i> (glValveOpenBit={{valve_attributes.0.glValveOpenBit}})+(glValveCloseBit={{valve_attributes.0.glValveCloseBit}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GostLib.Valve.{{valve_attributes.0.ValveType}}.{{valve_attributes.0.LimitSwitch}}.{{valve_attributes.0.ValveDrive}}]
+{{/valve}}
+{{#pump}}
+Painter(v) <i class="colored2">=</i> (glPumpSpeedBit={{pump_attributes.0.glPumpSpeedBit}})+(glPumpErrorBit={{pump_attributes.0.glPumpErrorBit}})+(glPumpEdgeBevel={{pump_attributes.0.glPumpEdgeBevel}})+(glButtonBit={{pump_attributes.0.glButtonBit}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GostLib.Pump.{{pump_attributes.0.PumpType}}.{{pump_attributes.0.Orientation}}]
+{{/pump}}
+{{#vacuometer}}
+Painter(v) <i class="colored2">=</i> (glVacuometerBevel={{vacuometer_attributes.0.glVacuometerBevel}})+(glVacuometerFillColor=cl{{replaceFuncColors vacuometer_attributes.0.glVacuometerFillColor}})+(glVacuometerLineColor=cl{{replaceFuncColors vacuometer_attributes.0.glVacuometerLineColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GostLib.Vacuometer.{{vacuometer_attributes.0.VacuometerType}}.{{vacuometer_attributes.0.Orientation}}]
+{{/vacuometer}}
+{{#leakdetector}}
+Painter(v) <i class="colored2">=</i> (glLeakDetBevel={{leakdetector_attributes.0.glLeakDetBevel}})+(glLeakDetFillColor=cl{{replaceFuncColors leakdetector_attributes.0.glLeakDetFillColor}})+(glLeakDetLineColor=cl{{replaceFuncColors leakdetector_attributes.0.glLeakDetLineColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GostLib.LeakDetector]
+{{/leakdetector}}
+{{#compressor}}
+Painter(v) <i class="colored2">=</i> (glCompressorBevel={{compressor_attributes.0.glCompressorBevel}})+(glCompressorFillColor=cl{{replaceFuncColors compressor_attributes.0.glCompressorFillColor}})+(glCompressorLineColor=cl{{replaceFuncColors compressor_attributes.0.glCompressorLineColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GostLib.Compressor.{{compressor_attributes.0.Orientation}}]
+{{/compressor}}
+{{#radiationhazard}}
+Painter(v) <i class="colored2">=</i> (glRadiationHazardBevel={{radiationhazard_attributes.0.glRadiationHazardBevel}})+(glRadiationHazardBackColor=cl{{replaceFuncColors radiationhazard_attributes.0.glRadiationHazardBackColor}})+(glRadiationHazardFillColor=cl{{replaceFuncColors radiationhazard_attributes.0.glRadiationHazardFillColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).DaqLib.RadiationHazard]
+{{/radiationhazard}}
+{{#airblower}}
+Painter(v) <i class="colored2">=</i> (glAirBlowerBevel={{airblower_attributes.0.glAirBlowerBevel}})+(glAirBlowerLineWidth={{airblower_attributes.0.glAirBlowerLineWidth}})+(glAirBlowerFillColor=cl{{replaceFuncColors airblower_attributes.0.glAirBlowerFillColor}})+(glAirBlowerLineColor=cl{{replaceFuncColors airblower_attributes.0.glAirBlowerLineColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).DaqLib.AirBlower.{{airblower_attributes.0.Orientation}}]
+{{/airblower}}
+{{#fanblower}}
+Painter(v) <i class="colored2">=</i> (glFanBlowerBevel={{fanblower_attributes.0.glFanBlowerBevel}})+(glFanBlowerLineWidth={{fanblower_attributes.0.glFanBlowerLineWidth}})+(glFanBlowerFillColor=cl{{replaceFuncColors fanblower_attributes.0.glFanBlowerFillColor}})+(glFanBlowerLineColor=cl{{replaceFuncColors fanblower_attributes.0.glFanBlowerLineColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).DaqLib.FanBlower.{{fanblower_attributes.0.Orientation}}]
+{{/fanblower}}
+{{#waterpump}}
+Painter(v) <i class="colored2">=</i> (glWaterPumpBevel={{waterpump_attributes.0.glWaterPumpBevel}})+(glWaterPumpLineWidth={{waterpump_attributes.0.glWaterPumpLineWidth}})+(glWaterPumpFillColor=cl{{replaceFuncColors waterpump_attributes.0.glWaterPumpFillColor}})+(glWaterPumpLineColor=cl{{replaceFuncColors waterpump_attributes.0.glWaterPumpLineColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).DaqLib.WaterPump.{{waterpump_attributes.0.Orientation}}]
+{{/waterpump}}
+{{#tanklevel}}
+Painter(v) <i class="colored2">=</i> (glTankLevelBevel={{tanklevel_attributes.0.glTankLevelBevel}})+(glTankLevelLineWidth={{tanklevel_attributes.0.glTankLevelLineWidth}})+(glTankLevelFillColor=cl{{replaceFuncColors tanklevel_attributes.0.glTankLevelFillColor}})+(glTankLevelBackColor=cl{{replaceFuncColors tanklevel_attributes.0.glTankLevelBackColor}})+(glTankLevelLineColor=cl{{replaceFuncColors tanklevel_attributes.0.glTankLevelLineColor}})+(glTankLevelPercent={{tanklevel_attributes.0.glTankLevelPercent}})
+Painter(v) <i class="colored2">=</i> [Painter(v).DaqLib.TankLevel]
+{{/tanklevel}}
+{{#flowmeter}}
+Painter(v) <i class="colored2">=</i> (glFlowMeterBevel={{flowmeter_attributes.0.glFlowMeterBevel}})+(glFlowMeterLineWidth={{flowmeter_attributes.0.glFlowMeterLineWidth}})+(glFlowMeterFillColor=cl{{replaceFuncColors flowmeter_attributes.0.glFlowMeterFillColor}})+(glFlowMeterLineColor=cl{{replaceFuncColors flowmeter_attributes.0.glFlowMeterLineColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).DaqLib.FlowMeter.{{flowmeter_attributes.0.Orientation}}]
+{{/flowmeter}}
+{{#manometer}}
+Painter(v) <i class="colored2">=</i> (glManoMeterBevel={{manometer_attributes.0.glManoMeterBevel}})+(glManoMeterLineWidth={{manometer_attributes.0.glManoMeterLineWidth}})+(glManoMeterFillColor=cl{{replaceFuncColors manometer_attributes.0.glManoMeterFillColor}})+(glManoMeterLineColor=cl{{replaceFuncColors manometer_attributes.0.glManoMeterLineColor}})+(glManoMeterAngle={{manometer_attributes.0.glManoMeterAngle}})
+Painter(v) <i class="colored2">=</i> [Painter(v).DaqLib.ManoMeter]
+{{/manometer}}
+{{#uniheater}}
+Painter(v) <i class="colored2">=</i> (glUniHeaterBevel={{uniheater_attributes.0.glUniHeaterBevel}})+(glUniHeaterColor=cl{{replaceFuncColors uniheater_attributes.0.glUniHeaterColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).DaqLib.UniHeater]
+{{/uniheater}}
+{{#button}}
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.SimpleButton]
+{{/button}}
+{{#border}}
+Painter(v) <i class="colored2">=</i> (glBorderBevel={{border_attributes.0.glBorderBevel}})+(glBorderColor=cl{{replaceFuncColors border_attributes.0.glBorderColor}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.SimpleBorder]
+{{/border}}
+{{#tags}}
+Tag#{{inc @index}} <i class="colored2">=</i> {{id}}, {{^custom}}~~\Resource\DaqSite\StdLib\Bitmaps\\{{custom}}{{type}}_{{ch width}}_{{pt height}}_{{bit}}_{{replaceFuncColorsLower color}}{{spacers ../led_attributes.0.led_font type}}.bmp{{/custom}}{{#custom}}{{../custom}}{{/custom}} {{quoted label}}
+{{/tags}}
+Hint <i class="colored2">=</i> {{& hint}}
+<i class="colored">[]</i>
+
+{{/mockups}}
+    </script>
+
+    <script src="media/js/libs/jquery-1.8.2.min.js"></script>
+    <script src="media/js/libs/jquery-ui-1.9.0.min.js"></script>
+    <script src="media/js/libs/underscore-1.4.2.min.js"></script>
+    <script src="media/js/libs/backbone-0.9.2.min.js"></script>
+    <script src="media/js/libs/backbone-nested.js"></script>
+    <script src="media/js/libs/handlebars.min.js"></script>
+	<script src="media/js/libs/palette-color-picker.js"></script>
+    <script src="media/js/libs/scripts.js"></script>
+	<script src="media/js/libs/colors-palette.js"></script>
+    <script src="media/js/libs/crc-parser.js"></script>
+    <script src="media/js/persistance/local-storage.js"></script>
+    
+    <script type="text/javascript">
+        var title = undefined;
+        // namespace definition
+        var usemockups = {
+            models: {},
+            collections: {},
+            routers: {},
+            views: {},
+            fixtures: {},
+            toolbox: []
+        }
+    </script>
+
+    <script src="media/js/fixtures/demo-document.js"></script>
+    <script src="media/js/fixtures/toolbox.js"></script>
+    <script src="media/js/routers/document.js"></script>
+    <script src="media/js/models/document.js"></script>
+    <script src="media/js/models/mockup.js"></script>
+    <script src="media/js/models/toolbox.js"></script>
+    <script src="media/js/views/document.js"></script>
+    <script src="media/js/views/toolbox.js"></script>
+    <script src="media/js/views/mockup.js"></script>
+    <script src="media/js/views/mockuplist.js"></script>
+    <script src="media/js/views/properties.js"></script>
+    <script src="media/js/views/tags.js"></script>
+    <script type="text/javascript">
+
+        usemockups.toolbox = new usemockups.collections.Toolbox(usemockups.fixtures.toolbox);
+
+        $(function () {
+            var documents = new usemockups.collections.Documents(); //create an empty document collection
+            var router = new usemockups.routers.Document({
+                documents: documents
+            });
+
+            Backbone.history.start({
+                pushState: false // !!(window.history && window.history.pushState)
+            });
+
+            new usemockups.views.Navigation({
+                router: router,
+                model: documents
+            });
+        });
+    </script>
+</body>
+</html>
