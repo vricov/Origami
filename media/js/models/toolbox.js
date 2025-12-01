@@ -22,7 +22,7 @@ usemockups.models.Tool = Backbone.Model.extend({
             }
             if (mockup)
                 value = mockup.get(attribute.name);
-            
+
             if (value === undefined)
                 value = default_value;
 

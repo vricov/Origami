@@ -18,6 +18,12 @@ function parseINIString(data){
             }else{
                 value[match[1]]=value[match[1]]+match[2];
                
+                // Handle global parameters outside of sections.  This is a design choice and might need adjustment based on desired behavior.
+                if (value[match[1]] === undefined) {
+                    value[match[1]] = match[2];
+                } else {
+                    value[match[1]] += match[2];
+                }
             }
         }else if(regex.section.test(line)){
             var match = line.match(regex.section);

@@ -25,7 +25,7 @@ usemockups.collections.Mockups = Backbone.Collection.extend({
     model: usemockups.models.Mockup,
     initialize: function () {
     },
-    comparator: function(model) { 
-        return model.get('ordinal');  
+    comparator: function (model) {
+        return model.get('ordinal');
     },
 });

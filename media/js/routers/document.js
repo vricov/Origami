@@ -12,7 +12,7 @@ usemockups.routers.Document = Backbone.Router.extend({
             "id": document_id
         });
 
-        document.fetch({ajaxSync: true});
+        document.fetch({ ajaxSync: true });
 
         if (usemockups.active_document_view) {//if there is already an opened document…
             //undelegate the events of the still opened page (usemockups.views.Page) and the views for additional function
