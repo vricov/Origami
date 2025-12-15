@@ -259,7 +259,7 @@ usemockups.views.DocumentImportForm = Backbone.View.extend({
         var files = this.$el.find("#id_models_file");
         let file = files[0].files[0];
         let reader = new FileReader();
-        reader.readAsText(file, 'cp1251');
+        reader.readAsText(file, 'utf-8');
 
         reader.onload = function () {
             readResult = reader.result;
