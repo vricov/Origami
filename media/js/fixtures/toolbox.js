@@ -547,6 +547,362 @@ usemockups.fixtures.toolbox = [
         ]
     },
     {
+        "name": "Cmd_Home",
+        "category": "GuiLib",
+        "template": "#universal-template",
+        "min_height": 15,
+        "attributes": [
+            {
+                "name": "name",
+                "default": "Cmd_Home"
+            },
+            {
+                "name": "left",
+                "default": 50
+            },
+            {
+                "name": "top",
+                "default": 50
+            },
+            {
+                "name": "width",
+                "default": 32,
+                "hidden": true
+            },
+            {
+                "name": "height",
+                "default": 32,
+                "hidden": true
+            },
+            {
+                "name": "led",
+                "type": "boolean",
+                "default": false
+            },
+            {
+                "name": "led_attributes",
+                "default": [
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold" }
+                ]
+            },
+            {
+                "name": "tageval"
+            },
+            {
+                "name": "tags",
+                "hidden": true,
+                "default": [
+                    { id: 0, type: 'bar', width: '32', height: '32', bit: 24, color: 'Silver', label: '' },
+                ]
+            },
+            {
+                "name": "cmd_home",
+                "type": "boolean",
+                "hidden": true,
+                "default": true
+            },
+            {
+                "name": "cmd_home_attributes",
+                "default": [
+                    { glCmdHomeColor0: "Gray", glCmdHomeColor1: "Green", glCmdHomeAlignment: 1 , glCmdHomeLineWidth: 2 }
+                ]
+            },
+            {
+                "name": "button",
+                "type": "boolean",
+                "default": false
+            },
+            {
+                "name": "button_attributes",
+                "default": [
+                    { glButtonBit: 0, glButtonBevel: 1, glButtonMoveX: 2, glButtonMoveY: 2 }
+                ]
+            },
+            {
+                "name": "border",
+                "type": "boolean",
+                "default": false
+            },
+            {
+                "name": "border_attributes",
+                "default": [
+                    { glBorderBevel: 3, glBorderColor: "Silver" }
+                ]
+            },
+            {
+                "name": "hint",
+                "default": "Home"
+            }
+        ]
+    },
+    {
+        "name": "Cmd_Loadini",
+        "category": "GuiLib",
+        "template": "#universal-template",
+        "min_height": 15,
+        "attributes": [
+            {
+                "name": "name",
+                "default": "Cmd_Loadini"
+            },
+            {
+                "name": "left",
+                "default": 50
+            },
+            {
+                "name": "top",
+                "default": 50
+            },
+            {
+                "name": "width",
+                "default": 32,
+                "hidden": true
+            },
+            {
+                "name": "height",
+                "default": 32,
+                "hidden": true
+            },
+            {
+                "name": "led",
+                "type": "boolean",
+                "default": false
+            },
+            {
+                "name": "led_attributes",
+                "default": [
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold" }
+                ]
+            },
+            {
+                "name": "tageval"
+            },
+            {
+                "name": "tags",
+                "hidden": true,
+                "default": [
+                    { id: 0, type: 'bar', width: '32', height: '32', bit: 24, color: 'Silver', label: '' },
+                ]
+            },
+            {
+                "name": "cmd_loadini",
+                "type": "boolean",
+                "hidden": true,
+                "default": true
+            },
+            {
+                "name": "cmd_loadini_attributes",
+                "default": [
+                    { glCmdLoadIniColor0: "Gray", glCmdLoadIniColor1: "Green", glCmdLoadIniAlignment: 1 , glCmdLoadIniLineWidth: 2 }
+                ]
+            },
+            {
+                "name": "button",
+                "type": "boolean",
+                "default": false
+            },
+            {
+                "name": "button_attributes",
+                "default": [
+                    { glButtonBit: 0, glButtonBevel: 1, glButtonMoveX: 2, glButtonMoveY: 2 }
+                ]
+            },
+            {
+                "name": "border",
+                "type": "boolean",
+                "default": false
+            },
+            {
+                "name": "border_attributes",
+                "default": [
+                    { glBorderBevel: 3, glBorderColor: "Silver" }
+                ]
+            },
+            {
+                "name": "hint",
+                "default": "LoadIni"
+            }
+        ]
+    },    
+    {
+        "name": "Cmd_Setting",
+        "category": "GuiLib",
+        "template": "#universal-template",
+        "min_height": 15,
+        "attributes": [
+            {
+                "name": "name",
+                "default": "Cmd_Setting"
+            },
+            {
+                "name": "left",
+                "default": 50
+            },
+            {
+                "name": "top",
+                "default": 50
+            },
+            {
+                "name": "width",
+                "default": 32,
+                "hidden": true
+            },
+            {
+                "name": "height",
+                "default": 32,
+                "hidden": true
+            },
+            {
+                "name": "led",
+                "type": "boolean",
+                "default": false
+            },
+            {
+                "name": "led_attributes",
+                "default": [
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold" }
+                ]
+            },
+            {
+                "name": "tageval"
+            },
+            {
+                "name": "tags",
+                "hidden": true,
+                "default": [
+                    { id: 0, type: 'bar', width: '32', height: '32', bit: 24, color: 'Silver', label: '' },
+                ]
+            },
+            {
+                "name": "cmd_setting",
+                "type": "boolean",
+                "hidden": true,
+                "default": true
+            },
+            {
+                "name": "cmd_setting_attributes",
+                "default": [
+                    { glCmdSettingColor0: "Gray", glCmdSettingColor1: "Green", glCmdSettingAlignment: 1 , glCmdSettingLineWidth: 2 }
+                ]
+            },
+            {
+                "name": "button",
+                "type": "boolean",
+                "default": false
+            },
+            {
+                "name": "button_attributes",
+                "default": [
+                    { glButtonBit: 0, glButtonBevel: 1, glButtonMoveX: 2, glButtonMoveY: 2 }
+                ]
+            },
+            {
+                "name": "border",
+                "type": "boolean",
+                "default": false
+            },
+            {
+                "name": "border_attributes",
+                "default": [
+                    { glBorderBevel: 3, glBorderColor: "Silver" }
+                ]
+            },
+            {
+                "name": "hint",
+                "default": "Setting"
+            }
+        ]
+    },    
+    {
+        "name": "Cmd_Tools",
+        "category": "GuiLib",
+        "template": "#universal-template",
+        "min_height": 15,
+        "attributes": [
+            {
+                "name": "name",
+                "default": "Cmd_Tools"
+            },
+            {
+                "name": "left",
+                "default": 50
+            },
+            {
+                "name": "top",
+                "default": 50
+            },
+            {
+                "name": "width",
+                "default": 32,
+                "hidden": true
+            },
+            {
+                "name": "height",
+                "default": 32,
+                "hidden": true
+            },
+            {
+                "name": "led",
+                "type": "boolean",
+                "default": false
+            },
+            {
+                "name": "led_attributes",
+                "default": [
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold" }
+                ]
+            },
+            {
+                "name": "tageval"
+            },
+            {
+                "name": "tags",
+                "hidden": true,
+                "default": [
+                    { id: 0, type: 'bar', width: '32', height: '32', bit: 24, color: 'Silver', label: '' },
+                ]
+            },
+            {
+                "name": "cmd_tools",
+                "type": "boolean",
+                "hidden": true,
+                "default": true
+            },
+            {
+                "name": "cmd_tools_attributes",
+                "default": [
+                    { glCmdToolsColor0: "Gray", glCmdToolsColor1: "Green", glCmdToolsAlignment: 1 , glCmdSToolsLineWidth: 2 }
+                ]
+            },
+            {
+                "name": "button",
+                "type": "boolean",
+                "default": false
+            },
+            {
+                "name": "button_attributes",
+                "default": [
+                    { glButtonBit: 0, glButtonBevel: 1, glButtonMoveX: 2, glButtonMoveY: 2 }
+                ]
+            },
+            {
+                "name": "border",
+                "type": "boolean",
+                "default": false
+            },
+            {
+                "name": "border_attributes",
+                "default": [
+                    { glBorderBevel: 3, glBorderColor: "Silver" }
+                ]
+            },
+            {
+                "name": "hint",
+                "default": "Tools"
+            }
+        ]
+    },
+    {
         "name": "CmdOk",
         "category": "GuiLib",
         "template": "#universal-template",
@@ -634,7 +990,8 @@ usemockups.fixtures.toolbox = [
                 "default": "Apply button"
             }
         ]
-    }, {
+    },
+    {
         "name": "CmdCancel",
         "category": "GuiLib",
         "template": "#universal-template",

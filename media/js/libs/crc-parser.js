@@ -39,20 +39,59 @@ function ConvertModel(data){
     value = parseINIString(data);
     format = {};
     format['mockups'] = [];
-    if(value['Circuit']){
-        if(!isNaN(Number(value['Circuit']['GeneralMap'].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",2)[1])))format['width'] = Number(value['Circuit']['GeneralMap'].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",2)[1]);
-        if(!isNaN(Number(value['Circuit']['GeneralMap'].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",3)[2])))format['height'] = Number(value['Circuit']['GeneralMap'].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",3)[2]);
-        if(!isNaN(Number(value['Circuit']['GeneralMap'].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",4)[3])))format['generalmap_bit'] = Number(value['Circuit']['GeneralMap'].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",4)[3]);
-        
-        if(value['Circuit']['GeneralMap'].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", ""))format['generalmap_name'] = value['Circuit']['GeneralMap'].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "");
-        format['title'] = value['Circuit']['Hint'];
-        
-        if(value['Circuit.StartupScript']) 
-            format['startupscript'] = '';
-            for(line in value['Circuit.StartupScript']){
-                format['startupscript'] = format['startupscript']+line+' = '+value['Circuit.StartupScript'][line]+'\n';
+    if (value?.Circuit) {
+        const circuit = value.Circuit;
+        const generalMap = circuit.GeneralMap;
+        // Обработка GeneralMap только один раз
+        if (generalMap) {
+            const cleanPath = generalMap.replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "");
+            const parts = cleanPath.split("_");
+            // Ширина
+            if (parts.length >= 2 && !isNaN(Number(parts[1]))) {
+                format['width'] = Number(parts[1]);
             }
+            // Высота
+            if (parts.length >= 3 && !isNaN(Number(parts[2]))) {
+                format['height'] = Number(parts[2]);
+            }
+            // Bit
+            if (parts.length >= 4 && !isNaN(Number(parts[3]))) {
+                format['generalmap_bit'] = Number(parts[3]);
+            }
+            // Имя файла
+            format['generalmap_name'] = cleanPath;
         }
+        // Заголовок
+        if (circuit.Hint) {
+            format['title'] = circuit.Hint;
+        }
+        // ToolBarHeight
+        if (circuit.ToolBarHeight !== undefined) {
+            format['toolbar_height'] = Number(circuit.ToolBarHeight);
+        }
+        // ToolBarHeader
+        if (circuit.ToolBarHeader !== undefined) {
+            format['toolbar_header'] = circuit.ToolBarHeader;
+        }
+        // ToolBarLegend
+        if (circuit.ToolBarLegend !== undefined) {
+            format['toolbar_legend'] = circuit.ToolBarLegend;
+        }
+        // StartupScript
+        if (value['Circuit.StartupScript']) {
+            const startupScript = value['Circuit.StartupScript'];
+            
+            // Конвертируем объект в строку формата key = value
+            let scriptContent = '';
+            for (const key in startupScript) {
+                if (startupScript.hasOwnProperty(key)) {
+                    scriptContent += `${key} = ${startupScript[key]}\n`;
+                }
+            }
+            
+            format['startupscript'] = scriptContent.trim();
+        }
+    }
         
     if(value.Circuit != undefined)if(value.Circuit.Hint != undefined) {format['title'] = value['Circuit']['Hint'];} else {format['title'] = 'noname';}
     delete value.ConfigFile;
@@ -69,67 +108,110 @@ function ConvertModel(data){
         format['mockups'][i]  = {};
         format['mockups'][i]['name'] = sensor;
         console.log('Импортируем '+sensor+'..');
-        format['mockups'][i]['left'] = Number(value[sensor]['Pos'].split(", ",1)[0]);
-        format['mockups'][i]['top'] = Number(value[sensor]['Pos'].split(", ",2)[1]);
-        if (!format['mockups'][i]['left']) {        
-            format['mockups'][i]['left'] = Number(value[sensor]['Pos'].split(/\s/,1)[0].replace(",",""));
-            format['mockups'][i]['top'] = Number(value[sensor]['Pos'].split(/\s/,2)[1]);
+
+        const pos = value[sensor]['Pos'];
+        const posParts = pos.split(', ');
+        const posArray = pos.match(/\d+/g); // Извлекаем числа
+        
+        if (posParts.length >= 2) {
+            format['mockups'][i]['left'] = Number(posParts[0]);
+            format['mockups'][i]['top'] = Number(posParts[1]);
+        } else if (posArray && posArray.length >= 2) {
+            format['mockups'][i]['left'] = Number(posArray[0]);
+            format['mockups'][i]['top'] = Number(posArray[1]);
         }
+
         format['mockups'][i]['tool'] = 'label';
         if (value[sensor]['LED']) {
-            // console.log('-- LED SECTION --');
             format['mockups'][i]['led'] = true;
-            format['mockups'][i]['led_attributes']  = [];
-            format['mockups'][i]['led_attributes'][0]  = {};
-            if(value[sensor]['LED'].split(", ",1)){format['mockups'][i]['led_attributes'][0]['led_wid'] = Number(value[sensor]['LED'].split(", ",1)[0]);}else{format['mockups'][i]['led_attributes'][0]['led_wid'] = 0}
-            if(value[sensor]['LED'].split(", ",2)[1]){format['mockups'][i]['led_attributes'][0]['led_dig'] = Number(value[sensor]['LED'].split(", ",2)[1]);}else{format['mockups'][i]['led_attributes'][0]['led_dig'] = 0}
-            if(value[sensor]['LED'].split(", ",3)[2]){format['mockups'][i]['led_attributes'][0]['led_val'] = Number(value[sensor]['LED'].split(", ",3)[2]);}else{format['mockups'][i]['led_attributes'][0]['led_val'] = 0}
-            if(value[sensor]['LED'].split(", ",4)[3]){format['mockups'][i]['led_attributes'][0]['led_fmt'] = value[sensor]['LED'].split(", ",4)[3];} else {format['mockups'][i]['led_attributes'][0]['led_fmt'] = "*"}
-            if(value[sensor]['LED'].split(", ",5)[4].match(/Name\:[a-zA-Z0-9_]+/)){format['mockups'][i]['led_attributes'][0]['led_font'] = value[sensor]['LED'].split(", ",5)[4].match(/Name\:[a-zA-Z0-9_]+/)[0].replace("Name:", "").replace(/_/g, " ");} else {format['mockups'][i]['led_attributes'][0]['led_font'] = 0}
-            if(value[sensor]['LED'].split(", ",5)[4].match(/Size\:[0-9]+/)){format['mockups'][i]['led_attributes'][0]['led_size'] = Number(value[sensor]['LED'].split(", ",5)[4].match(/Size\:[0-9]+/)[0].replace("Size:",''));}else{format['mockups'][i]['led_attributes'][0]['led_size'] = 13}
-            if(value[sensor]['LED'].split(", ",5)[4].match(/Color\:[a-zA-Z0-9_]+/)){format['mockups'][i]['led_attributes'][0]['led_color'] = value[sensor]['LED'].split(", ",5)[4].match(/Color\:[a-zA-Z0-9_]+/)[0].replace("Color:", "");}else{format['mockups'][i]['led_attributes'][0]['led_color'] = 'black'}
-			if(value[sensor]['LED'].split(", ",5)[4].match(/Style[\:[a-zA-Z0-9_]+/)){format['mockups'][i]['led_attributes'][0]['led_style'] = value[sensor]['LED'].split(", ",5)[4].match(/Style[\:[a-zA-Z0-9_]+/)[0].replace("Style:[",'');} else {format['mockups'][i]['led_attributes'][0]['led_style'] = 0}
+            format['mockups'][i]['led_attributes'] = [{}];
+
+            const ledData = value[sensor]['LED'];
+            const ledParts = ledData.split(', ');
+
+            // Обработка основных значений
+            const attributes = format['mockups'][i]['led_attributes'][0];
+            attributes.led_wid = Number(ledParts[0]) || 0;
+            attributes.led_dig = Number(ledParts[1]) || 0;
+            attributes.led_val = Number(ledParts[2]) || 0;
+
+            // Обработка формата
+            attributes.led_fmt = ledParts[3] || "*";
+
+            // Если есть пятый элемент, обрабатываем дополнительные параметры
+            if (ledParts[4]) {
+                const fifthPart = ledParts[4];
+
+                // Шрифт
+                const fontMatch = fifthPart.match(/Name:([a-zA-Z0-9_]+)/);
+                attributes.led_font = fontMatch ? fontMatch[1].replace(/_/g, ' ') : 0;
+
+                // Размер
+                const sizeMatch = fifthPart.match(/Size:(\d+)/);
+                attributes.led_size = sizeMatch ? Number(sizeMatch[1]) : 13;
+
+                // Цвет
+                const colorMatch = fifthPart.match(/Color:([a-zA-Z0-9_]+)/);
+                attributes.led_color = colorMatch ? colorMatch[1] : 'Black';
+
+                // Стиль
+                const styleMatch = fifthPart.match(/Style:\[([^\]]+)\]/);
+                attributes.led_style = styleMatch ? styleMatch[1] : 'Bold';
+            } else {
+                // Дефолтные значения
+                attributes.led_font = 0;
+                attributes.led_size = 13;
+                attributes.led_color = 'black';
+                attributes.led_style = 0;
+            }
         }
         var tag = 1;
         var TagType = '';
         format['mockups'][i]['tags']  = [];
         while(value[sensor]['Tag#'+tag]) {
-            // console.log('-- TAG SECTION --');
-            // console.log(value[sensor]);
-            format['mockups'][i]['tags'][tag-1]  = {};
-            format['mockups'][i]['tags'][tag-1]['id'] = Number(value[sensor]['Tag#'+tag].split(", ",1)[0]);
-            TagType = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",1)[0];
-            if (TagType == 'ledbmp') {
-                format['mockups'][i]['tags'][tag-1]['type'] = 'ledbmp';
-                format['mockups'][i]['tags'][tag-1]['width'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",2)[1]+'ch';
-                format['mockups'][i]['tags'][tag-1]['height'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",3)[2]+'pt';
-                format['mockups'][i]['tags'][tag-1]['label'] = value[sensor]['Tag#'+tag].replace(/^.*\.bmp/, "").trim();
-                format['mockups'][i]['tags'][tag-1]['bit'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",4)[3];
-                format['mockups'][i]['tags'][tag-1]['color'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",5)[4].match(/[a-zA-Z0-9_$]+/)[0];
-            } else if (TagType == 'barbmp') {
-                format['mockups'][i]['tags'][tag-1]['type'] = 'barbmp';
-                format['mockups'][i]['tags'][tag-1]['width'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",2)[1];
-                format['mockups'][i]['tags'][tag-1]['height'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",3)[2];
-                format['mockups'][i]['tags'][tag-1]['label'] = value[sensor]['Tag#'+tag].replace(/^.*\.bmp/, "").trim();
-                format['mockups'][i]['tags'][tag-1]['bit'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",4)[3];
-                format['mockups'][i]['tags'][tag-1]['color'] = value[sensor]['Tag#'+tag].split(", ",2)[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").split("_",5)[4].match(/[a-zA-Z0-9_$]+/)[0];
+            const tagData = value[sensor]['Tag#' + tag];
+            const tagParts = tagData.split(', ');
+
+            // Определяем тип тега
+            const bitmapPath = tagParts[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "");
+            const bitmapParts = bitmapPath.split('_');
+            const TagType = bitmapParts[0];
+
+            // Создаем объект тега
+            const tagObj = {};
+            tagObj.id = Number(tagParts[0]);
+
+            if (TagType === 'ledbmp' || TagType === 'barbmp') {
+                const isLedBmp = TagType === 'ledbmp';
+
+                tagObj.type = TagType;
+                tagObj.width = isLedBmp ? bitmapParts[1] + 'ch' : bitmapParts[1];
+                tagObj.height = isLedBmp ? bitmapParts[2] + 'pt' : bitmapParts[2];
+                tagObj.label = tagData.replace(/^.*\.bmp/, "").trim();
+                tagObj.bit = bitmapParts[3];
+                tagObj.color = bitmapParts[4].match(/[a-zA-Z0-9_$]+/)[0];
+
             } else {
                 // Custom File
-                format['mockups'][i]['tags'][tag-1]['type'] = 'custom';
-                format['mockups'][i]['tags'][tag-1]['custom'] = value[sensor]['Tag#'+tag].split(", ",2)[1];
-                format['mockups'][i]['tags'][tag-1]['width'] = 30;
-                format['mockups'][i]['tags'][tag-1]['height'] = 30;
-                format['mockups'][i]['tags'][tag-1]['color'] = 'Silver';
+                tagObj.type = 'custom';
+                tagObj.custom = tagParts[1];
+                tagObj.width = 30;
+                tagObj.height = 30;
+                tagObj.color = 'Silver';
             }
-            
-            if (format['mockups'][i]['tags'][tag-1]['label'] != undefined) 
-                if (format['mockups'][i]['tags'][tag-1]['label'][0] == '"') {
-                    // format['mockups'][i]['tags'][tag-1]['label'] = format['mockups'][i]['tags'][tag-1]['label'].replace(/"/g, '');
-                    format['mockups'][i]['tags'][tag-1]['label'] = format['mockups'][i]['tags'][tag-1]['label'].slice(1,-1).replace(/""/g, '"');;
-                } else {
-                    format['mockups'][i]['tags'][tag-1]['label'] = format['mockups'][i]['tags'][tag-1]['label'].replace(/\+/g, " ").replace(/\%2C/g, ",").replace(/\%2B/g, "+").replace(/\%%/g, "%").replace(/\%&nbsp;/g, " ");
-                }
-            
+
+            // Обработка label с учетом кавычек
+            if (tagObj.label !== undefined && tagObj.label[0] === '"') {
+                tagObj.label = tagObj.label.slice(1, -1).replace(/""/g, '"');
+            } else if (tagObj.label) {
+                tagObj.label = tagObj.label.replace(/\+/g, " ")
+                    .replace(/\%2C/g, ",")
+                    .replace(/\%2B/g, "+")
+                    .replace(/\%%/g, "%")
+                    .replace(/\%&nbsp;/g, " ");
+            }
+
+            format['mockups'][i]['tags'][tag - 1] = tagObj;
             tag++;
         }
         if (value[sensor]['TagEval(v)']) {
@@ -139,112 +221,362 @@ function ConvertModel(data){
             if (value[sensor]['Painter(v)'].match('SimpleButton')) {
                 console.log('-- PAINTER SECTION SIMPLEBUTTON --');
                 format['mockups'][i]['button'] = true;
-                format['mockups'][i]['button_attributes']  = [];
-                format['mockups'][i]['button_attributes'][0]  = {};
-                if(value[sensor]['Painter(v)'].match(/glButtonBit\=\d{1,}/)){format['mockups'][i]['button_attributes'][0]['glButtonBit'] = Number(value[sensor]['Painter(v)'].match(/glButtonBit\=\d{1,}/)[0].replace("glButtonBit=",""));} else {format['mockups'][i]['button_attributes'][0]['glButtonBit'] = 0}
-                if(value[sensor]['Painter(v)'].match(/glButtonBevel\=\d{1,}/)){format['mockups'][i]['button_attributes'][0]['glButtonBevel'] = Number(value[sensor]['Painter(v)'].match(/glButtonBevel\=\d{1,}/)[0].replace("glButtonBevel=",""));} else {format['mockups'][i]['button_attributes'][0]['glButtonBevel'] = 1}
-                if(value[sensor]['Painter(v)'].match(/glButtonMoveX\=\d{1,}/)){format['mockups'][i]['button_attributes'][0]['glButtonMoveX'] = Number(value[sensor]['Painter(v)'].match(/glButtonMoveX\=\d{1,}/)[0].replace("glButtonMoveX=",""));} else {format['mockups'][i]['button_attributes'][0]['glButtonMoveX'] = 1}
-                if(value[sensor]['Painter(v)'].match(/glButtonMoveY\=\d{1,}/)){format['mockups'][i]['button_attributes'][0]['glButtonMoveY'] = Number(value[sensor]['Painter(v)'].match(/glButtonMoveY\=\d{1,}/)[0].replace("glButtonMoveY=",""));} else {format['mockups'][i]['button_attributes'][0]['glButtonMoveY'] = 1}
+                format['mockups'][i]['button_attributes'] = [{}];    
+                const painterValue = value[sensor]['Painter(v)'];
+                const attributes = format['mockups'][i]['button_attributes'][0];
+                // Определяем паттерны для поиска значений
+                const patterns = {
+                    glButtonBit: /glButtonBit=(\d+)/,
+                    glButtonBevel: /glButtonBevel=(\d+)/,
+                    glButtonMoveX: /glButtonMoveX=(\d+)/,
+                    glButtonMoveY: /glButtonMoveY=(\d+)/
+                };
+                // Определение значений по умолчанию
+                const defaults = {
+                    glButtonBit: 0,
+                    glButtonBevel: 1,
+                    glButtonMoveX: 1,
+                    glButtonMoveY: 1
+                };
+                // Обработка каждого параметра
+                for (const [key, pattern] of Object.entries(patterns)) {
+                    const match = painterValue.match(pattern);
+                    if (match) {
+                        attributes[key] = Number(match[1]);
+                    } else {
+                        attributes[key] = defaults[key];
+                    }
+                }
             }
             if (value[sensor]['Painter(v)'].match('RadioButton')) {
                 console.log('-- PAINTER SECTION RADIOBUTTON --');
                 format['mockups'][i]['tool'] = 'RadioButton';
                 format['mockups'][i]['radio'] = true;
-                format['mockups'][i]['radio_attributes']  = [];
-                format['mockups'][i]['radio_attributes'][0]  = {};
-                if(value[sensor]['Painter(v)'].match(/glRadioValue\=\d{1,}/)){format['mockups'][i]['radio_attributes'][0]['glRadioValue'] = Number(value[sensor]['Painter(v)'].match(/glRadioValue\=\d{1,}/)[0].replace("glRadioValue=",""));}else{format['mockups'][i]['radio_attributes'][0]['glRadioValue'] = 0}
-                if(value[sensor]['Painter(v)'].match(/glRadioColor\=\w{1,}/)){format['mockups'][i]['radio_attributes'][0]['glRadioColor'] = value[sensor]['Painter(v)'].match(/glRadioColor\=\w{1,}/)[0].replace("glRadioColor=cl","");}else{format['mockups'][i]['radio_attributes'][0]['glRadioColor'] = "white"}
+                format['mockups'][i]['radio_attributes'] = [{}];
+                const painterValue = value[sensor]['Painter(v)'];
+                const attributes = format['mockups'][i]['radio_attributes'][0];
+                // Определение параметров
+                const radioParams = [
+                    {
+                        key: 'glRadioValue',
+                        pattern: /glRadioValue=(\d+)/,
+                        default: 0,
+                        transform: Number
+                    },
+                    {
+                        key: 'glRadioColor',
+                        pattern: /glRadioColor=(\w+)/,
+                        default: "white",
+                        transform: (value) => value.replace('cl', '')
+                    }
+                ];
+                // Обработка параметров
+                radioParams.forEach(({ key, pattern, default: defaultValue, transform }) => {
+                    const match = painterValue.match(pattern);
+                    attributes[key] = match ? transform(match[1]) : defaultValue;
+                });
             }
             if (value[sensor]['Painter(v)'].match('CheckBox')) {
                 console.log('-- PAINTER SECTION CheckBox --');
                 format['mockups'][i]['tool'] = 'CheckBox';
                 format['mockups'][i]['checkbox'] = true;
-                format['mockups'][i]['checkbox_attributes']  = [];
-                format['mockups'][i]['checkbox_attributes'][0]  = {};
-                if(value[sensor]['Painter(v)'].match(/glCheckBoxBit\=\d{1,}/)){format['mockups'][i]['checkbox_attributes'][0]['glCheckBoxBit'] = Number(value[sensor]['Painter(v)'].match(/glCheckBoxBit\=\d{1,}/)[0].replace("glCheckBoxBit=",""));}else{format['mockups'][i]['checkbox_attributes'][0]['glCheckBoxBit'] = 0}
-                if(value[sensor]['Painter(v)'].match(/glCheckBoxColor\=\w{1,}/)){format['mockups'][i]['checkbox_attributes'][0]['glCheckBoxColor'] = value[sensor]['Painter(v)'].match(/glCheckBoxColor\=\w{1,}/)[0].replace("glCheckBoxColor=cl","");}else{format['mockups'][i]['checkbox_attributes'][0]['glCheckBoxColor'] = 'white'}
+                format['mockups'][i]['checkbox_attributes'] = [{}];
+                const painterValue = value[sensor]['Painter(v)'];
+                const attributes = format['mockups'][i]['checkbox_attributes'][0];
+                // Определение параметров
+                const checkboxParams = [
+                    {
+                        key: 'glCheckBoxBit',
+                        pattern: /glCheckBoxBit=(\d+)/,
+                        default: 0,
+                        transform: Number
+                    },
+                    {
+                        key: 'glCheckBoxColor',
+                        pattern: /glCheckBoxColor=(\w+)/,
+                        default: "white",
+                        transform: (value) => value.replace('cl', '')
+                    }
+                ];
+                // Обработка параметров
+                checkboxParams.forEach(({ key, pattern, default: defaultValue, transform }) => {
+                    const match = painterValue.match(pattern);
+                    attributes[key] = match ? transform(match[1]) : defaultValue;
+                });
             }
             if (value[sensor]['Painter(v)'].match('ProgressBar')) {
                 console.log('-- PAINTER SECTION PROGRESSBAR --');
                 format['mockups'][i]['tool'] = 'ProgressBar';
                 format['mockups'][i]['progressbar'] = true;
-                format['mockups'][i]['progressbar_attributes']  = [];
-                format['mockups'][i]['progressbar_attributes'][0]  = {};
-                if(value[sensor]['Painter(v)'].match(/glProgBarMin\=\d{1,}/)){format['mockups'][i]['progressbar_attributes'][0]['glProgBarMin'] = Number(value[sensor]['Painter(v)'].match(/glProgBarMin\=\d{1,}/)[0].replace("glProgBarMin=",""));}else{format['mockups'][i]['progressbar_attributes'][0]['glProgBarMin'] = 0}
-                if(value[sensor]['Painter(v)'].match(/glProgBarMax\=\d{1,}/)){format['mockups'][i]['progressbar_attributes'][0]['glProgBarMax'] = Number(value[sensor]['Painter(v)'].match(/glProgBarMax\=\d{1,}/)[0].replace("glProgBarMax=",""));}else{format['mockups'][i]['progressbar_attributes'][0]['glProgBarMax'] = 100}
-                if(value[sensor]['Painter(v)'].match(/glProgBarHor\=\d{1,}/)){format['mockups'][i]['progressbar_attributes'][0]['glProgBarHor'] = Number(value[sensor]['Painter(v)'].match(/glProgBarHor\=\d{1,}/)[0].replace("glProgBarHor=",""));}else{format['mockups'][i]['progressbar_attributes'][0]['glProgBarHor'] = 1}
-                if(value[sensor]['Painter(v)'].match(/glProgBarColor\=\w{1,}/)){format['mockups'][i]['progressbar_attributes'][0]['glProgBarColor'] = value[sensor]['Painter(v)'].match(/glProgBarColor\=\w{1,}/)[0].replace("glProgBarColor=cl","");}else{format['mockups'][i]['progressbar_attributes'][0]['glProgBarColor'] = 'lime'}
-                if(value[sensor]['Painter(v)'].match(/glProgBarBevel\=\d{1,}/)){format['mockups'][i]['progressbar_attributes'][0]['glProgBarBevel'] = Number(value[sensor]['Painter(v)'].match(/glProgBarBevel\=\d{1,}/)[0].replace("glProgBarBevel=",""));}else{format['mockups'][i]['progressbar_attributes'][0]['glProgBarBevel'] = 0}
+                format['mockups'][i]['progressbar_attributes'] = [{}];
+                const painterValue = value[sensor]['Painter(v)'];
+                const attributes = format['mockups'][i]['progressbar_attributes'][0];
+                // Определение параметров
+                const progressParams = [
+                    {
+                        key: 'glProgBarMin',
+                        pattern: /glProgBarMin=(\d+)/,
+                        default: 0,
+                        transform: Number
+                    },
+                    {
+                        key: 'glProgBarMax',
+                        pattern: /glProgBarMax=(\d+)/,
+                        default: 100,
+                        transform: Number
+                    },
+                    {
+                        key: 'glProgBarHor',
+                        pattern: /glProgBarHor=(\d+)/,
+                        default: 1,
+                        transform: Number
+                    },
+                    {
+                        key: 'glProgBarColor',
+                        pattern: /glProgBarColor=(\w+)/,
+                        default: "lime",
+                        transform: (value) => value.replace('cl', '')
+                    },
+                    {
+                        key: 'glProgBarBevel',
+                        pattern: /glProgBarBevel=(\d+)/,
+                        default: 0,
+                        transform: Number
+                    }
+                ];
+                // Обработка параметров
+                progressParams.forEach(({ key, pattern, default: defaultValue, transform }) => {
+                    const match = painterValue.match(pattern);
+                    attributes[key] = match ? transform(match[1]) : defaultValue;
+                });
             }
             if (value[sensor]['Painter(v)'].match('SimpleBorder')) {
                 console.log('-- PAINTER SECTION SIMPLEBORDER --');
                 format['mockups'][i]['border'] = true;
-                format['mockups'][i]['border_attributes']  = [];
-                format['mockups'][i]['border_attributes'][0]  = {};
-                if(value[sensor]['Painter(v)'].match(/glBorderBevel\=\d{1,}/)){format['mockups'][i]['border_attributes'][0]['glBorderBevel'] = Number(value[sensor]['Painter(v)'].match(/glBorderBevel\=\d{1,}/)[0].replace("glBorderBevel=",""));} else {format['mockups'][i]['border_attributes'][0]['glBorderBevel'] = 1}
-                if(value[sensor]['Painter(v)'].match(/glBorderColor\=\w{1,}/)){format['mockups'][i]['border_attributes'][0]['glBorderColor'] = value[sensor]['Painter(v)'].match(/glBorderColor\=\w{1,}/)[0].replace("glBorderColor=cl","");} else {format['mockups'][i]['border_attributes'][0]['glBorderColor'] = "gray"}
+                format['mockups'][i]['border_attributes'] = [{}];
+                const painterValue = value[sensor]['Painter(v)'];
+                const attributes = format['mockups'][i]['border_attributes'][0];
+                // glBorderBevel
+                const bevelMatch = /glBorderBevel=(\d+)/.exec(painterValue);
+                attributes.glBorderBevel = bevelMatch ? Number(bevelMatch[1]) : 1;
+                // glBorderColor
+                const colorMatch = /glBorderColor=cl(\w+)/.exec(painterValue);
+                attributes.glBorderColor = colorMatch ? colorMatch[1] : "gray";
             }
             if (value[sensor]['Painter(v)'].match('SimpleBar')) {
                 console.log('-- PAINTER SECTION SIMPLEBAR --');
                 format['mockups'][i]['tool'] = 'SimpleBar';
                 format['mockups'][i]['bar'] = true;
-                format['mockups'][i]['bar_attributes']  = [];
-                format['mockups'][i]['bar_attributes'][0]  = {};
-                if(value[sensor]['Painter(v)'].match(/glBarColor\=\w{1,}/)){format['mockups'][i]['bar_attributes'][0]['glBarColor'] = value[sensor]['Painter(v)'].match(/glBarColor\=\w{1,}/)[0].replace("glBarColor=cl","");} else {format['mockups'][i]['bar_attributes'][0]['glBarColor'] = "gray"}
-            }           
+                format['mockups'][i]['bar_attributes'] = [{}];
+                const painterValue = value[sensor]['Painter(v)'];
+                const attributes = format['mockups'][i]['bar_attributes'][0];
+                // Находим позицию glBarColor=
+                const startIndex = painterValue.indexOf('glBarColor=');
+                if (startIndex !== -1) {
+                    const valueStart = startIndex + 'glBarColor='.length;
+                    // Ищем следующую закрывающую скобку после =
+                    let parenCount = 0;
+                    let endIndex = valueStart;
+                    for (let i = valueStart; i < painterValue.length; i++) {
+                        if (painterValue[i] === '(') parenCount++;
+                        if (painterValue[i] === ')') parenCount--;
+                        if (parenCount === -1) { // Закрывающая скобка после открытия
+                            endIndex = i;
+                            break;
+                        }
+                    }
+                    attributes.glBarColor = painterValue.substring(valueStart, endIndex).trim();
+                } else {
+                    attributes.glBarColor = "gray";
+                }
+            }
+
+            const actionTypes = [
+                { type: 'Menu', name: 'menu' },
+                { type: 'Options', name: 'options' },
+                { type: 'ArrowCircCW', name: 'arrowcirc_cw' },
+                { type: 'ArrowCircCCW', name: 'arrowcirc_ccw' },
+                { type: 'ArrowCW', name: 'arrowcw' },
+                { type: 'ArrowCCW', name: 'arrowccw' },
+                { type: 'ArrowUp', name: 'arrowup' },
+                { type: 'ArrowLeft', name: 'arrowleft' },
+                { type: 'ArrowRight', name: 'arrowright' },
+                { type: 'PowerOn', name: 'poweron' }
+            ];
+
+            actionTypes.forEach(action => {
+                if (value[sensor]['Painter(v)'].match(`GuiLib.Cmd.${action.type}`)) {
+                    console.log(`-- PAINTER SECTION CMD_${action.type} --`);
+                    format['mockups'][i]['tool'] = `Cmd_${action.type}`;
+                    format['mockups'][i]['cmd_' + action.name] = true;
+                    format['mockups'][i]['cmd_' +action.name+ '_attributes'] = [{}];
+
+                    const painterValue = value[sensor]['Painter(v)'];
+                    const attributes = format['mockups'][i]['cmd_' +action.name+ '_attributes'][0];
+
+                    // Проверяем каждый параметр по отдельности
+                    const params = [
+                        { key: 'glCmd' + action.type + 'Color0', name: 'color0' },
+                        { key: 'glCmd' + action.type + 'Color1', name: 'color1' },
+                        { key: 'glCmd' + action.type + 'Alignment', name: 'alignment' },
+                        { key: 'glCmd' + action.type + 'LineWidth', name: 'lineWidth' }
+                    ];
+
+                    params.forEach(param => {
+                        const match = new RegExp(`${param.key}=(\\d+)`).exec(painterValue);
+                        if (match) {
+                            attributes['glCmd' + action.type + param.name.charAt(0).toUpperCase() + param.name.slice(1)] = Number(match[1]);
+                        }
+                    });
+                }
+            });
+
+            const toolBarTypes = [
+                { type: 'Calculator', name: 'calculator' },
+                { type: 'Close', name: 'close' },
+                { type: 'Console', name: 'console' },
+                { type: 'Erase', name: 'erase' },
+                { type: 'Favorite', name: 'favorite' },
+                { type: 'Flash', name: 'flash' },
+                { type: 'FlashAlt', name: 'flashalt' },
+                { type: 'Help', name: 'help' },
+                { type: 'Home', name: 'home' },
+                { type: 'Key', name: 'key' },
+                { type: 'Lightning', name: 'lightning' },
+                { type: 'LightningAlt', name: 'lightningalt' },
+                { type: 'Loadini', name: 'loadini' },
+                { type: 'Lock', name: 'lock' },
+                { type: 'Loupe', name: 'loupe' },
+                { type: 'Navigator', name: 'navigator' },
+                { type: 'Open', name: 'open' },
+                { type: 'Save', name: 'save' },
+                { type: 'Saveini', name: 'saveini' },
+                { type: 'Setting', name: 'setting' },
+                { type: 'Smile', name: 'smile' },
+                { type: 'Snowflake', name: 'snowflake' },
+                { type: 'Sound', name: 'sound' },
+                { type: 'Tools', name: 'tools' }
+            ];
+
+            toolBarTypes.forEach(tool => {
+                if (value[sensor]['Painter(v)'].match(`GuiLib.Cmd.${tool.type}`)) {
+                    console.log(`-- PAINTER SECTION CMD_${tool.type} --`);
+                    format['mockups'][i]['tool'] = `Cmd_${tool.type}`;
+                    format['mockups'][i]['cmd_' + tool.name] = true;
+                    format['mockups'][i]['cmd_' + tool.name + '_attributes'] = [{}];
+
+                    const painterValue = value[sensor]['Painter(v)'];
+                    const attributes = format['mockups'][i]['cmd_' + tool.name + '_attributes'][0];
+
+                    // Проверяем каждый параметр по отдельности
+                    const params = [
+                        { key: 'glCmdToolBarColor0', name: 'color0' },
+                        { key: 'glCmdToolBarColor1', name: 'color1' }
+                    ];
+
+                    params.forEach(param => {
+                        const match = new RegExp(`${param.key}=(\\w+)`).exec(painterValue);
+                        if (match) {
+                            attributes[param.key] = match[1];
+                        }
+                    });
+                }
+            });
+
             if (value[sensor]['Painter(v)'].match('Cmd.Ok')) {
                 console.log('-- PAINTER SECTION CMD.OK --');
                 format['mockups'][i]['tool'] = 'CmdOk';
                 format['mockups'][i]['cmdOk'] = true;
-                format['mockups'][i]['cmdOk_attributes']  = [];
-                format['mockups'][i]['cmdOk_attributes'][0]  = {};
-                if(value[sensor]['Painter(v)'].match(/glCmdOkLineWidth\=\d{1,}/)){format['mockups'][i]['cmdOk_attributes'][0]['glCmdOkLineWidth'] = Number(value[sensor]['Painter(v)'].match(/glCmdOkLineWidth\=\d{1,}/)[0].replace("glCmdOkLineWidth=",""));}else{format['mockups'][i]['cmdOk_attributes'][0]['glCmdOkLineWidth'] = 1}
-                if(value[sensor]['Painter(v)'].match(/glCmdOkLineColor\=\w{1,}/)){format['mockups'][i]['cmdOk_attributes'][0]['glCmdOkLineColor'] = value[sensor]['Painter(v)'].match(/glCmdOkLineColor\=\w{1,}/)[0].replace("glCmdOkLineColor=cl","");} else {format['mockups'][i]['cmdOk_attributes'][0]['glCmdOkLineColor'] = "gray"}
-                if(value[sensor]['Painter(v)'].match(/glCmdOkFillColor\=\w{1,}/)){format['mockups'][i]['cmdOk_attributes'][0]['glCmdOkFillColor'] = value[sensor]['Painter(v)'].match(/glCmdOkFillColor\=\w{1,}/)[0].replace("glCmdOkFillColor=cl","");} else {format['mockups'][i]['cmdOk_attributes'][0]['glCmdOkFillColor'] = "lime"}
-            }            
+                format['mockups'][i]['cmdOk_attributes'] = [{}];
+                const painterValue = value[sensor]['Painter(v)'];
+                const attributes = format['mockups'][i]['cmdOk_attributes'][0];
+                // glCmdOkLineWidth
+                const lineWidthMatch = /glCmdOkLineWidth=(\d+)/.exec(painterValue);
+                attributes.glCmdOkLineWidth = lineWidthMatch ? Number(lineWidthMatch[1]) : 1;
+                // glCmdOkLineColor
+                const lineColorMatch = /glCmdOkLineColor=cl(\w+)/.exec(painterValue);
+                attributes.glCmdOkLineColor = lineColorMatch ? lineColorMatch[1] : "gray";
+                // glCmdOkFillColor
+                const fillColorMatch = /glCmdOkFillColor=cl(\w+)/.exec(painterValue);
+                attributes.glCmdOkFillColor = fillColorMatch ? fillColorMatch[1] : "lime";
+            }  
             if (value[sensor]['Painter(v)'].match('Cmd.Cancel')) {
                 console.log('-- PAINTER SECTION CMD.CANCEL --');
                 format['mockups'][i]['tool'] = 'CmdCancel';
                 format['mockups'][i]['cmdCancel'] = true;
-                format['mockups'][i]['cmdCancel_attributes']  = [];
-                format['mockups'][i]['cmdCancel_attributes'][0]  = {};
-                if(value[sensor]['Painter(v)'].match(/glCmdOkLineWidth\=\d{1,}/)){format['mockups'][i]['cmdCancel_attributes'][0]['glCmdOkLineWidth'] = Number(value[sensor]['Painter(v)'].match(/glCmdOkLineWidth\=\d{1,}/)[0].replace("glCmdOkLineWidth=",""));}else{format['mockups'][i]['cmdCancel_attributes'][0]['glCmdOkLineWidth'] = 1}
-                if(value[sensor]['Painter(v)'].match(/glCmdOkLineColor\=\w{1,}/)){format['mockups'][i]['cmdCancel_attributes'][0]['glCmdOkLineColor'] = value[sensor]['Painter(v)'].match(/glCmdOkLineColor\=\w{1,}/)[0].replace("glCmdOkLineColor=cl","");} else {format['mockups'][i]['cmdCancel_attributes'][0]['glCmdOkLineColor'] = "gray"}
-                if(value[sensor]['Painter(v)'].match(/glCmdOkFillColor\=\w{1,}/)){format['mockups'][i]['cmdCancel_attributes'][0]['glCmdOkFillColor'] = value[sensor]['Painter(v)'].match(/glCmdOkFillColor\=\w{1,}/)[0].replace("glCmdOkFillColor=cl","");} else {format['mockups'][i]['cmdCancel_attributes'][0]['glCmdOkFillColor'] = "lime"}
+                format['mockups'][i]['cmdCancel_attributes'] = [{}];
+                const painterValue = value[sensor]['Painter(v)'];
+                const attributes = format['mockups'][i]['cmdCancel_attributes'][0];
+                // glCmdCancelLineWidth (в оригинале используется одинаковое имя, но должно быть для Cancel)
+                const lineWidthMatch = /glCmdCancelLineWidth=(\d+)/.exec(painterValue);
+                attributes.glCmdCancelLineWidth = lineWidthMatch ? Number(lineWidthMatch[1]) : 1;
+                // glCmdCancelLineColor
+                const lineColorMatch = /glCmdCancelLineColor=cl(\w+)/.exec(painterValue);
+                attributes.glCmdCancelLineColor = lineColorMatch ? lineColorMatch[1] : "gray";
+                // glCmdCancelFillColor
+                const fillColorMatch = /glCmdCancelFillColor=cl(\w+)/.exec(painterValue);
+                attributes.glCmdCancelFillColor = fillColorMatch ? fillColorMatch[1] : "lime";
             }
             if (value[sensor]['Painter(v)'].match('Indicator.Circle')) {
-                console.log('-- PAINTER SECTION CIRCLE --');
-                format['mockups'][i]['tool'] = 'IndicatorCircle';
-                format['mockups'][i]['indicatorcircle'] = true;
-                format['mockups'][i]['indicatorcircle_attributes']  = [];
-                format['mockups'][i]['indicatorcircle_attributes'][0]  = {};
-                if(value[sensor]['Painter(v)'].match(/glCircleBevel\=\d{1,}/)){format['mockups'][i]['indicatorcircle_attributes'][0]['glCircleBevel'] = Number(value[sensor]['Painter(v)'].match(/glCircleBevel\=\d{1,}/)[0].replace("glCircleBevel=",""));} else {format['mockups'][i]['indicatorcircle_attributes'][0]['glCircleBevel'] = 0}
-                if(value[sensor]['Painter(v)'].match(/glCircleWidth\=\d{1,}/)){format['mockups'][i]['indicatorcircle_attributes'][0]['glCircleWidth'] = Number(value[sensor]['Painter(v)'].match(/glCircleWidth\=\d{1,}/)[0].replace("glCircleWidth=",""));} else {format['mockups'][i]['indicatorcircle_attributes'][0]['glCircleWidth'] = 1}
-                if(value[sensor]['Painter(v)'].match(/glCircleFaceColor\=\w{1,}/)){format['mockups'][i]['indicatorcircle_attributes'][0]['glCircleFaceColor'] = value[sensor]['Painter(v)'].match(/glCircleFaceColor\=\w{1,}/)[0].replace("glCircleFaceColor=cl","");}else{format['mockups'][i]['indicatorcircle_attributes'][0]['glCircleFaceColor'] = 'black'}
-                if(value[sensor]['Painter(v)'].match(/glCircleBackColor\=glCircleBackColor\+eq\(glCircleBackColor\,0\)\*\w{1,}/)){format['mockups'][i]['indicatorcircle_attributes'][0]['glCircleBackColor'] = value[sensor]['Painter(v)'].match(/glCircleBackColor\=glCircleBackColor\+eq\(glCircleBackColor\,0\)\*\w{1,}/)[0].replace("glCircleBackColor=glCircleBackColor+eq(glCircleBackColor,0)*cl","");}else{format['mockups'][i]['indicatorcircle_attributes'][0]['glCircleBackColor'] = 'silver'}
+               console.log('-- PAINTER SECTION CIRCLE --');
+               format['mockups'][i]['tool'] = 'IndicatorCircle';
+               format['mockups'][i]['indicatorcircle'] = true;
+               format['mockups'][i]['indicatorcircle_attributes'] = [{}];
+               const painterValue = value[sensor]['Painter(v)'];
+               const attributes = format['mockups'][i]['indicatorcircle_attributes'][0];
+               // glCircleBevel
+               const bevelMatch = /glCircleBevel=(\d+)/.exec(painterValue);
+               attributes.glCircleBevel = bevelMatch ? Number(bevelMatch[1]) : 0;
+               // glCircleWidth
+               const widthMatch = /glCircleWidth=(\d+)/.exec(painterValue);
+               attributes.glCircleWidth = widthMatch ? Number(widthMatch[1]) : 1;
+               // glCircleFaceColor
+               const faceColorMatch = /glCircleFaceColor=cl(\w+)/.exec(painterValue);
+               attributes.glCircleFaceColor = faceColorMatch ? faceColorMatch[1] : 'black';
+               // glCircleBackColor
+               const backColorMatch = /glCircleBackColor=glCircleBackColor\+eq\(glCircleBackColor,0\)\*cl(\w+)/.exec(painterValue);
+               attributes.glCircleBackColor = backColorMatch ? backColorMatch[1] : 'silver';
             }
             if (value[sensor]['Painter(v)'].match('SimpleCross')) {
                 console.log('-- PAINTER SECTION SIMPLECROSS --');
                 format['mockups'][i]['tool'] = 'SimpleCross';
                 format['mockups'][i]['simplecross'] = true;
-                format['mockups'][i]['simplecross_attributes']  = [];
-                format['mockups'][i]['simplecross_attributes'][0]  = {};
-                if(value[sensor]['Painter(v)'].match(/glCrossBevel\=\d{1,}/)){format['mockups'][i]['simplecross_attributes'][0]['glCrossBevel'] = Number(value[sensor]['Painter(v)'].match(/glCrossBevel\=\d{1,}/)[0].replace("glCrossBevel=",""));}else{format['mockups'][i]['simplecross_attributes'][0]['glCrossBevel'] = 2}
-                if(value[sensor]['Painter(v)'].match(/glCrossWidth\=\d{1,}/)){format['mockups'][i]['simplecross_attributes'][0]['glCrossWidth'] = Number(value[sensor]['Painter(v)'].match(/glCrossWidth\=\d{1,}/)[0].replace("glCrossWidth=",""));}else{format['mockups'][i]['simplecross_attributes'][0]['glCrossWidth'] = 1}
-                if(value[sensor]['Painter(v)'].match(/glCrossColor\=\w{1,}/)){format['mockups'][i]['simplecross_attributes'][0]['glCrossColor'] = value[sensor]['Painter(v)'].match(/glCrossColor\=\w{1,}/)[0].replace("glCrossColor=cl","");}else{format['mockups'][i]['simplecross_attributes'][0]['glCrossColor'] = 'black'}
-            }            
+                format['mockups'][i]['simplecross_attributes'] = [{}];
+                const painterValue = value[sensor]['Painter(v)'];
+                const attributes = format['mockups'][i]['simplecross_attributes'][0];
+                // glCrossBevel
+                const bevelMatch = /glCrossBevel=(\d+)/.exec(painterValue);
+                attributes.glCrossBevel = bevelMatch ? Number(bevelMatch[1]) : 2;
+                // glCrossWidth
+                const widthMatch = /glCrossWidth=(\d+)/.exec(painterValue);
+                attributes.glCrossWidth = widthMatch ? Number(widthMatch[1]) : 1;
+                // glCrossColor
+                const colorMatch = /glCrossColor=cl(\w+)/.exec(painterValue);
+                attributes.glCrossColor = colorMatch ? colorMatch[1] : 'black';
+            }     
             if (value[sensor]['Painter(v)'].match('ListButton.Arrow')) {
                 console.log('-- PAINTER SECTION LISTBUTTON_ARROW --');
                 format['mockups'][i]['tool'] = 'ListButton_Arrow';
                 format['mockups'][i]['listbutton_arrow'] = true;
-                format['mockups'][i]['listbutton_arrow_attributes']  = [];
-                format['mockups'][i]['listbutton_arrow_attributes'][0]  = {};
-                if(value[sensor]['Painter(v)'].match(/glListBtnArrowLeft\=\d{1,}/)){format['mockups'][i]['listbutton_arrow_attributes'][0]['glListBtnArrowLeft'] = Number(value[sensor]['Painter(v)'].match(/glListBtnArrowLeft\=\d{1,}/)[0].replace("glListBtnArrowLeft=",""));}else{format['mockups'][i]['listbutton_arrow_attributes'][0]['glListBtnArrowLeft'] = 0}
-                if(value[sensor]['Painter(v)'].match(/glListBtnArrowLineColor\=\w{1,}/)){format['mockups'][i]['listbutton_arrow_attributes'][0]['glListBtnArrowLineColor'] = value[sensor]['Painter(v)'].match(/glListBtnArrowLineColor\=\w{1,}/)[0].replace("glListBtnArrowLineColor=cl","");}else{format['mockups'][i]['listbutton_arrow_attributes'][0]['glListBtnArrowLineColor'] = 'black'}
-                if(value[sensor]['Painter(v)'].match(/glListBtnArrowLineWidth\=\d{1,}/)){format['mockups'][i]['listbutton_arrow_attributes'][0]['glListBtnArrowLineWidth'] = Number(value[sensor]['Painter(v)'].match(/glListBtnArrowLineWidth\=\d{1,}/)[0].replace("glListBtnArrowLineWidth=",""));}else{format['mockups'][i]['listbutton_arrow_attributes'][0]['glListBtnArrowLineWidth'] = 1}
-                if(value[sensor]['Painter(v)'].match(/glListBtnArrowBorderWidth\=\d{1,}/)){format['mockups'][i]['listbutton_arrow_attributes'][0]['glListBtnArrowBorderWidth'] = Number(value[sensor]['Painter(v)'].match(/glListBtnArrowBorderWidth\=\d{1,}/)[0].replace("glListBtnArrowBorderWidth=",""));}else{format['mockups'][i]['listbutton_arrow_attributes'][0]['glListBtnArrowBorderWidth'] = 1}
-                if(value[sensor]['Painter(v)'].match(/glListBtnArrowBorderColor\=\w{1,}/)){format['mockups'][i]['listbutton_arrow_attributes'][0]['glListBtnArrowBorderColor'] = value[sensor]['Painter(v)'].match(/glListBtnArrowBorderColor\=\w{1,}/)[0].replace("glListBtnArrowBorderColor=cl","");}else{format['mockups'][i]['listbutton_arrow_attributes'][0]['glListBtnArrowBorderColor'] = 'black'}
-            }            
+                format['mockups'][i]['listbutton_arrow_attributes'] = [{}];
+                const painterValue = value[sensor]['Painter(v)'];
+                const attributes = format['mockups'][i]['listbutton_arrow_attributes'][0];
+                // glListBtnArrowLeft
+                const leftMatch = /glListBtnArrowLeft=(\d+)/.exec(painterValue);
+                attributes.glListBtnArrowLeft = leftMatch ? Number(leftMatch[1]) : 0;
+                // glListBtnArrowLineColor
+                const lineColorMatch = /glListBtnArrowLineColor=cl(\w+)/.exec(painterValue);
+                attributes.glListBtnArrowLineColor = lineColorMatch ? lineColorMatch[1] : 'black';
+                // glListBtnArrowLineWidth
+                const lineWidthMatch = /glListBtnArrowLineWidth=(\d+)/.exec(painterValue);
+                attributes.glListBtnArrowLineWidth = lineWidthMatch ? Number(lineWidthMatch[1]) : 1;
+                // glListBtnArrowBorderWidth
+                const borderWidthMatch = /glListBtnArrowBorderWidth=(\d+)/.exec(painterValue);
+                attributes.glListBtnArrowBorderWidth = borderWidthMatch ? Number(borderWidthMatch[1]) : 1;
+                // glListBtnArrowBorderColor
+                const borderColorMatch = /glListBtnArrowBorderColor=cl(\w+)/.exec(painterValue);
+                attributes.glListBtnArrowBorderColor = borderColorMatch ? borderColorMatch[1] : 'black';
+            }
             if (value[sensor]['Painter(v)'].match('ListButton.Triangle')) {
                 console.log('-- PAINTER SECTION LISTBUTTON_TRIANGLE --');
                 format['mockups'][i]['tool'] = 'ListButton_Triangle';
@@ -422,7 +754,8 @@ function ConvertModel(data){
             }
         }
 
-        if(value[sensor]['Hint'] != undefined) {format['mockups'][i]['hint'] = value[sensor]['Hint'];} else {format['mockups'][i]['hint'] = value[sensor];}
+        format['mockups'][i]['hint'] = value[sensor]['Hint'] !== undefined ? value[sensor]['Hint'] : value[sensor];
+        format['mockups'][i]['toolbarkey'] = value[sensor]['ToolBarKey'];
         i++;
         
         
