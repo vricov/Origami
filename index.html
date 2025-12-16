@@ -138,6 +138,10 @@
                 <p>Built with Backbone, Backbone-LocalStorage, Backbone-Nested, Underscore and Handlebars.</p>
                 <p></p>
                 <textarea name="textarea" rows="30" id="id_changelog" disabled>
+16.12.2025
++ Почему-то при импорте ругалось на секцию Configfilelist (не понимаю), теперь ругаться не будет;
++ Добавлена проверка на существование у tags[tag].label
+
 15.12.2025
 + Исправил ошибку импорта. Файлы принудительно открывались в кодировке CP1251 вместо UTF-8
 
@@ -470,7 +474,7 @@
 				
 				</td>
                 <td><input type="text" id="tags_<%= i %>_color" name="color_<%= i %>" id-attribute="<%= i %>" value="<%= tags[tag].color %>"/></td>
-                <td><input type="text" id="tags_<%= i %>_label" name="label" id-attribute="<%= i %>" value="<%= tags[tag].label.replace(/"/g, '&quot;') %>" /></td>
+                <td><input type="text" id="tags_<%= i %>_label" name="label" id-attribute="<%= i %>" value="<%= tags[tag] && tags[tag].label ? tags[tag].label.replace(/"/g, '&quot;') : '' %>" /></td>
                 <td><a class="divButton delete" id-attribute="<%= i %>" href="#">X</a></td>
             </tr>
         <% i = i + 1; }  %>

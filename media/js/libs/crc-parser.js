@@ -56,6 +56,7 @@ function ConvertModel(data){
         
     if(value.Circuit != undefined)if(value.Circuit.Hint != undefined) {format['title'] = value['Circuit']['Hint'];} else {format['title'] = 'noname';}
     delete value.ConfigFile;
+    delete value.ConfigFileList;
     delete value.SensorList;
     delete value["SensorList-"];
 
