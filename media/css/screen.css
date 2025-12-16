@@ -713,7 +713,7 @@ aside a:hover {
     position: absolute;
     top: 0;
     box-sizing: border-box;    background-size: 100%;background-repeat:no-repeat;}
-.object .pump,.object .uniheater,.object .AirBlower_Up,.object .AirBlower_Down,.object .AirBlower_Left,.object .AirBlower_Right,.object .FanBlower_Up,.object .FanBlower_Down,.object .FanBlower_Left,.object .FanBlower_Right,.object .WaterPump_Up,.object .WaterPump_Down,.object .WaterPump_Left,.object .WaterPump_Right, .radDaqLib, .ManoMeter.icon,.object .FlowMeter_Up,.object .FlowMeter_Down,.object .FlowMeter_Left,.object .FlowMeter_Right, .object .LeakDetector,.vacuometer.Penning.Penning_Up,.vacuometer.Penning.Penning_Down,.vacuometer.Penning.Penning_Left,.vacuometer.Penning.Penning_Right,.Compressor_Up,.Compressor_Right,.Compressor_Down,.Compressor_Left,.vacuometer.Ionization.Ionization_Up,.vacuometer.Ionization.Ionization_Down,.vacuometer.Ionization.Ionization_Right,.vacuometer.Ionization.Ionization_Left,.vacuometer.Thermal.Thermal_Up,.vacuometer.Thermal.Thermal_Down,.vacuometer.Thermal.Thermal_Right,.vacuometer.Thermal.Thermal_Left,.vacuometer.Thermal.Thermal_None,.object .Ionization,.object .Penning, .object .Type_VlvGateHor, .object .Type_VlvGateVer, .object .Type_RotGateHor, .object .Type_RotGateVer {width: 100%;
+.object .pump,.object .uniheater,.object .AirBlower_Up,.object .AirBlower_Down,.object .AirBlower_Left,.object .AirBlower_Right,.object .FanBlower_Up,.object .FanBlower_Down,.object .FanBlower_Left,.object .FanBlower_Right,.object .WaterPump_Up,.object .WaterPump_Down,.object .WaterPump_Left,.object .WaterPump_Right, .radDaqLib, .ManoMeter.icon,.object .FlowMeter_Up,.object .FlowMeter_Down,.object .FlowMeter_Left,.object .FlowMeter_Right, .object .LeakDetector,.vacuometer.Penning.Penning_Up,.vacuometer.Penning.Penning_Down,.vacuometer.Penning.Penning_Left,.vacuometer.Penning.Penning_Right,.Compressor_Up,.Compressor_Right,.Compressor_Down,.Compressor_Left,.vacuometer.Ionization.Ionization_Up,.vacuometer.Ionization.Ionization_Down,.vacuometer.Ionization.Ionization_Right,.vacuometer.Ionization.Ionization_Left,.vacuometer.Thermal.Thermal_Up,.vacuometer.Thermal.Thermal_Down,.vacuometer.Thermal.Thermal_Right,.vacuometer.Thermal.Thermal_Left,.vacuometer.Thermal.Thermal_None,.object .Ionization,.object .Penning, .object .Type_VlvGateHor, .object .Type_VlvGateVer, .object .Type_RotGateHor, .object .Type_RotGateVer, .object .cmd_tools {width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
@@ -721,114 +721,115 @@ aside a:hover {
     background-size: 100%;
     background-repeat:no-repeat;
     background-image: url(../images/undefined.png);}
-.valve.Type_ThruWayHor {background-image: url(../images/Valve_ThruWayHor.png);}
-.valve.Type_ThruWayVer {background-image: url(../images/Valve_ThruWayVer.png);}
-.valve.Type_AngUpRight {background-image: url(../images/Valve_AngUpRight.png);}
-.valve.Type_AngUpLeft {background-image: url(../images/Valve_AngUpLeft.png);}
-.valve.Type_AngDownLeft {background-image: url(../images/Valve_AngDownLeft.png);}
-.valve.Type_AngDownRight {background-image: url(../images/Valve_AngDownRight.png);}
-.valve.Type_3WayUp {background-image: url(../images/Valve_3WayUp.png);}
-.valve.Type_3WayDown {background-image: url(../images/Valve_3WayDown.png);}
-.valve.Type_3WayLeft {background-image: url(../images/Valve_3WayLeft.png);}
-.valve.Type_3WayRight {background-image: url(../images/Valve_3WayRight.png);}
-.valve.Type_VlvGateHor.NoneOp {background-image: url(../images/Valve_VlvGateHor.png);}
-.valve.Type_VlvGateVer.NoneOp {background-image: url(../images/Valve_VlvGateVer.png);}
-.valve.Type_RotGateHor.NoneOp {background-image: url(../images/Valve_RotGateHor.png);}
-.valve.Type_RotGateVer.NoneOp {background-image: url(../images/Valve_RotGateVer.png);}
-.valve.Type_ThruWayHor.ManualOp {background-image: url(../images/Valve_ThruWayHor_ManualOp.png);}
-.valve.Type_ThruWayVer.ManualOp {background-image: url(../images/Valve_ThruWayVer_ManualOp.png);}
-.valve.Type_AngUpRight.ManualOp {background-image: url(../images/Valve_AngUpRight_ManualOp.png);}
-.valve.Type_AngUpLeft.ManualOp {background-image: url(../images/Valve_AngUpLeft_ManualOp.png);}
-.valve.Type_AngDownLeft.ManualOp {background-image: url(../images/Valve_AngDownLeft_ManualOp.png);}
-.valve.Type_AngDownRight.ManualOp {background-image: url(../images/Valve_AngDownRight_ManualOp.png);}
-.valve.Type_3WayUp.ManualOp {background-image: url(../images/Valve_3WayUp_ManualOp.png);}
-.valve.Type_3WayDown.ManualOp {background-image: url(../images/Valve_3WayDown_ManualOp.png);}
-.valve.Type_3WayLeft.ManualOp {background-image: url(../images/Valve_3WayLeft_ManualOp.png);}
-.valve.Type_3WayRight.ManualOp {background-image: url(../images/Valve_3WayRight_ManualOp.png);}}
-.valve.Type_ThruWayHor.SolenoidOp {background-image: url(../images/Valve_ThruWayHor_SolenoidOp.png);}
-.valve.Type_ThruWayVer.SolenoidOp {background-image: url(../images/Valve_ThruWayVer_SolenoidOp.png);}
-.valve.Type_AngUpRight.SolenoidOp {background-image: url(../images/Valve_AngUpRight_SolenoidOp.png);}
-.valve.Type_AngUpLeft.SolenoidOp {background-image: url(../images/Valve_AngUpLeft_SolenoidOp.png);}
-.valve.Type_AngDownLeft.SolenoidOp {background-image: url(../images/Valve_AngDownLeft_SolenoidOp.png);}
-.valve.Type_AngDownRight.SolenoidOp {background-image: url(../images/Valve_AngDownRight_SolenoidOp.png);}
-.valve.Type_3WayUp.SolenoidOp {background-image: url(../images/Valve_3WayUp_SolenoidOp.png);}
-.valve.Type_3WayDown.SolenoidOp {background-image: url(../images/Valve_3WayDown_SolenoidOp.png);}
-.valve.Type_3WayLeft.SolenoidOp {background-image: url(../images/Valve_3WayLeft_SolenoidOp.png);}
-.valve.Type_3WayRight.SolenoidOp {background-image: url(../images/Valve_3WayRight_SolenoidOp.png);}
-.valve.Type_ThruWayHor.MotorOp {background-image: url(../images/Valve_ThruWayHor_MotorOp.png);}
-.valve.Type_ThruWayVer.MotorOp {background-image: url(../images/Valve_ThruWayVer_MotorOp.png);}
-.valve.Type_AngUpRight.MotorOp {background-image: url(../images/Valve_AngUpRight_MotorOp.png);}
-.valve.Type_AngUpLeft.MotorOp {background-image: url(../images/Valve_AngUpLeft_MotorOp.png);}
-.valve.Type_AngDownLeft.MotorOp {background-image: url(../images/Valve_AngDownLeft_MotorOp.png);}
-.valve.Type_AngDownRight.MotorOp {background-image: url(../images/Valve_AngDownRight_MotorOp.png);}
-.valve.Type_3WayUp.MotorOp {background-image: url(../images/Valve_3WayUp_MotorOp.png);}
-.valve.Type_3WayDown.MotorOp {background-image: url(../images/Valve_3WayDown_MotorOp.png);}
-.valve.Type_3WayLeft.MotorOp {background-image: url(../images/Valve_3WayLeft_MotorOp.png);}
-.valve.Type_3WayRight.MotorOp {background-image: url(../images/Valve_3WayRight_MotorOp.png);}
-.valve.Type_ThruWayHor.PneumaticOp {background-image: url(../images/Valve_ThruWayHor_PneumaticOp.png);}
-.valve.Type_ThruWayVer.PneumaticOp {background-image: url(../images/Valve_ThruWayVer_PneumaticOp.png);}
-.valve.Type_AngUpRight.PneumaticOp {background-image: url(../images/Valve_AngUpRight_PneumaticOp.png);}
-.valve.Type_AngUpLeft.PneumaticOp {background-image: url(../images/Valve_AngUpLeft_PneumaticOp.png);}
-.valve.Type_AngDownLeft.PneumaticOp {background-image: url(../images/Valve_AngDownLeft_PneumaticOp.png);}
-.valve.Type_AngDownRight.PneumaticOp {background-image: url(../images/Valve_AngDownRight_PneumaticOp.png);}
-.valve.Type_3WayUp.PneumaticOp {background-image: url(../images/Valve_3WayUp_PneumaticOp.png);}
-.valve.Type_3WayDown.PneumaticOp {background-image: url(../images/Valve_3WayDown_PneumaticOp.png);}
-.valve.Type_3WayLeft.PneumaticOp {background-image: url(../images/Valve_3WayLeft_PneumaticOp.png);}
-.valve.Type_3WayRight.PneumaticOp {background-image: url(../images/Valve_3WayRight_PneumaticOp.png);}
-.pump.RotSingle.RotSingle_Up {background-image: url(../images/Pump_RotSingle_Up.png);}
-.pump.RotSingle.RotSingle_Down {background-image: url(../images/Pump_RotSingle_Down.png);}
-.pump.RotSingle.RotSingle_Left {background-image: url(../images/Pump_RotSingle_Left.png);}
-.pump.RotSingle.RotSingle_Right {background-image: url(../images/Pump_RotSingle_Right.png);}
-.pump.RotDouble.RotDouble_Up {background-image: url(../images/Pump_RotDouble_Up.png);}
-.pump.RotDouble.RotDouble_Down {background-image: url(../images/Pump_RotDouble_Down.png);}
-.pump.RotDouble.RotDouble_Left {background-image: url(../images/Pump_RotDouble_Left.png);}
-.pump.RotDouble.RotDouble_Right {background-image: url(../images/Pump_RotDouble_Right.png);}
-.pump.Turbomol.Turbomol_Down {background-image: url(../images/Pump_Turbomol_Down.png);}
-.pump.Turbomol.Turbomol_Left {background-image: url(../images/Pump_Turbomol_Left.png);}
-.pump.Turbomol.Turbomol_Right {background-image: url(../images/Pump_Turbomol_Right.png);}
-.pump.Turbomol.Turbomol_Up {background-image: url(../images/Pump_Turbomol_Up.png);}
-.pump.Roots.Roots_Down {background-image: url(../images/Pump_Roots_Down.png);}
-.pump.Roots.Roots_Left {background-image: url(../images/Pump_Roots_Left.png);}
-.pump.Roots.Roots_Right {background-image: url(../images/Pump_Roots_Right.png);}
-.pump.Roots.Roots_Up {background-image: url(../images/Pump_Roots_Up.png);}
-.pump.Diffusion.Diffusion_None {background-image: url(../images/Pump_Diffusion.png);}
-.pump.SputIon.SputIon_None {background-image: url(../images/Pump_SputIon.png);}
-.pump.Sublimation.Sublimation_None {background-image: url(../images/Pump_Sublimation.png);}
-.vacuometer.Penning.Penning_Up {background-image: url(../images/Vacuometer_Penning_Up.png);}
-.vacuometer.Penning.Penning_Down {background-image: url(../images/Vacuometer_Penning_Down.png);}
-.vacuometer.Penning.Penning_Right {background-image: url(../images/Vacuometer_Penning_Right.png);}
-.vacuometer.Penning.Penning_Left {background-image: url(../images/Vacuometer_Penning_Left.png);}
-.vacuometer.Ionization.Ionization_Up {background-image: url(../images/Vacuometer_Ionization_Up.png);}
-.vacuometer.Ionization.Ionization_Down {background-image: url(../images/Vacuometer_Ionization_Down.png);}
-.vacuometer.Ionization.Ionization_Right {background-image: url(../images/Vacuometer_Ionization_Right.png);}
-.vacuometer.Ionization.Ionization_Left {background-image: url(../images/Vacuometer_Ionization_Left.png);}
-.vacuometer.Thermal.Thermal_None {background-image: url(../images/Vacuometer_Thermal_None.png);}
-.LeakDetector.icon {background-image: url(../images/LeakDetector.png);}
-.Compressor .Compressor_Up {background-image: url(../images/Compressor_Up.png);}
-.Compressor .Compressor_Right {background-image: url(../images/Compressor_Right.png);}
-.Compressor .Compressor_Down {background-image: url(../images/Compressor_Down.png);}
-.Compressor .Compressor_Left {background-image: url(../images/Compressor_Left.png);}
+.valve.Type_ThruWayHor {background-image: url(../images/valve_thruwayhor.png);}
+.valve.Type_ThruWayVer {background-image: url(../images/valve_thruwayver.png);}
+.valve.Type_AngUpRight {background-image: url(../images/valve_angupright.png);}
+.valve.Type_AngUpLeft {background-image: url(../images/valve_angupleft.png);}
+.valve.Type_AngDownLeft {background-image: url(../images/valve_angdownleft.png);}
+.valve.Type_AngDownRight {background-image: url(../images/valve_angdownright.png);}
+.valve.Type_3WayUp {background-image: url(../images/valve_3wayup.png);}
+.valve.Type_3WayDown {background-image: url(../images/valve_3waydown.png);}
+.valve.Type_3WayLeft {background-image: url(../images/valve_3wayleft.png);}
+.valve.Type_3WayRight {background-image: url(../images/valve_3wayright.png);}
+.valve.Type_VlvGateHor.NoneOp {background-image: url(../images/valve_vlvgatehor.png);}
+.valve.Type_VlvGateVer.NoneOp {background-image: url(../images/valve_vlvgatever.png);}
+.valve.Type_RotGateHor.NoneOp {background-image: url(../images/valve_rotgatehor.png);}
+.valve.Type_RotGateVer.NoneOp {background-image: url(../images/valve_rotgatever.png);}
+.valve.Type_ThruWayHor.ManualOp {background-image: url(../images/valve_thruwayhor_manualop.png);}
+.valve.Type_ThruWayVer.ManualOp {background-image: url(../images/valve_thruwayver_manualop.png);}
+.valve.Type_AngUpRight.ManualOp {background-image: url(../images/valve_angupright_manualop.png);}
+.valve.Type_AngUpLeft.ManualOp {background-image: url(../images/valve_angupleft_manualop.png);}
+.valve.Type_AngDownLeft.ManualOp {background-image: url(../images/valve_angdownleft_manualop.png);}
+.valve.Type_AngDownRight.ManualOp {background-image: url(../images/valve_angdownright_manualop.png);}
+.valve.Type_3WayUp.ManualOp {background-image: url(../images/valve_3wayup_manualop.png);}
+.valve.Type_3WayDown.ManualOp {background-image: url(../images/valve_3waydown_manualop.png);}
+.valve.Type_3WayLeft.ManualOp {background-image: url(../images/valve_3wayleft_manualop.png);}
+.valve.Type_3WayRight.ManualOp {background-image: url(../images/valve_3wayright_manualop.png);}}
+.valve.Type_ThruWayHor.SolenoidOp {background-image: url(../images/valve_thruwayhor_solenoidop.png);}
+.valve.Type_ThruWayVer.SolenoidOp {background-image: url(../images/valve_thruwayver_solenoidop.png);}
+.valve.Type_AngUpRight.SolenoidOp {background-image: url(../images/valve_angupright_solenoidop.png);}
+.valve.Type_AngUpLeft.SolenoidOp {background-image: url(../images/valve_angupleft_solenoidop.png);}
+.valve.Type_AngDownLeft.SolenoidOp {background-image: url(../images/valve_angdownleft_solenoidop.png);}
+.valve.Type_AngDownRight.SolenoidOp {background-image: url(../images/valve_angdownright_solenoidop.png);}
+.valve.Type_3WayUp.SolenoidOp {background-image: url(../images/valve_3wayup_solenoidop.png);}
+.valve.Type_3WayDown.SolenoidOp {background-image: url(../images/valve_3waydown_solenoidop.png);}
+.valve.Type_3WayLeft.SolenoidOp {background-image: url(../images/valve_3wayleft_solenoidop.png);}
+.valve.Type_3WayRight.SolenoidOp {background-image: url(../images/valve_3wayright_solenoidop.png);}
+.valve.Type_ThruWayHor.MotorOp {background-image: url(../images/valve_thruwayhor_motorop.png);}
+.valve.Type_ThruWayVer.MotorOp {background-image: url(../images/valve_thruwayver_motorop.png);}
+.valve.Type_AngUpRight.MotorOp {background-image: url(../images/valve_angupright_motorop.png);}
+.valve.Type_AngUpLeft.MotorOp {background-image: url(../images/valve_angupleft_motorop.png);}
+.valve.Type_AngDownLeft.MotorOp {background-image: url(../images/valve_angdownleft_motorop.png);}
+.valve.Type_AngDownRight.MotorOp {background-image: url(../images/valve_angdownright_motorop.png);}
+.valve.Type_3WayUp.MotorOp {background-image: url(../images/valve_3wayup_motorop.png);}
+.valve.Type_3WayDown.MotorOp {background-image: url(../images/valve_3waydown_motorop.png);}
+.valve.Type_3WayLeft.MotorOp {background-image: url(../images/valve_3wayleft_motorop.png);}
+.valve.Type_3WayRight.MotorOp {background-image: url(../images/valve_3wayright_motorop.png);}
+.valve.Type_ThruWayHor.PneumaticOp {background-image: url(../images/valve_thruwayhor_pneumaticop.png);}
+.valve.Type_ThruWayVer.PneumaticOp {background-image: url(../images/valve_thruwayver_pneumaticop.png);}
+.valve.Type_AngUpRight.PneumaticOp {background-image: url(../images/valve_angupright_pneumaticop.png);}
+.valve.Type_AngUpLeft.PneumaticOp {background-image: url(../images/valve_angupleft_pneumaticop.png);}
+.valve.Type_AngDownLeft.PneumaticOp {background-image: url(../images/valve_angdownleft_pneumaticop.png);}
+.valve.Type_AngDownRight.PneumaticOp {background-image: url(../images/valve_angdownright_pneumaticop.png);}
+.valve.Type_3WayUp.PneumaticOp {background-image: url(../images/valve_3wayup_pneumaticop.png);}
+.valve.Type_3WayDown.PneumaticOp {background-image: url(../images/valve_3waydown_pneumaticop.png);}
+.valve.Type_3WayLeft.PneumaticOp {background-image: url(../images/valve_3wayleft_pneumaticop.png);}
+.valve.Type_3WayRight.PneumaticOp {background-image: url(../images/valve_3wayright_pneumaticop.png);}
+.pump.RotSingle.RotSingle_Up {background-image: url(../images/pump_rotsingle_up.png);}
+.pump.RotSingle.RotSingle_Down {background-image: url(../images/pump_rotsingle_down.png);}
+.pump.RotSingle.RotSingle_Left {background-image: url(../images/pump_rotsingle_left.png);}
+.pump.RotSingle.RotSingle_Right {background-image: url(../images/pump_rotsingle_right.png);}
+.pump.RotDouble.RotDouble_Up {background-image: url(../images/pump_rotdouble_up.png);}
+.pump.RotDouble.RotDouble_Down {background-image: url(../images/pump_rotdouble_down.png);}
+.pump.RotDouble.RotDouble_Left {background-image: url(../images/pump_rotdouble_left.png);}
+.pump.RotDouble.RotDouble_Right {background-image: url(../images/pump_rotdouble_right.png);}
+.pump.Turbomol.Turbomol_Down {background-image: url(../images/pump_turbomol_down.png);}
+.pump.Turbomol.Turbomol_Left {background-image: url(../images/pump_turbomol_left.png);}
+.pump.Turbomol.Turbomol_Right {background-image: url(../images/pump_turbomol_right.png);}
+.pump.Turbomol.Turbomol_Up {background-image: url(../images/pump_turbomol_up.png);}
+.pump.Roots.Roots_Down {background-image: url(../images/pump_roots_down.png);}
+.pump.Roots.Roots_Left {background-image: url(../images/pump_roots_left.png);}
+.pump.Roots.Roots_Right {background-image: url(../images/pump_roots_right.png);}
+.pump.Roots.Roots_Up {background-image: url(../images/pump_roots_up.png);}
+.pump.Diffusion.Diffusion_None {background-image: url(../images/pump_diffusion.png);}
+.pump.SputIon.SputIon_None {background-image: url(../images/pump_spution.png);}
+.pump.Sublimation.Sublimation_None {background-image: url(../images/pump_sublimation.png);}
+.vacuometer.Penning.Penning_Up {background-image: url(../images/vacuometer_penning_up.png);}
+.vacuometer.Penning.Penning_Down {background-image: url(../images/vacuometer_penning_down.png);}
+.vacuometer.Penning.Penning_Right {background-image: url(../images/vacuometer_penning_right.png);}
+.vacuometer.Penning.Penning_Left {background-image: url(../images/vacuometer_penning_left.png);}
+.vacuometer.Ionization.Ionization_Up {background-image: url(../images/vacuometer_ionization_up.png);}
+.vacuometer.Ionization.Ionization_Down {background-image: url(../images/vacuometer_ionization_down.png);}
+.vacuometer.Ionization.Ionization_Right {background-image: url(../images/vacuometer_ionization_right.png);}
+.vacuometer.Ionization.Ionization_Left {background-image: url(../images/vacuometer_ionization_left.png);}
+.vacuometer.Thermal.Thermal_None {background-image: url(../images/vacuometer_thermal_none.png);}
+.LeakDetector.icon {background-image: url(../images/leakdetector.png);}
+.Compressor .Compressor_Up {background-image: url(../images/compressor_up.png);}
+.Compressor .Compressor_Right {background-image: url(../images/compressor_right.png);}
+.Compressor .Compressor_Down {background-image: url(../images/compressor_down.png);}
+.Compressor .Compressor_Left {background-image: url(../images/compressor_left.png);}
 .uniheater.icon {background-image: url(../images/uniheater.png);}
-.radDaqLib.icon {background-image: url(../images/RadiationHazard.png);}
-.AirBlower .AirBlower_Up {background-image: url(../images/AirBlower_Up.png);}
-.AirBlower .AirBlower_Down {background-image: url(../images/AirBlower_Down.png);}
-.AirBlower .AirBlower_Left {background-image: url(../images/AirBlower_Left.png);}
-.AirBlower .AirBlower_Right {background-image: url(../images/AirBlower_Right.png);}
-.FanBlower .FanBlower_Up {background-image: url(../images/FanBlower_Up.png);}
-.FanBlower .FanBlower_Down {background-image: url(../images/FanBlower_Down.png);}
-.FanBlower .FanBlower_Left {background-image: url(../images/FanBlower_Left.png);}
-.FanBlower .FanBlower_Right {background-image: url(../images/FanBlower_Right.png);}
-.FlowMeter .FlowMeter_Up {background-image: url(../images/FlowMeter_Up.png);}
-.FlowMeter .FlowMeter_Down {background-image: url(../images/FlowMeter_Down.png);}
-.FlowMeter .FlowMeter_Left {background-image: url(../images/FlowMeter_Left.png);}
-.FlowMeter .FlowMeter_Right {background-image: url(../images/FlowMeter_Right.png);}
-.WaterPump .WaterPump_Up {background-image: url(../images/WaterPump_Up.png);}
-.WaterPump .WaterPump_Down {background-image: url(../images/WaterPump_Down.png);}
-.WaterPump .WaterPump_Left {background-image: url(../images/WaterPump_Left.png);}
-.WaterPump .WaterPump_Right {background-image: url(../images/WaterPump_Right.png);}
-.ManoMeter.icon {background-image: url(../images/ManoMeter.png);}
-.cmdOk {background-image: url(../images/cmdOk.png);background-size: contain;background-repeat: no-repeat;}
-.cmdCancel {background-image: url(../images/cmdCancel.png);background-size: contain;background-repeat: no-repeat;}
+.radDaqLib.icon {background-image: url(../images/radiationhazard.png);}
+.AirBlower .AirBlower_Up {background-image: url(../images/airblower_up.png);}
+.AirBlower .AirBlower_Down {background-image: url(../images/airblower_down.png);}
+.AirBlower .AirBlower_Left {background-image: url(../images/airblower_left.png);}
+.AirBlower .AirBlower_Right {background-image: url(../images/airblower_right.png);}
+.FanBlower .FanBlower_Up {background-image: url(../images/fanblower_up.png);}
+.FanBlower .FanBlower_Down {background-image: url(../images/fanblower_down.png);}
+.FanBlower .FanBlower_Left {background-image: url(../images/fanblower_left.png);}
+.FanBlower .FanBlower_Right {background-image: url(../images/fanblower_right.png);}
+.FlowMeter .FlowMeter_Up {background-image: url(../images/flowmeter_up.png);}
+.FlowMeter .FlowMeter_Down {background-image: url(../images/flowmeter_down.png);}
+.FlowMeter .FlowMeter_Left {background-image: url(../images/flowmeter_left.png);}
+.FlowMeter .FlowMeter_Right {background-image: url(../images/flowmeter_right.png);}
+.WaterPump .WaterPump_Up {background-image: url(../images/waterpump_up.png);}
+.WaterPump .WaterPump_Down {background-image: url(../images/waterpump_down.png);}
+.WaterPump .WaterPump_Left {background-image: url(../images/waterpump_left.png);}
+.WaterPump .WaterPump_Right {background-image: url(../images/waterpump_right.png);}
+.ManoMeter.icon {background-image: url(../images/manometer.png);}
+.cmd_tools.icon {background-image: url(../images/cmd_tools.png);}
+.cmdOk {background-image: url(../images/cmdok.png);background-size: contain;background-repeat: no-repeat;}
+.cmdCancel {background-image: url(../images/cmdcancel.png);background-size: contain;background-repeat: no-repeat;}
 .object .simplecross {
     position: absolute;
     position: absolute;

@@ -173,7 +173,7 @@ function ConvertModel(data){
             const tagParts = tagData.split(', ');
 
             // Определяем тип тега
-            const bitmapPath = tagParts[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "");
+            const bitmapPath = tagParts[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").replace("~~\\resource\\daqsite\\stdlib\\bitmaps\\", "");
             const bitmapParts = bitmapPath.split('_');
             const TagType = bitmapParts[0];
 
@@ -470,8 +470,8 @@ function ConvertModel(data){
 
                     // Проверяем каждый параметр по отдельности
                     const params = [
-                        { key: 'glCmdToolBarColor0', name: 'color0' },
-                        { key: 'glCmdToolBarColor1', name: 'color1' }
+                        { key: 'glCmd' + tool.type + 'Color0', name: 'color0' },
+                        { key: 'glCmd' + tool.type + 'Color1', name: 'color1' }
                     ];
 
                     params.forEach(param => {
