@@ -1322,6 +1322,12 @@ input#id_grid_divider {
     border-radius: 12px;
 }
 
+section#documents {
+    max-height: 700px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 .colored {
     color: #9400FF;
     font-style: inherit;
