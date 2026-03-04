@@ -8,10 +8,12 @@ ToolBarHeight = 0
 ConfigFile = ~~\Resource\DaqSite\Default\Painter.crc
 []
 
+
 [SensorList]
 Sensor = LINE.C585
 [LINE.C585]
 Pos = 5, 5
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_100_1_24_black.bmp 
 Hint = allElementsDemo
 []
@@ -21,18 +23,18 @@ Sensor = LABEL.C591
 [LABEL.C591]
 Pos = 110, 5
 LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
-Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_100_25_24_aqua.bmp Label
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_100_25_24_aqua.bmp "Label"
 Hint = allElementsDemo
 []
 
 [SensorList]
 Sensor = BUTTON.C597
 [BUTTON.C597]
-Pos = 5, 35
+Pos = 5, 40
 LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black
 Painter(v) = (glButtonBit=0)+(glButtonBevel=1)+(glButtonMoveX=1)+(glButtonMoveY=1)
 Painter(v) = [Painter(v).GuiLib.SimpleButton]
-Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_100_20_24_silver.bmp Button
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_100_20_24_silver.bmp "Button"
 Hint = Sensor Button.c597
 []
 
@@ -43,7 +45,7 @@ Pos = 110, 35
 LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:8\Color:Black
 Painter(v) = (glRadioValue=0)+(glRadioColor=clWhite) 
 Painter(v) = [Painter(v).GuiLib.RadioButton]
-Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_14_10_24_silver_PTMono.bmp RadioButton
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_14_10_24_silver_PTMono.bmp "RadioButton"
 Hint = Sensor Radio.c77
 []
 
@@ -54,7 +56,7 @@ Pos = 110, 50
 LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:8\Color:Black
 Painter(v) = (glCheckBoxBit=0)+(glCheckBoxColor=clWhite)
 Painter(v) = [Painter(v).GuiLib.CheckBox]
-Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_11_12_24_silver_PTMono.bmp CheckBox
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_11_12_24_silver_PTMono.bmp "CheckBox"
 Hint = Sensor Check.c83
 []
 
@@ -84,10 +86,12 @@ Hint = Sensor Border.c99
 Sensor = CMDOK.C109
 [CMDOK.C109]
 Pos = 10, 80
-LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:8\Color:Black
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
 Painter(v) = (glCmdOkLineWidth=1)+(glCmdOkLineColor=clGreen)+(glCmdOkFillColor=clLime)
 Painter(v) = [Painter(v).GuiLib.Cmd.Ok]
-Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_8_20_24_silver_PTMono.bmp %%A0%2B%2B%2BПрименить
+Painter(v) = (glBorderBevel=2)+(glBorderColor=clRed)
+Painter(v) = [Painter(v).GuiLib.SimpleBorder]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_8_20_24_silver_PTMono.bmp "    Применить"
 Hint = Sensor CmdOk.c109
 []
 
@@ -98,7 +102,7 @@ Pos = 145, 80
 LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
 Painter(v) = (glCmdCancelLineWidth=1)+(glCmdCancelLineColor=clGreen)+(glCmdCancelFillColor=clLime)
 Painter(v) = [Painter(v).GuiLib.Cmd.Cancel]
-Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_8_20_24_silver_PTMono.bmp %%A0%2B%2B%2BПрименить
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_8_20_24_silver_PTMono.bmp "    Применить"
 Hint = Sensor CmdCancel.c115
 []
 
@@ -133,7 +137,7 @@ Pos = 280, 85
 LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black
 Painter(v) = (glListBtnArrowLeft=0)+(glListBtnArrowLineColor=clBlack)+(glListBtnArrowLineWidth=2)+(glListBtnArrowBorderWidth=1)+(glListBtnArrowBorderColor=clGray)
 Painter(v) = [Painter(v).GuiLib.ListButton.Arrow]
-Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_15_16_24_white_PTMono.bmp List+1+
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_15_16_24_white_PTMono.bmp "List 1 "
 Hint = Sensor ListButton.Arrow.c133
 []
 
@@ -144,7 +148,7 @@ Pos = 475, 85
 LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black
 Painter(v) = (glListBtnTriangleLeft=0)+(glListBtnTriangleLineColor=clBlack)+(glListBtnTriangleFillColor=clGray)+(glListBtnTriangleBorderWidth=1)+(glListBtnTriangleBorderColor=clGray)
 Painter(v) = [Painter(v).GuiLib.ListButton.Triangle]
-Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_9_16_24_white_PTMono.bmp List+1+
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_9_16_24_white_PTMono.bmp "List 1 "
 Hint = Sensor ListButton.Triangle.c139
 []
 
@@ -532,7 +536,7 @@ Hint = Sensor Valve.c149
 Sensor = PUMP.C437
 [PUMP.C437]
 Pos = 5, 325
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.RotSingle.None]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -542,7 +546,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C442
 [PUMP.C442]
 Pos = 40, 325
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.RotDouble.None]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -552,7 +556,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C447
 [PUMP.C447]
 Pos = 75, 325
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Turbomol.None]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -562,7 +566,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C452
 [PUMP.C452]
 Pos = 110, 325
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Roots.None]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -572,7 +576,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C457
 [PUMP.C457]
 Pos = 145, 325
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Diffusion.None]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -582,7 +586,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C462
 [PUMP.C462]
 Pos = 180, 325
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.SputIon.None]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -592,7 +596,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C471
 [PUMP.C471]
 Pos = 215, 325
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Sublimation.None]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -602,7 +606,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C480
 [PUMP.C480]
 Pos = 5, 355
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.RotSingle.Up]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -612,7 +616,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C485
 [PUMP.C485]
 Pos = 5, 385
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.RotSingle.Down]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -622,7 +626,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C490
 [PUMP.C490]
 Pos = 5, 415
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.RotSingle.Left]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -632,7 +636,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C525
 [PUMP.C525]
 Pos = 5, 445
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.RotSingle.Right]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -642,7 +646,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C532
 [PUMP.C532]
 Pos = 40, 355
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.RotDouble.Up]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -652,7 +656,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C537
 [PUMP.C537]
 Pos = 40, 385
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.RotDouble.Down]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -662,7 +666,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C542
 [PUMP.C542]
 Pos = 40, 415
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.RotDouble.Left]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -672,7 +676,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C547
 [PUMP.C547]
 Pos = 40, 445
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.RotDouble.Right]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -682,7 +686,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C560
 [PUMP.C560]
 Pos = 75, 355
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Turbomol.Up]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -692,7 +696,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C565
 [PUMP.C565]
 Pos = 75, 385
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Turbomol.Down]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -702,7 +706,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C570
 [PUMP.C570]
 Pos = 75, 415
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Turbomol.Left]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -712,7 +716,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C575
 [PUMP.C575]
 Pos = 75, 445
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Turbomol.Right]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -722,7 +726,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C602
 [PUMP.C602]
 Pos = 110, 355
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Roots.Up]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -732,7 +736,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C607
 [PUMP.C607]
 Pos = 110, 385
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Roots.Down]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -742,7 +746,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C612
 [PUMP.C612]
 Pos = 110, 415
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Roots.Left]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -752,7 +756,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C617
 [PUMP.C617]
 Pos = 110, 445
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Roots.Right]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -762,7 +766,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C638
 [PUMP.C638]
 Pos = 145, 355
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Diffusion.Up]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -772,7 +776,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C643
 [PUMP.C643]
 Pos = 145, 385
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Diffusion.Down]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -782,7 +786,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C648
 [PUMP.C648]
 Pos = 145, 415
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Diffusion.Left]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -792,7 +796,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C653
 [PUMP.C653]
 Pos = 145, 445
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Diffusion.Right]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -802,7 +806,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C674
 [PUMP.C674]
 Pos = 180, 445
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.SputIon.Right]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -812,7 +816,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C685
 [PUMP.C685]
 Pos = 180, 355
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.SputIon.Up]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -822,7 +826,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C690
 [PUMP.C690]
 Pos = 180, 385
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.SputIon.Down]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -832,7 +836,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C695
 [PUMP.C695]
 Pos = 180, 415
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.SputIon.Left]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -842,7 +846,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C706
 [PUMP.C706]
 Pos = 215, 355
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Sublimation.Up]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -852,7 +856,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C711
 [PUMP.C711]
 Pos = 215, 385
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Sublimation.Up]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -862,7 +866,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C716
 [PUMP.C716]
 Pos = 215, 415
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Sublimation.Left]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -872,7 +876,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C721
 [PUMP.C721]
 Pos = 215, 445
-Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)+(glButtonBit=0)
+Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Sublimation.Right]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Pump.c437
@@ -1599,6 +1603,46 @@ Painter(v) = (glValveOpenBit=1)+(glValveCloseBit=2)
 Painter(v) = [Painter(v).GostLib.Valve.RotGateVer.LimSwNone.PneumaticOp]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Valve.c149
+[]
+
+[SensorList]
+Sensor = CMD_TOOLS.C564
+[CMD_TOOLS.C564]
+Pos = 400, 590
+Painter(v) = (glCmdToolsColor0=clGray)+(id_glCmdToolsColor1=clGreen)
+Painter(v) = [Painter(v).GuiLib.Cmd.Tools]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\bar_32_32_24_silver_PTMono.bmp 
+Hint = Sensor Cmd_Tools.c564
+[]
+
+[SensorList]
+Sensor = CMD_LOADINI.C564
+[CMD_LOADINI.C564]
+Pos = 320, 590
+Painter(v) = (glCmdLoadIniColor0=clGray)+(glCmdLoadIniColor1=clGreen)
+Painter(v) = [Painter(v).GuiLib.Cmd.LoadIni]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\bar_32_32_24_silver_PTMono.bmp 
+Hint = Sensor Cmd_Loadini.c564
+[]
+
+[SensorList]
+Sensor = CMD_HOME.C572
+[CMD_HOME.C572]
+Pos = 280, 590
+Painter(v) = (glCmdHomeColor0=clGray)+(id_glCmdHomeColor1=clGreen)
+Painter(v) = [Painter(v).GuiLib.Cmd.Home]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\bar_32_32_24_silver_PTMono.bmp 
+Hint = Sensor Cmd_Home.c572
+[]
+
+[SensorList]
+Sensor = CMD_SETTING.C568
+[CMD_SETTING.C568]
+Pos = 360, 590
+Painter(v) = (glCmdSettingColor0=clGray)+(glCmdSettingColor1=clGreen)
+Painter(v) = [Painter(v).GuiLib.Cmd.Setting]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\bar_32_32_24_silver_PTMono.bmp 
+Hint = Sensor Cmd_Setting.c568
 []
 
     

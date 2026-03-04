@@ -604,7 +604,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "cmd_home_attributes",
                 "default": [
-                    { glCmdHomeColor0: "Gray", glCmdHomeColor1: "Green", glCmdHomeAlignment: 1 , glCmdHomeLineWidth: 2 }
+                    { glCmdHomeColor0: "Gray", glCmdHomeColor1: "Green" }
                 ]
             },
             {
@@ -693,7 +693,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "cmd_loadini_attributes",
                 "default": [
-                    { glCmdLoadIniColor0: "Gray", glCmdLoadIniColor1: "Green", glCmdLoadIniAlignment: 1 , glCmdLoadIniLineWidth: 2 }
+                    { glCmdLoadIniColor0: "Gray", glCmdLoadIniColor1: "Green" }
                 ]
             },
             {
@@ -782,7 +782,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "cmd_setting_attributes",
                 "default": [
-                    { glCmdSettingColor0: "Gray", glCmdSettingColor1: "Green", glCmdSettingAlignment: 1 , glCmdSettingLineWidth: 2 }
+                    { glCmdSettingColor0: "Gray", glCmdSettingColor1: "Green" }
                 ]
             },
             {
@@ -871,7 +871,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "cmd_tools_attributes",
                 "default": [
-                    { glCmdToolsColor0: "Gray", glCmdToolsColor1: "Green", glCmdToolsAlignment: 1 , glCmdSToolsLineWidth: 2 }
+                    { glCmdToolsColor0: "Gray", glCmdToolsColor1: "Green" }
                 ]
             },
             {

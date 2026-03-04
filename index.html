@@ -131,13 +131,20 @@
             <a class="about"><span class="ui-icon ui-icon-help"></span></a>
             <section id="about">
                 <h3>О программе</h3>
-                <p>Copyright (c) 2020-2025 Alexey Zhirunov rvricov@gmail.com.</p>
+                <p>Copyright (c) 2020-2026 Alexey Zhirunov rvricov@gmail.com.</p>
                 <p>Основано на ПО "Mockup-designer" Copyright (c) 2015 Fatih Erikli
                     <http: //fatiherikli.github.com/mockup-designer />, лицензия <a href="license">MIT</a>.
                 </p>
                 <p>Built with Backbone, Backbone-LocalStorage, Backbone-Nested, Underscore and Handlebars.</p>
                 <p></p>
                 <textarea name="textarea" rows="30" id="id_changelog" disabled>
+04.03.2026
++ Добавлены новые элементы Cmd.Home, Cmd.LoadIni, Cmd.Tools, Cmd.Setting
++ Добавлена возможность изменения числовых полей с помощью колесика мыши (например позиция сенсора)
++ Исправление мелких неточностей
++ Обновлен файл allElementsDemo.crc
++ Палитра элементов упакована более компактно
+
 16.12.2025
 + Почему-то при импорте ругалось на секцию Configfilelist (не понимаю), теперь ругаться не будет;
 + Добавлена проверка на существование у tags[tag].label
@@ -488,7 +495,7 @@
     </form>
     </script>
     <script type="text/html" id="universal-template">
-        <div class="sensor {{name}}{{#led}} led{{/led}}{{#button}} SimpleButton{{/button}}{{#radio}} checked RadioButton{{/radio}}{{#checkbox}} checked CheckBox{{/checkbox}}{{#progressbar}} ProgressBar{{/progressbar}} {{#if progressbar_attributes.0.glProgBarHor}}Hor{{progressbar_attributes.0.glProgBarHor}}{{/if}}{{#border}} border{{/border}}{{#simplecross}} simplecross{{/simplecross}}{{#listbutton_triangle}} dropTriangle{{/listbutton_triangle}}{{#listbutton_arrow}} dropArrow{{/listbutton_arrow}}{{#bar}} simplebar{{/bar}}{{#indicatorcircle}} IndicatorCircle{{/indicatorcircle}}{{#cmdOk}} cmdOk{{/cmdOk}}{{#cmdCancel}} cmdCancel{{/cmdCancel}}{{#cmd_tools}} cmd_Tools{{/cmd_tools}}{{#compressor}} Compressor{{/compressor}}{{#radiationhazard}} RadiationHazard{{/radiationhazard}}{{#airblower}} AirBlower{{/airblower}}{{#fanblower}} FanBlower{{/fanblower}}{{#waterpump}} WaterPump{{/waterpump}}{{#tanklevel}} TankLevel{{/tanklevel}}{{#flowmeter}} FlowMeter{{/flowmeter}}{{#manometer}} ManoMeter{{/manometer}}{{#uniheater}} UniHeater{{/uniheater}}{{#ifEquals 'custom' tags.0.type}} custom{{/ifEquals}}" style="position: initial;background-color:{{colorRGB tags.0.color}};{{#bar}} background-color:{{bar_attributes.0.glBarColor}};{{/bar}}{{#radiationhazard}}background-color:{{colorRGB radiationhazard_attributes.0.glRadiationHazardBackColor}};{{/radiationhazard}}{{#led}}font-family:{{led_attributes.0.led_font}};{{font-style led_attributes.0.led_style}} color:{{colorRGB led_attributes.0.led_color}};font-size:{{zoom led_attributes.0.led_size}}pt;{{/led}}{{#button}}border-width:{{zoom button_attributes.0.glButtonBevel}}pt;{{/button}}{{#border}}border-width:{{zoom border_attributes.0.glBorderBevel}}pt;border-color:{{colorRGB border_attributes.0.glBorderColor}};{{/border}}{{#progressbar}}padding:{{progressbar_attributes.0.glProgBarBevel}}pt;{{/progressbar}}{{#indicatorcircle}}padding:{{indicatorcircle_attributes.0.glCircleBevel}}pt;{{/indicatorcircle}}">
+        <div class="sensor {{name}}{{#led}} led{{/led}}{{#button}} SimpleButton{{/button}}{{#radio}} checked RadioButton{{/radio}}{{#checkbox}} checked CheckBox{{/checkbox}}{{#progressbar}} ProgressBar{{/progressbar}} {{#if progressbar_attributes.0.glProgBarHor}}Hor{{progressbar_attributes.0.glProgBarHor}}{{/if}}{{#border}} border{{/border}}{{#simplecross}} simplecross{{/simplecross}}{{#listbutton_triangle}} dropTriangle{{/listbutton_triangle}}{{#listbutton_arrow}} dropArrow{{/listbutton_arrow}}{{#bar}} simplebar{{/bar}}{{#indicatorcircle}} IndicatorCircle{{/indicatorcircle}}{{#cmdOk}} cmdOk{{/cmdOk}}{{#cmdCancel}} cmdCancel{{/cmdCancel}}{{#cmd_home}} cmd_Home{{/cmd_home}}{{#cmd_loadini}} cmd_LoadIni{{/cmd_loadini}}{{#cmd_setting}} cmd_Setting{{/cmd_setting}}{{#cmd_tools}} cmd_Tools{{/cmd_tools}}{{#radiationhazard}} RadiationHazard{{/radiationhazard}}{{#airblower}} AirBlower{{/airblower}}{{#fanblower}} FanBlower{{/fanblower}}{{#waterpump}} WaterPump{{/waterpump}}{{#tanklevel}} TankLevel{{/tanklevel}}{{#flowmeter}} FlowMeter{{/flowmeter}}{{#manometer}} ManoMeter{{/manometer}}{{#uniheater}} UniHeater{{/uniheater}}{{#ifEquals 'custom' tags.0.type}} custom{{/ifEquals}}" style="position: initial;background-color:{{colorRGB tags.0.color}};{{#bar}} background-color:{{bar_attributes.0.glBarColor}};{{/bar}}{{#radiationhazard}}background-color:{{colorRGB radiationhazard_attributes.0.glRadiationHazardBackColor}};{{/radiationhazard}}{{#led}}font-family:{{led_attributes.0.led_font}};{{font-style led_attributes.0.led_style}} color:{{colorRGB led_attributes.0.led_color}};font-size:{{zoom led_attributes.0.led_size}}pt;{{/led}}{{#button}}border-width:{{zoom button_attributes.0.glButtonBevel}}pt;{{/button}}{{#border}}border-width:{{zoom border_attributes.0.glBorderBevel}}pt;border-color:{{colorRGB border_attributes.0.glBorderColor}};{{/border}}{{#progressbar}}padding:{{progressbar_attributes.0.glProgBarBevel}}pt;{{/progressbar}}{{#indicatorcircle}}padding:{{indicatorcircle_attributes.0.glCircleBevel}}pt;{{/indicatorcircle}}">
             {{#radio}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="radio" style="background-color:{{colorRGB radio_attributes.0.glRadioColor}};"></div></div>{{/radio}}
             {{#checkbox}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="checkbox" style="background-color:{{colorRGB checkbox_attributes.0.glCheckBoxColor}};"></div></div>{{/checkbox}}
             {{#simplecross}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="simplecross"></div></div>{{/simplecross}}
@@ -498,8 +505,11 @@
             {{#valve}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="valve Type_{{valve_attributes.0.ValveType}} {{valve_attributes.0.ValveDrive}}"></div></div>{{/valve}}
             {{#pump}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="pump {{pump_attributes.0.PumpType}} {{pump_attributes.0.PumpType}}_{{pump_attributes.0.Orientation}}"></div></div>{{/pump}}
             {{#vacuometer}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="vacuometer {{vacuometer_attributes.0.VacuometerType}} {{vacuometer_attributes.0.VacuometerType }}_{{vacuometer_attributes.0.Orientation}}"></div></div>{{/vacuometer}}
+            {{#cmd_home}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="cmd_home icon"></div></div>{{/cmd_home}}
+            {{#cmd_loadini}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="cmd_loadini icon"></div></div>{{/cmd_loadini}}
+            {{#cmd_setting}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="cmd_setting icon"></div></div>{{/cmd_setting}}
             {{#cmd_tools}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="cmd_tools icon"></div></div>{{/cmd_tools}}
-            {{#compressor}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="compressor compressor_{{compressor_attributes.0.Orientation}}"></div></div>{{/compressor}}
+            {{#compressor}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="compressor compressor_{{compressor_attributes.0.Orientation}} icon"></div></div>{{/compressor}}
             {{#leakdetector}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="LeakDetector icon"></div></div>{{/leakdetector}}
 			{{#radiationhazard}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="radDaqLib icon"></div></div>{{/radiationhazard}}
 			{{#airblower}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="circleDaqLib AirBlower_{{airblower_attributes.0.Orientation}}" style="border-width: {{airblower_attributes.0.glAirBlowerLineWidth}}px;border-color: {{colorRGB airblower_attributes.0.glAirBlowerLineColor}};background-color: {{colorRGB airblower_attributes.0.glAirBlowerFillColor}};"></div></div>{{/airblower}}
@@ -559,9 +569,25 @@ Painter(v) <i class="colored2">=</i> (glProgBarMin={{progressbar_attributes.0.gl
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.ProgressBar]
 {{/progressbar}}
 {{#bar}}
-Painter(v) <i class="colored2">=</i> (glBarColor={{bar_attributes.0.glBarColor}})
+Painter(v) <i class="colored2">=</i> (glBarColor=cl{{bar_attributes.0.glBarColor}})
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.SimpleBar]
 {{/bar}}
+{{#cmd_home}}
+Painter(v) <i class="colored2">=</i> (glCmdHomeColor0=cl{{cmd_home_attributes.0.glCmdHomeColor0}})+(id_glCmdHomeColor1=cl{{cmd_home_attributes.0.glCmdHomeColor1}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Home]
+{{/cmd_home}}
+{{#cmd_loadini}}
+Painter(v) <i class="colored2">=</i> (glCmdLoadIniColor0=cl{{cmd_loadini_attributes.0.glCmdLoadIniColor0}})+(glCmdLoadIniColor1=cl{{cmd_loadini_attributes.0.glCmdLoadIniColor1}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.LoadIni]
+{{/cmd_loadini}}
+{{#cmd_setting}}
+Painter(v) <i class="colored2">=</i> (glCmdSettingColor0=cl{{cmd_setting_attributes.0.glCmdSettingColor0}})+(glCmdSettingColor1=cl{{cmd_setting_attributes.0.glCmdSettingColor1}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Setting]
+{{/cmd_setting}}
+{{#cmd_tools}}
+Painter(v) <i class="colored2">=</i> (glCmdToolsColor0=cl{{cmd_tools_attributes.0.glCmdToolsColor0}})+(id_glCmdToolsColor1=cl{{cmd_tools_attributes.0.glCmdToolsColor1}})
+Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Tools]
+{{/cmd_tools}}
 {{#cmdOk}}
 Painter(v) <i class="colored2">=</i> (glCmdOkLineWidth={{cmdOk_attributes.0.glCmdOkLineWidth}})+(glCmdOkLineColor=cl{{cmdOk_attributes.0.glCmdOkLineColor}})+(glCmdOkFillColor=cl{{cmdOk_attributes.0.glCmdOkFillColor}})
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Ok]

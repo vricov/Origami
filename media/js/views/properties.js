@@ -16,6 +16,21 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
       "attributes": this.get_attributes()
     }));
 
+    // Изменение значения колесиком мыши. Размещено тут, так как окно свойств сенсора генерируется каждый раз заного
+    $('input[type="number"]').on('wheel', function(e) {
+      e.preventDefault();
+      let $input = $(this);
+      let value = parseInt($input.val());
+      if (e.originalEvent.deltaY < 0) {
+          value++; // Прокрутка вверх
+      } else {
+          value--; // Прокрутка вниз
+      }
+      // Ограничиваем значение (не меньше 0)
+      if (value < 0) value = 0;
+      $input.val(value).trigger('change');
+    });
+
     // Общие
     $('#id_name_label').html('Наименование:');
     $('#id_top_label').html('Y:');
@@ -52,8 +67,8 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_button_attributes_label').replaceWith('<label for="id_button_attributes_label"><h3>Кнопка</h3></label>');
     $('#id_button_attributes_glButtonBit_label').html('Бит состояния:');
     $('#id_button_attributes_glButtonBevel_label').html('Фаска:');
-    $('#id_button_attributes_glButtonMoveX_label').html('Гор. смещение:');
-    $('#id_button_attributes_glButtonMoveY_label').html('Вер. смещ.:');
+    $('#id_button_attributes_glButtonMoveX_label').html('Горизонтальное смещение:');
+    $('#id_button_attributes_glButtonMoveY_label').html('Вертикальное смещ.:');
     // подсказка
     $("#id_glButtonBit").attr('title', 'Номер бита состояния');
     $("#id_glButtonBevel").attr('title', 'Толщина фаски');
@@ -62,7 +77,7 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
 
     //## Радиокнопка
     $('#id_radio_attributes_label').replaceWith('<label for="id_radio_attributes_label"><h3>Радиокнопка</h3></label>');
-    $('#id_radio_attributes_glRadioValue_label').html('Знач. отмеч.:');
+    $('#id_radio_attributes_glRadioValue_label').html('Значение отмеченной:');
     $('#id_radio_attributes_glRadioColor_label').html('Цвет фона:');
     // подсказка
     $("#id_glRadioValue").attr('title', 'Значение радиокнопки, при котором она выглядит отмеченной');
@@ -81,10 +96,10 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
 
     //## Индикатор выполнения
     $('#id_progressbar_attributes_label').replaceWith('<label for="id_progressbar_attributes_label"><h3>Прогрессбар</h3></label>');
-    $('#id_progressbar_attributes_glProgBarMin_label').html('Мин. значение:');
-    $('#id_progressbar_attributes_glProgBarMax_label').html('Макс. знач.:');
+    $('#id_progressbar_attributes_glProgBarMin_label').html('Минимальное значение:');
+    $('#id_progressbar_attributes_glProgBarMax_label').html('Максимальное значение:');
     $('#id_progressbar_attributes_glProgBarHor_label').html('Ориентация:');
-    $('#id_progressbar_attributes_glProgBarColor_label').html('Цвет инд.:');
+    $('#id_progressbar_attributes_glProgBarColor_label').html('Цвет индикатора:');
     $('#id_progressbar_attributes_glProgBarBevel_label').html('Отступ:');
     $('#id_glProgBarHor').replaceWith('<select id="id_glProgBarHor" name="glProgBarHor" data-attribute="progressbar_attributes">' +
       '<option value = "1">Горизонтальная</option>' +
@@ -101,22 +116,42 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_bar_attributes_label').replaceWith('<label for="id_bar_attributes_label"><h3>SimpleBar</h3></label>');
     $('#id_bar_attributes_glBarColor_label').html('Цвет фона:');
 
+    //## Иконка "Домик"
+    $('#id_cmd_home_attributes_label').replaceWith('<label for="id_cmd_tools_attributes_label"><h3>Иконка "Домик"</h3></label>');
+    $('#id_cmd_home_attributes_glCmdHomeColor0_label').html('Цвет по умолчанию:');
+    $('#id_cmd_home_attributes_glCmdHomeColor1_label').html('Цвет при нажатии:');
+
+    //## Иконка "Загрузить Ini"
+    $('#id_cmd_loadini_attributes_label').replaceWith('<label for="id_cmd_tools_attributes_label"><h3>Иконка "Загрузить Ini"</h3></label>');
+    $('#id_cmd_loadini_attributes_glCmdLoadIniColor0_label').html('Цвет по умолчанию:');
+    $('#id_cmd_loadini_attributes_glCmdLoadIniColor1_label').html('Цвет при нажатии:');
+
+    //## Иконка "Настройка"
+    $('#id_cmd_setting_attributes_label').replaceWith('<label for="id_cmd_tools_attributes_label"><h3>Иконка "Настройка"</h3></label>');
+    $('#id_cmd_setting_attributes_glCmdSettingColor0_label').html('Цвет по умолчанию:');
+    $('#id_cmd_setting_attributes_glCmdSettingColor1_label').html('Цвет при нажатии:');
+
+    //## Иконка "Инструменты"
+    $('#id_cmd_tools_attributes_label').replaceWith('<label for="id_cmd_tools_attributes_label"><h3>Иконка "Инструменты"</h3></label>');
+    $('#id_cmd_tools_attributes_glCmdToolsColor0_label').html('Цвет по умолчанию:');
+    $('#id_cmd_tools_attributes_glCmdToolsColor1_label').html('Цвет при нажатии:');
+
     //## Кнопка подтверждения
     $('#id_cmdOk_attributes_label').replaceWith('<label for="id_cmdOk_attributes_label"><h3>CMD "OK"</h3></label>');
-    $('#id_cmdOk_attributes_glCmdOkLineWidth_label').html('Толщ. контура:');
+    $('#id_cmdOk_attributes_glCmdOkLineWidth_label').html('Толщина контура:');
     $('#id_cmdOk_attributes_glCmdOkLineColor_label').html('Цвет контура:');
     $('#id_cmdOk_attributes_glCmdOkFillColor_label').html('Цвет заливки:');
 
     //## Кнопка отмены
     $('#id_cmdCancel_attributes_label').replaceWith('<label for="id_cmdCancel_attributes_label"><h3>CMD "Отмена"</h3></label>');
-    $('#id_cmdCancel_attributes_glCmdCancelLineWidth_label').html('Толщ. контура:');
+    $('#id_cmdCancel_attributes_glCmdCancelLineWidth_label').html('Толщина контура:');
     $('#id_cmdCancel_attributes_glCmdCancelLineColor_label').html('Цвет контура:');
     $('#id_cmdCancel_attributes_glCmdCancelFillColor_label').html('Цвет заливки:');
 
     //## Цветной круглый индикатор
     $('#id_indicatorcircle_attributes_label').replaceWith('<label for="id_indicatorcircle_attributes_label"><h3>Индикатор</h3></label>');
     $('#id_indicatorcircle_attributes_glCircleBevel_label').html('Отступ:');
-    $('#id_indicatorcircle_attributes_glCircleWidth_label').html('Толщ. контура:');
+    $('#id_indicatorcircle_attributes_glCircleWidth_label').html('Толщина контура:');
     $('#id_indicatorcircle_attributes_glCircleFaceColor_label').html('Цвет контура:');
     $('#id_indicatorcircle_attributes_glCircleBackColor_label').html('Цвет заливки:');
     // подсказка
@@ -149,8 +184,8 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_listbutton_triangle_attributes_label').replaceWith('<label for="id_listbutton_triangle_attributes_label"><h3>Выпадающий список</h3></label>');
     $('#id_listbutton_triangle_attributes_glListBtnTriangleLeft_label').html('Положение:');
     $('#id_listbutton_triangle_attributes_glListBtnTriangleLineColor_label').html('Цвет треуг:');
-    $('#id_listbutton_triangle_attributes_glListBtnTriangleFillColor_label').html('Цвет зал. треуг:');
-    $('#id_listbutton_triangle_attributes_glListBtnTriangleBorderWidth_label').html('Толщ. границы:');
+    $('#id_listbutton_triangle_attributes_glListBtnTriangleFillColor_label').html('Цвет заливки треугольника:');
+    $('#id_listbutton_triangle_attributes_glListBtnTriangleBorderWidth_label').html('Толщина границы:');
     $('#id_listbutton_triangle_attributes_glListBtnTriangleBorderColor_label').html('Цвет границы:');
     $('#id_glListBtnTriangleLeft').replaceWith('<select id="id_glListBtnTriangleLeft" name="glListBtnTriangleLeft" data-attribute="listbutton_triangle_attributes">' +
       '<option value = "1">Слева</option>' +
@@ -250,14 +285,14 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     //## Течеискатели
     $('#id_leakdetector_attributes_label').replaceWith('<label for="id_leakdetector_attributes_label"><h3>Течеискатель</h3></label>');
     $('#id_leakdetector_attributes_glLeakDetBevel_label').html('Отступ:');
-    $('#id_leakdetector_attributes_glLeakDetFillColor_label').html('Цвет изобр.:');
+    $('#id_leakdetector_attributes_glLeakDetFillColor_label').html('Цвет изображения:');
     $('#id_leakdetector_attributes_glLeakDetLineColor_label').html('Цвет контура:');
 
     //## Компрессор
     $('#id_compressor_attributes_label').replaceWith('<label for="id_compressor_attributes_label"><h3>Компрессор</h3></label>');
     $('#id_compressor_attributes_Orientation_label').html('Направление:');
     $('#id_compressor_attributes_glCompressorBevel_label').html('Отступ:');
-    $('#id_compressor_attributes_glCompressorFillColor_label').html('Цвет изобр.:');
+    $('#id_compressor_attributes_glCompressorFillColor_label').html('Цвет изображения:');
     $('#id_compressor_attributes_glCompressorLineColor_label').html('Цвет контура:');
     $('#id_Orientation[data-attribute^=\"compressor_attributes"]').replaceWith('<select id="id_Orientation" name="Orientation" data-attribute="compressor_attributes">' +
       '<option value = "Up">Вверх</option>' +
@@ -272,7 +307,7 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_radiationhazard_attributes_label').replaceWith('<label for="id_radiationhazard_attributes_label"><h3>Рад. опасность</h3></label>');
     $('#id_radiationhazard_attributes_glRadiationHazardBevel_label').html('Отступ:');
     $('#id_radiationhazard_attributes_glRadiationHazardBackColor_label').html('Цвет фона:');
-    $('#id_radiationhazard_attributes_glRadiationHazardFillColor_label').html('Цвет изобр.:');
+    $('#id_radiationhazard_attributes_glRadiationHazardFillColor_label').html('Цвет изображения:');
 
     //## Воздуходувка
     $('#id_airblower_attributes_label').replaceWith('<label for="id_airblower_attributes_label"><h3>Воздуходувка</h3></label>');
@@ -323,7 +358,7 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_tanklevel_attributes_label').replaceWith('<label for="id_tanklevel_attributes_label"><h3>Уровень жидкости</h3></label>');
     $('#id_tanklevel_attributes_glTankLevelBevel_label').html('Отступ:');
     $('#id_tanklevel_attributes_glTankLevelLineWidth_label').html('Контур:');
-    $('#id_tanklevel_attributes_glTankLevelFillColor_label').html('Цвет изобр.:');
+    $('#id_tanklevel_attributes_glTankLevelFillColor_label').html('Цвет изображения:');
     $('#id_tanklevel_attributes_glTankLevelBackColor_label').html('Цвет фона:');
     $('#id_tanklevel_attributes_glTankLevelLineColor_label').html('Цвет контура:');
     $('#id_tanklevel_attributes_glTankLevelPercent_label').html('% заполнения:');
@@ -347,14 +382,14 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_manometer_attributes_label').replaceWith('<label for="id_manometer_attributes_label"><h3>Манометр</h3></label>');
     $('#id_manometer_attributes_glManoMeterBevel_label').html('Отступ:');
     $('#id_manometer_attributes_glManoMeterLineWidth_label').html('Контур:');
-    $('#id_manometer_attributes_glManoMeterFillColor_label').html('Цвет изобр.:');
+    $('#id_manometer_attributes_glManoMeterFillColor_label').html('Цвет изображения:');
     $('#id_manometer_attributes_glManoMeterLineColor_label').html('Цвет контура:');
     $('#id_manometer_attributes_glManoMeterAngle_label').html('Угол стрелки:');
 
     //## Универсальный нагреватель
     $('#id_uniheater_attributes_label').replaceWith('<label for="id_uniheater_attributes_label"><h3>UniHeater</h3></label>');
     $('#id_uniheater_attributes_glUniHeaterBevel_label').html('Отступ:');
-    $('#id_uniheater_attributes_glUniHeaterColor_label').html('Цвет нагреват.:');
+    $('#id_uniheater_attributes_glUniHeaterColor_label').html('Цвет нагревателя:');
 
     this.$el.find("a.delete").click(function () {
       this.destroy();
