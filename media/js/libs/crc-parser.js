@@ -156,7 +156,7 @@ function ConvertModel(data){
 
                 // Стиль
                 const styleMatch = fifthPart.match(/Style:\[([^\]]+)\]/);
-                attributes.led_style = styleMatch ? styleMatch[1] : 'Bold';
+                attributes.led_style = styleMatch ? styleMatch[1] : '';
             } else {
                 // Дефолтные значения
                 attributes.led_font = 0;
@@ -475,7 +475,7 @@ function ConvertModel(data){
                     ];
 
                     params.forEach(param => {
-                        const match = new RegExp(`${param.key}=(\\w+)`).exec(painterValue);
+                        const match = new RegExp(`${param.key}=cl(\\w+)`).exec(painterValue);
                         if (match) {
                             attributes[param.key] = match[1];
                         }

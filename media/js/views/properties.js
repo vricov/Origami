@@ -123,8 +123,8 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
 
     //## Иконка "Загрузить Ini"
     $('#id_cmd_loadini_attributes_label').replaceWith('<label for="id_cmd_tools_attributes_label"><h3>Иконка "Загрузить Ini"</h3></label>');
-    $('#id_cmd_loadini_attributes_glCmdLoadIniColor0_label').html('Цвет по умолчанию:');
-    $('#id_cmd_loadini_attributes_glCmdLoadIniColor1_label').html('Цвет при нажатии:');
+    $('#id_cmd_loadini_attributes_glCmdLoadiniColor0_label').html('Цвет по умолчанию:');
+    $('#id_cmd_loadini_attributes_glCmdLoadiniColor1_label').html('Цвет при нажатии:');
 
     //## Иконка "Настройка"
     $('#id_cmd_setting_attributes_label').replaceWith('<label for="id_cmd_tools_attributes_label"><h3>Иконка "Настройка"</h3></label>');

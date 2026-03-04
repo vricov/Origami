@@ -13,7 +13,7 @@ ConfigFile = ~~\Resource\DaqSite\Default\Painter.crc
 Sensor = LINE.C585
 [LINE.C585]
 Pos = 5, 5
-LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[]\Size:10\Color:Black
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_100_1_24_black.bmp 
 Hint = allElementsDemo
 []
@@ -86,7 +86,7 @@ Hint = Sensor Border.c99
 Sensor = CMDOK.C109
 [CMDOK.C109]
 Pos = 10, 80
-LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[]\Size:10\Color:Black
 Painter(v) = (glCmdOkLineWidth=1)+(glCmdOkLineColor=clGreen)+(glCmdOkFillColor=clLime)
 Painter(v) = [Painter(v).GuiLib.Cmd.Ok]
 Painter(v) = (glBorderBevel=2)+(glBorderColor=clRed)
@@ -1611,7 +1611,7 @@ Sensor = CMD_TOOLS.C564
 Pos = 400, 590
 Painter(v) = (glCmdToolsColor0=clGray)+(id_glCmdToolsColor1=clGreen)
 Painter(v) = [Painter(v).GuiLib.Cmd.Tools]
-Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\bar_32_32_24_silver_PTMono.bmp 
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Cmd_Tools.c564
 []
 
@@ -1620,8 +1620,8 @@ Sensor = CMD_LOADINI.C564
 [CMD_LOADINI.C564]
 Pos = 320, 590
 Painter(v) = (glCmdLoadIniColor0=clGray)+(glCmdLoadIniColor1=clGreen)
-Painter(v) = [Painter(v).GuiLib.Cmd.LoadIni]
-Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\bar_32_32_24_silver_PTMono.bmp 
+Painter(v) = [Painter(v).GuiLib.Cmd.Loadini]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Cmd_Loadini.c564
 []
 
@@ -1631,7 +1631,7 @@ Sensor = CMD_HOME.C572
 Pos = 280, 590
 Painter(v) = (glCmdHomeColor0=clGray)+(id_glCmdHomeColor1=clGreen)
 Painter(v) = [Painter(v).GuiLib.Cmd.Home]
-Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\bar_32_32_24_silver_PTMono.bmp 
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Cmd_Home.c572
 []
 
@@ -1641,7 +1641,7 @@ Sensor = CMD_SETTING.C568
 Pos = 360, 590
 Painter(v) = (glCmdSettingColor0=clGray)+(glCmdSettingColor1=clGreen)
 Painter(v) = [Painter(v).GuiLib.Cmd.Setting]
-Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\bar_32_32_24_silver_PTMono.bmp 
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Cmd_Setting.c568
 []
 
