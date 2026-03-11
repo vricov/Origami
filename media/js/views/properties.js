@@ -68,7 +68,7 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_button_attributes_glButtonBit_label').html('Бит состояния:');
     $('#id_button_attributes_glButtonBevel_label').html('Фаска:');
     $('#id_button_attributes_glButtonMoveX_label').html('Горизонтальное смещение:');
-    $('#id_button_attributes_glButtonMoveY_label').html('Вертикальное смещ.:');
+    $('#id_button_attributes_glButtonMoveY_label').html('Вертикальное смещение:');
     // подсказка
     $("#id_glButtonBit").attr('title', 'Номер бита состояния');
     $("#id_glButtonBevel").attr('title', 'Толщина фаски');
@@ -241,6 +241,7 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_pump_attributes_Orientation_label').html('Направление:');
     $('#id_pump_attributes_glPumpSpeedBit_label').html('Бит "Скорость":');
     $('#id_pump_attributes_glPumpErrorBit_label').html('Бит "Ошибка":');
+    $('#id_pump_attributes_glPumpEdgeBevel_label').html('Отступ рамки от края:');
     $('#id_PumpType').replaceWith('<select id="id_PumpType" name="PumpType" data-attribute="pump_attributes">' +
       '<option value = "RotSingle">Вращательный объемный одноступенчатый</option>' +
       '<option value = "RotDouble">Вращательный объемный двухступенчатый</option>' +
@@ -325,7 +326,7 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_Orientation[data-attribute^=\"airblower_attributes"]').val(this.model.get("airblower_attributes[0].Orientation"));
 
     //## Вытяжной вентилятор
-    $('#id_fanblower_attributes_label').replaceWith('<label for="id_fanblower_attributes_label"><h3>Выт. вентилятор</h3></label>');
+    $('#id_fanblower_attributes_label').replaceWith('<label for="id_fanblower_attributes_label"><h3>Вытяжной вентилятор</h3></label>');
     $('#id_fanblower_attributes_Orientation_label').html('Направление:');
     $('#id_fanblower_attributes_glFanBlowerBevel_label').html('Отступ:');
     $('#id_fanblower_attributes_glFanBlowerLineWidth_label').html('Контур:');

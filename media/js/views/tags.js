@@ -47,6 +47,21 @@ usemockups.views.TagsDialog = Backbone.View.extend({
             return false;
         }.bind(this));
 
+        // Изменение значения колесиком мыши. Размещено тут, так как окно свойств сенсора генерируется каждый раз заного
+        this.$el.find('input[type="number"]').on('wheel', function(e) {
+          e.preventDefault();
+          let $input = $(this);
+          let value = parseInt($input.val());
+          if (e.originalEvent.deltaY < 0) {
+              value++; // Прокрутка вверх
+          } else {
+              value--; // Прокрутка вниз
+          }
+          // Ограничиваем значение (не меньше 0)
+          if (value < 0) value = 0;
+          $input.val(value).trigger('change');
+        });
+
         return this;
     },
     set_measuredSizes: function (measuredSizes) {
@@ -56,6 +71,7 @@ usemockups.views.TagsDialog = Backbone.View.extend({
     update_for_attribute: function (field) {
         this.$el.find("#" + field.data("attribute").replace(".", "_").replace(".", "_")).val(field.val());
     },
+    
     update_for_sizes: function (size) {
         var zoom = Number($('article').attr('zoom'));
         if (this.model.get("tags[0].type") == "ledbmp") {
@@ -91,10 +107,14 @@ usemockups.views.TagsDialog = Backbone.View.extend({
         } else {
             value = input.val();
         }
-        if (input.attr("name").match(/color\_+/)) { input.attr("name", "color"); }
+        if (input.attr("name").match(/color\_+/)) { 
+            input.attr("name", "color"); 
+        }
+
         var data = JSON.parse(JSON.stringify(this.model.get("tags")));
         data[input.attr("id-attribute")][input.attr("name")] = value;
         this.model.set({ tags: data });
+        
         this.render();
         return false;
     },

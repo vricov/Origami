@@ -471,8 +471,13 @@
                 <% if (tags[tag].type == 'custom') {  %>
                 <td colspan="2"><input type="text" id="tags_<%= i %>_custom" name="custom" id-attribute="<%= i %>" value="<%= tags[tag].custom %>"  placeholder="Путь к своему .bmp файлу" title="Примеры правильного указания путей:<ol><li><code>~~\Resource\DaqSite\ StdLib\Bitmaps\ barbmp_20_20_24_silver.bmp</code></li><li><code>..\Bitmaps\ctrl_logo.bmp</code></li></ol>"/></td>
                 <% } else { %>
-                <td><input type="text" id="tags_<%= i %>_width" name="width" id-attribute="<%= i %>" value="<%= tags[tag].width %>" /></td>
-                <td><input type="text" id="tags_<%= i %>_height" name="height" id-attribute="<%= i %>" value="<%= tags[tag].height %>" /></td>
+                    <% if (tags[tag].type == 'ledbmp') {  %>
+                    <td><input type="text" id="tags_<%= i %>_width" name="width" id-attribute="<%= i %>" value="<%= tags[tag].width         %>" /></td>
+                    <td><input type="text" id="tags_<%= i %>_height" name="height" id-attribute="<%= i %>" value="<%= tags[tag].        height %>" /></td>
+                    <% } else { %>
+                    <td><input type="number" id="tags_<%= i %>_width" name="width" id-attribute="<%= i %>" value="<%= tags[tag].width         %>" /></td>
+                    <td><input type="number" id="tags_<%= i %>_height" name="height" id-attribute="<%= i %>" value="<%= tags[tag].        height %>" /></td>
+                    <% } %>
                 <% } %>
                 <td>
 				

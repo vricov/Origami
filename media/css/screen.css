@@ -1177,6 +1177,12 @@ footer table td {
     overflow-y: scroll;
 }
 
+th {
+    padding-left: 5px;
+    text-align: left;
+    border-right: 1px solid #bebebe;
+}
+
 .tags-params tr td {
     border-right: 1px solid #bebebe;
 }
