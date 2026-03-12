@@ -16,15 +16,38 @@ usemockups.views.TagsDialog = Backbone.View.extend({
         'submit': 'submit',
         'change': 'change',
         'click .add-tag': 'add_tag',
+        'click .chain-link': 'toggleChain'
     },
     initialize: function () {
         this.on("update_for_attribute", this.update_for_attribute);
         this.on("update_for_sizes", this.update_for_sizes);
+        // Инициализация состояния цепочек
+        this.chainStates = {
+            'width': true,
+            'height': true
+        };
     },
     render: function () {
         this.$el.html(_.template(this.template, {
             "tags": this.get_tags()
         }));
+
+        // Восстанавливаем состояние цепочек после рендера
+        for (var fieldType in this.chainStates) {
+            var $link = this.$el.find('.chain-link[data-field="' + fieldType + '"]');
+            if ($link.length > 0) {
+                var $icon = $link.find('.chain-icon');
+                if (this.chainStates[fieldType]) {
+                    // Замкнутая цепь
+                    $icon.removeClass('chain-broken').addClass('chain-connected');
+                    $icon.text('🔗');
+                } else {
+                    // Разомкнутая цепь
+                    $icon.removeClass('chain-connected').addClass('chain-broken');
+                    $icon.text('⛓️');
+                }
+            }
+        }
 
         count = this.model.get("tags");
         for (tag in count) {
@@ -111,6 +134,17 @@ usemockups.views.TagsDialog = Backbone.View.extend({
             input.attr("name", "color"); 
         }
 
+        // Проверяем, если это поле ширины или высоты
+        var fieldName = input.attr("name");
+        var fieldId = input.attr("id-attribute");
+        
+        if (fieldName === "width" || fieldName === "height") {
+        // Если цепочка включена для этого поля, обновляем все аналогичные поля
+            if (this.chainStates[fieldName] === true) {
+                this.updateRelatedFields(fieldName, value, fieldId);
+            }
+        }
+
         var data = JSON.parse(JSON.stringify(this.model.get("tags")));
         data[input.attr("id-attribute")][input.attr("name")] = value;
         this.model.set({ tags: data });
@@ -125,5 +159,55 @@ usemockups.views.TagsDialog = Backbone.View.extend({
         this.model.add('tags', newTag[0]);
         this.render();
         return false;
+    },
+    // Метод для переключения состояния цепочки
+    toggleChain: function(event) {
+        event.preventDefault();
+        var $link = $(event.target).closest('.chain-link');
+        var fieldType = $link.data('field');
+
+        // Переключаем состояние
+        this.chainStates[fieldType] = !this.chainStates[fieldType];
+
+        // Меняем отображение иконки
+        var $icon = $link.find('.chain-icon');
+        if (this.chainStates[fieldType]) {
+            // Замкнутая цепь
+            $icon.removeClass('chain-broken').addClass('chain-connected');
+            $icon.text('🔗');
+        } else {
+            // Разомкнутая цепь
+            $icon.removeClass('chain-connected').addClass('chain-broken');
+            $icon.text('⛓️');
+        }
+
+        return false;
+    },
+    // Метод для обновления связанных полей при включенной цепочке
+    updateRelatedFields: function(fieldName, value, currentFieldId) {
+        var $relatedInputs = $('input[name="' + fieldName + '"]').filter('[id-attribute]');;
+        var currentTagIndex = parseInt(currentFieldId);
+
+        // Сохраняем this для использования внутри .each()
+        var self = this;
+        
+        // Если цепь замкнута (true), обновляем все связанные поля
+        if (this.chainStates && this.chainStates[fieldName] === true) {
+            $relatedInputs.each(function() {
+                // Не обновляем текущее поле, чтобы избежать зацикливания
+                var fieldId = $(this).attr('id-attribute');
+                if (fieldId !== currentFieldId) {
+                    $(this).val(value);
+
+                    // Если нужно обновить модель для других полей
+                    var tagIndex = parseInt(fieldId);
+                    if (tagIndex !== undefined && !isNaN(tagIndex)) {
+                        var data = JSON.parse(JSON.stringify(self.model.get("tags")));
+                        data[tagIndex][fieldName] = value;
+                        self.model.set({ tags: data });
+                    }
+                }
+            });
+        }
     }
 });

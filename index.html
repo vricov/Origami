@@ -133,11 +133,15 @@
                 <h3>О программе</h3>
                 <p>Copyright (c) 2020-2026 Alexey Zhirunov rvricov@gmail.com.</p>
                 <p>Основано на ПО "Mockup-designer" Copyright (c) 2015 Fatih Erikli
-                    <http: //fatiherikli.github.com/mockup-designer />, лицензия <a href="license">MIT</a>.
+                    <http://fatiherikli.github.com/mockup-designer />, лицензия <a href="license">MIT</a>.
                 </p>
                 <p>Built with Backbone, Backbone-LocalStorage, Backbone-Nested, Underscore and Handlebars.</p>
                 <p></p>
                 <textarea name="textarea" rows="30" id="id_changelog" disabled>
+12.03.2026
++ Изменение положения и размеров сенсора просто колесиком мыши над полем ввода
++ Добавлен функционал "связывания" размеров тегов у сенсоров, то есть меняя первый тег меняются и остальные (отключаемо кнопкой)
+
 04.03.2026
 + Добавлены новые элементы Cmd.Home, Cmd.LoadIni, Cmd.Tools, Cmd.Setting
 + Добавлена возможность изменения числовых полей с помощью колесика мыши (например позиция сенсора)
@@ -451,8 +455,16 @@
                 <tr>
                     <th colspan="2" >Значение</th>
                     <th>Тип</th>
-                    <th>Ширина</th>
-                    <th>Высота</th>
+                    <th>Ширина
+                        <a href="#" class="chain-link" data-field="width" data-id="<%= i %>">
+                           <span class="chain-icon">🔗</span>
+                        </a>
+                    </th>
+                    <th>Высота
+                        <a href="#" class="chain-link" data-field="height" data-id="<%= i %>">
+                            <span class="chain-icon">🔗</span>
+                        </a>
+                    </th>
                     <th>Битность</th>
                     <th>Цвет</th>
                     <th colspan="2">Текст</th>
@@ -472,11 +484,11 @@
                 <td colspan="2"><input type="text" id="tags_<%= i %>_custom" name="custom" id-attribute="<%= i %>" value="<%= tags[tag].custom %>"  placeholder="Путь к своему .bmp файлу" title="Примеры правильного указания путей:<ol><li><code>~~\Resource\DaqSite\ StdLib\Bitmaps\ barbmp_20_20_24_silver.bmp</code></li><li><code>..\Bitmaps\ctrl_logo.bmp</code></li></ol>"/></td>
                 <% } else { %>
                     <% if (tags[tag].type == 'ledbmp') {  %>
-                    <td><input type="text" id="tags_<%= i %>_width" name="width" id-attribute="<%= i %>" value="<%= tags[tag].width         %>" /></td>
-                    <td><input type="text" id="tags_<%= i %>_height" name="height" id-attribute="<%= i %>" value="<%= tags[tag].        height %>" /></td>
+                    <td><input type="text" id="tags_<%= i %>_width" name="width" id-attribute="<%= i %>" value="<%= tags[tag].width %>" /></td>
+                    <td><input type="text" id="tags_<%= i %>_height" name="height" id-attribute="<%= i %>" value="<%= tags[tag].height %>" /> </td>
                     <% } else { %>
-                    <td><input type="number" id="tags_<%= i %>_width" name="width" id-attribute="<%= i %>" value="<%= tags[tag].width         %>" /></td>
-                    <td><input type="number" id="tags_<%= i %>_height" name="height" id-attribute="<%= i %>" value="<%= tags[tag].        height %>" /></td>
+                    <td><input type="number" id="tags_<%= i %>_width" name="width" id-attribute="<%= i %>" value="<%= tags[tag].width %>" /></td>
+                    <td><input type="number" id="tags_<%= i %>_height" name="height" id-attribute="<%= i %>" value="<%= tags[tag].height %>" /></td>
                     <% } %>
                 <% } %>
                 <td>

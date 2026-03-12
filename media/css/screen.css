@@ -1143,8 +1143,9 @@ footer {
     box-shadow: 0 0 10px #bebebe;
     border-radius: 5px;
     max-height:250px;
+    transition: max-height 0.5s cubic-bezier(.79,.14,.15,.86);
 }
-footer:hover {max-height:initial;}
+footer:hover {max-height:1000px;}
 footer h2 {
     font-weight: bold;
     font-size: 1em;
@@ -1193,6 +1194,29 @@ th {
 
 .tags-params tr:first-of-type:hover {
     background: #ECECEC;
+}
+
+.chain-link {
+    margin-left: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.chain-icon {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chain-connected {
+    color: #4CAF50;
+}
+
+.chain-broken {
+    color: #f44336;
+}
+
+.chain-link:hover .chain-icon {
+    transform: scale(1.1);
 }
 
 footer table input {
