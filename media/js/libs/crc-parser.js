@@ -136,7 +136,7 @@ function ConvertModel(data){
             attributes.led_val = Number(ledParts[2]) || 0;
 
             // Обработка формата
-            attributes.led_fmt = ledParts[3] || "*";
+            attributes.led_fmt = ledParts[3].replace(/"/g, '') || "*";
 
             // Если есть пятый элемент, обрабатываем дополнительные параметры
             if (ledParts[4]) {
@@ -163,6 +163,33 @@ function ConvertModel(data){
                 attributes.led_size = 13;
                 attributes.led_color = 'black';
                 attributes.led_style = 0;
+            }
+
+            // Если есть шестой элемент, обрабатываем дополнительные параметры
+            if (ledParts[5]) {
+                const sixthPart = ledParts[5];
+
+                // Выравнивание
+                const alignMatch = sixthPart.match(/Align:([a-zA-Z]+)/);
+                attributes.led_align = alignMatch ? alignMatch[1] : 'CenterMiddle';
+
+                // Отступ по X
+                const gapXMatch = sixthPart.match(/GapX:(\d+)/);
+                if (gapXMatch) {attributes.led_gap_x = gapXMatch ? Number(gapXMatch[1]) : ''}
+
+                // Отступ по Y
+                const gapYMatch = sixthPart.match(/GapY:(\d+)/);
+                if (gapYMatch) {attributes.led_gap_y = gapYMatch ? Number(gapYMatch[1]) : ''}
+
+                // Exp
+                const expMatch = sixthPart.match(/Exp:(\d+)/);
+                attributes.led_exp = expMatch ? Number(expMatch[1]) : 3;
+            } else {
+                // Дефолтные значения
+                attributes.led_align = 'CenterMiddle';
+                attributes.led_gap_x = 5;
+                attributes.led_gap_y = 4;
+                attributes.led_exp = 3;
             }
         }
         var tag = 1;
@@ -485,11 +512,11 @@ function ConvertModel(data){
 
             if (value[sensor]['Painter(v)'].match('Cmd.Ok')) {
                 console.log('-- PAINTER SECTION CMD.OK --');
-                format['mockups'][i]['tool'] = 'CmdOk';
-                format['mockups'][i]['cmdOk'] = true;
-                format['mockups'][i]['cmdOk_attributes'] = [{}];
+                format['mockups'][i]['tool'] = 'Cmd_Ok';
+                format['mockups'][i]['cmd_ok'] = true;
+                format['mockups'][i]['cmd_ok_attributes'] = [{}];
                 const painterValue = value[sensor]['Painter(v)'];
-                const attributes = format['mockups'][i]['cmdOk_attributes'][0];
+                const attributes = format['mockups'][i]['cmd_ok_attributes'][0];
                 // glCmdOkLineWidth
                 const lineWidthMatch = /glCmdOkLineWidth=(\d+)/.exec(painterValue);
                 attributes.glCmdOkLineWidth = lineWidthMatch ? Number(lineWidthMatch[1]) : 1;
@@ -502,11 +529,11 @@ function ConvertModel(data){
             }  
             if (value[sensor]['Painter(v)'].match('Cmd.Cancel')) {
                 console.log('-- PAINTER SECTION CMD.CANCEL --');
-                format['mockups'][i]['tool'] = 'CmdCancel';
-                format['mockups'][i]['cmdCancel'] = true;
-                format['mockups'][i]['cmdCancel_attributes'] = [{}];
+                format['mockups'][i]['tool'] = 'Cmd_Cancel';
+                format['mockups'][i]['cmd_cancel'] = true;
+                format['mockups'][i]['cmd_cancel_attributes'] = [{}];
                 const painterValue = value[sensor]['Painter(v)'];
-                const attributes = format['mockups'][i]['cmdCancel_attributes'][0];
+                const attributes = format['mockups'][i]['cmd_cancel_attributes'][0];
                 // glCmdCancelLineWidth (в оригинале используется одинаковое имя, но должно быть для Cancel)
                 const lineWidthMatch = /glCmdCancelLineWidth=(\d+)/.exec(painterValue);
                 attributes.glCmdCancelLineWidth = lineWidthMatch ? Number(lineWidthMatch[1]) : 1;

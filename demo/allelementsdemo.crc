@@ -92,18 +92,18 @@ Painter(v) = [Painter(v).GuiLib.Cmd.Ok]
 Painter(v) = (glBorderBevel=2)+(glBorderColor=clRed)
 Painter(v) = [Painter(v).GuiLib.SimpleBorder]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_8_20_24_silver_PTMono.bmp "    Применить"
-Hint = Sensor CmdOk.c109
+Hint = Sensor Cmd_Ok.c109
 []
 
 [SensorList]
-Sensor = CMDCANCEL.C115
-[CMDCANCEL.C115]
+Sensor = Cmd_Cancel.C115
+[Cmd_Cancel.C115]
 Pos = 145, 80
 LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
 Painter(v) = (glCmdCancelLineWidth=1)+(glCmdCancelLineColor=clGreen)+(glCmdCancelFillColor=clLime)
 Painter(v) = [Painter(v).GuiLib.Cmd.Cancel]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_8_20_24_silver_PTMono.bmp "    Применить"
-Hint = Sensor CmdCancel.c115
+Hint = Sensor Cmd_Cancel.c115
 []
 
 [SensorList]
@@ -1629,7 +1629,7 @@ Hint = Sensor Cmd_Loadini.c564
 Sensor = CMD_HOME.C572
 [CMD_HOME.C572]
 Pos = 280, 590
-Painter(v) = (glCmdHomeColor0=clGray)+(id_glCmdHomeColor1=clGreen)
+Painter(v) = (glCmdHomeColor0=clGray)+(glCmdHomeColor1=clGreen)
 Painter(v) = [Painter(v).GuiLib.Cmd.Home]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Cmd_Home.c572
@@ -1645,4 +1645,11 @@ Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp
 Hint = Sensor Cmd_Setting.c568
 []
 
-    
+[SensorList]
+Sensor = TestLed
+[TestLed]
+Pos = 10, 220
+LED = 21, 0, 0, "Test %12.5e LED", Style:[], Align:Right|Exp:2
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_240_14_24_silver.bmp
+Hint = TestLedFormat - тестирование формата LED
+[]

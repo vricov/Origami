@@ -32,15 +32,54 @@ Handlebars.registerHelper('spacers', function (text, bmptype) {
     return new Handlebars.SafeString(text);
 });
 
-Handlebars.registerHelper('ifempty', function (text, value) {
-    text = Handlebars.Utils.escapeExpression(text);
-    text = text.toString();
-    if (value === text)
-        return new Handlebars.SafeString(text);
+// Регистрация хелпера сравнения
+Handlebars.registerHelper('compare', function(value, operator, compareValue, options) {
+    switch(operator) {
+        case '==': // мягкое сравнение (числа со строками)
+            return value == compareValue ? options.fn(this) : options.inverse(this);
+        case '===': // строгое сравнение
+            return value === compareValue ? options.fn(this) : options.inverse(this);
+        case '>':
+            return value > compareValue ? options.fn(this) : options.inverse(this);
+        case '<':
+            return value < compareValue ? options.fn(this) : options.inverse(this);
+        case '>=':
+            return value >= compareValue ? options.fn(this) : options.inverse(this);
+        case '<=':
+            return value <= compareValue ? options.fn(this) : options.inverse(this);
+        default:
+            return options.inverse(this);
+    }
 });
 
-Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
-    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+Handlebars.registerHelper('and', function() {
+    for (let i = 0; i < arguments.length - 1; i++) {
+        if (!arguments[i]) {
+            return false;
+        }
+    }
+    return true;
+});
+
+Handlebars.registerHelper('eq', function(a, b) {
+    return a === b;
+});
+
+Handlebars.registerHelper('neq', function(a, b) {
+    return a !== b;
+});
+
+Handlebars.registerHelper('not', function(value) {
+    return !value;
+});
+
+Handlebars.registerHelper('or', function() {
+    for (let i = 0; i < arguments.length - 1; i++) {
+        if (arguments[i]) {
+            return true;
+        }
+    }
+    return false;
 });
 
 Handlebars.registerHelper('zoom', function (text, value) {
@@ -196,33 +235,6 @@ usemockups.views.Mockup = Backbone.View.extend({
             }.bind(this)
         }).html(HandlebarMockup(this.model.get_attributes()));
 
-        // this.$el.find("[data-attribute]").dblclick(function (event) {
-        // var attribute = $(event.target).data("attribute");
-        // var input = $("<input>")
-        // .attr("name", attribute)
-        // .data("attribute", attribute)
-        // .val(this.model.get(attribute));
-        // $(event.target).html(input);
-        // input.select();
-
-        // input.bind("change blur", function (event) {
-        // var input = $(event.target);
-        // this.model.set(input.data("attribute"), input.val());
-        // }.bind(this)).keyup(function (event) {
-        // usemockups.active_property_dialog.trigger("update_for_attribute", $(event.target));
-        // usemockups.active_tags_dialog.trigger("update_for_attribute", $(event.target));
-        // }.bind(this));
-        // }.bind(this))
-
-        // this.$el.find("input").change(function (event) {
-        // var input = $(event.target);
-        // var tags = JSON.parse(JSON.stringify(this.model.get("tags")));
-        // var id = input.data("column");
-        // tags[input.attr("id-attribute")][input.attr("data-attribute")] = input.val() || "";
-        // this.model.set("tags", tags);
-        // this.model.trigger("persist");
-        // }.bind(this));
-
         this.$el.bind("click mousedown", function (event) {
             if (!$(event.target).is("input")) {
                 this.focus();
@@ -240,16 +252,6 @@ usemockups.views.Mockup = Backbone.View.extend({
 
         if (this.$el.hasClass("ui-resizable"))
             this.$el.resizable("destroy");
-
-        // Return string width in pt
-        // getCharWidth("bold 14pt PTMono")
-        function getCharWidth(font) {
-            var canvas = getCharWidth.canvas || (getCharWidth.canvas = document.createElement("canvas"));
-            var context = canvas.getContext("2d");
-            context.font = font;
-            var metrics = context.measureText("c");
-            return metrics.width;
-        }
 
         this.$el.resizable({
             handles: "se",

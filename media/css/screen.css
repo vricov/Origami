@@ -92,8 +92,8 @@ hr {margin: 5px 0;}
 .header .toolbox .Cmd_Loadini { background-position: -160px -48px;}
 .header .toolbox .SimpleBar { background-position: -160px -24px;}
 .header .toolbox .SimpleBar { background-position: -160px -24px;}
-.header .toolbox .CmdOk { background-position: -80px -24px;}
-.header .toolbox .CmdCancel { background-position: -120px -24px;}
+.header .toolbox .Cmd_Ok { background-position: -80px -24px;}
+.header .toolbox .Cmd_Cancel { background-position: -120px -24px;}
 .header .toolbox .IndicatorCircle { background-position: -200px 0;}
 .header .toolbox .SimpleCross { background-position: -240px 0;}
 .header .toolbox .ListButton_Arrow { background-position: -200px -24px;}
@@ -566,6 +566,42 @@ aside a:hover {
     border-bottom-color: rgb(128, 128, 128) !important;
     border-left-color: rgb(255, 255, 255) !important;
 }
+.LeftTop {
+  float: left;
+  top: 0 !important;
+  transform: none !important;
+}
+.CenterTop {
+  top: 0 !important;
+  transform: none !important;
+}
+.RightTop {
+  float: right;
+  top: 0 !important;
+  transform: none !important;
+}
+.RightMiddle {
+  float: right;
+  margin-right: 5px;
+}
+.LeftMiddle {
+  float: left;
+  margin-left: 5px;
+}
+.LeftBottom {
+  float: left;
+  bottom: 0 !important;
+  transform: none !important;
+}
+.CenterBottom {
+  bottom: 0 !important;
+  transform: none !important;
+}
+.RightBottom {
+  float: right;
+  bottom: 0 !important;
+  transform: none !important;
+}
 .object div.label {
     box-sizing: border-box;
     text-align: center;
@@ -584,7 +620,6 @@ aside a:hover {
     border: 2px solid #FFF;
 
 }
-
 .object .CheckBox .checkbox {
     position: absolute;
     left: 0px;
@@ -594,7 +629,6 @@ aside a:hover {
     border: 1px solid black;
     box-sizing: border-box;
 }
-
 .object .CheckBox .checkbox:after {
     content: '';
     position: absolute;
@@ -829,8 +863,8 @@ aside a:hover {
 .cmd_loadini.icon {background-image: url(../images/cmd_loadini.png);}
 .cmd_setting.icon {background-image: url(../images/cmd_setting.png);}
 .cmd_tools.icon {background-image: url(../images/cmd_tools.png);}
-.cmdOk {background-image: url(../images/cmdok.png);background-size: contain;background-repeat: no-repeat;}
-.cmdCancel {background-image: url(../images/cmdcancel.png);background-size: contain;background-repeat: no-repeat;}
+.cmd_ok {background-image: url(../images/cmd_ok.png);background-size: contain;background-repeat: no-repeat;}
+.cmd_cancel {background-image: url(../images/cmd_cancel.png);background-size: contain;background-repeat: no-repeat;}
 .object .simplecross {
     position: absolute;
     position: absolute;

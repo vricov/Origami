@@ -512,12 +512,12 @@
     </form>
     </script>
     <script type="text/html" id="universal-template">
-        <div class="sensor {{name}}{{#led}} led{{/led}}{{#button}} SimpleButton{{/button}}{{#radio}} checked RadioButton{{/radio}}{{#checkbox}} checked CheckBox{{/checkbox}}{{#progressbar}} ProgressBar{{/progressbar}} {{#if progressbar_attributes.0.glProgBarHor}}Hor{{progressbar_attributes.0.glProgBarHor}}{{/if}}{{#border}} border{{/border}}{{#simplecross}} simplecross{{/simplecross}}{{#listbutton_triangle}} dropTriangle{{/listbutton_triangle}}{{#listbutton_arrow}} dropArrow{{/listbutton_arrow}}{{#bar}} simplebar{{/bar}}{{#indicatorcircle}} IndicatorCircle{{/indicatorcircle}}{{#cmdOk}} cmdOk{{/cmdOk}}{{#cmdCancel}} cmdCancel{{/cmdCancel}}{{#cmd_home}} cmd_Home{{/cmd_home}}{{#cmd_loadini}} cmd_LoadIni{{/cmd_loadini}}{{#cmd_setting}} cmd_Setting{{/cmd_setting}}{{#cmd_tools}} cmd_Tools{{/cmd_tools}}{{#radiationhazard}} RadiationHazard{{/radiationhazard}}{{#airblower}} AirBlower{{/airblower}}{{#fanblower}} FanBlower{{/fanblower}}{{#waterpump}} WaterPump{{/waterpump}}{{#tanklevel}} TankLevel{{/tanklevel}}{{#flowmeter}} FlowMeter{{/flowmeter}}{{#manometer}} ManoMeter{{/manometer}}{{#uniheater}} UniHeater{{/uniheater}}{{#ifEquals 'custom' tags.0.type}} custom{{/ifEquals}}" style="position: initial;background-color:{{colorRGB tags.0.color}};{{#bar}} background-color:{{bar_attributes.0.glBarColor}};{{/bar}}{{#radiationhazard}}background-color:{{colorRGB radiationhazard_attributes.0.glRadiationHazardBackColor}};{{/radiationhazard}}{{#led}}font-family:{{led_attributes.0.led_font}};{{font-style led_attributes.0.led_style}} color:{{colorRGB led_attributes.0.led_color}};font-size:{{zoom led_attributes.0.led_size}}pt;{{/led}}{{#button}}border-width:{{zoom button_attributes.0.glButtonBevel}}pt;{{/button}}{{#border}}border-width:{{zoom border_attributes.0.glBorderBevel}}pt;border-color:{{colorRGB border_attributes.0.glBorderColor}};{{/border}}{{#progressbar}}padding:{{progressbar_attributes.0.glProgBarBevel}}pt;{{/progressbar}}{{#indicatorcircle}}padding:{{indicatorcircle_attributes.0.glCircleBevel}}pt;{{/indicatorcircle}}">
+        <div class="sensor {{name}}{{#led}} led{{/led}}{{#button}} SimpleButton{{/button}}{{#radio}} checked RadioButton{{/radio}}{{#checkbox}} checked CheckBox{{/checkbox}}{{#progressbar}} ProgressBar{{/progressbar}} {{#if progressbar_attributes.0.glProgBarHor}}Hor{{progressbar_attributes.0.glProgBarHor}}{{/if}}{{#border}} border{{/border}}{{#simplecross}} simplecross{{/simplecross}}{{#listbutton_triangle}} dropTriangle{{/listbutton_triangle}}{{#listbutton_arrow}} dropArrow{{/listbutton_arrow}}{{#bar}} simplebar{{/bar}}{{#indicatorcircle}} IndicatorCircle{{/indicatorcircle}}{{#cmd_ok}} cmd_ok{{/cmd_ok}}{{#cmd_cancel}} cmd_cancel{{/cmd_cancel}}{{#cmd_home}} cmd_Home{{/cmd_home}}{{#cmd_loadini}} cmd_LoadIni{{/cmd_loadini}}{{#cmd_setting}} cmd_Setting{{/cmd_setting}}{{#cmd_tools}} cmd_Tools{{/cmd_tools}}{{#radiationhazard}} RadiationHazard{{/radiationhazard}}{{#airblower}} AirBlower{{/airblower}}{{#fanblower}} FanBlower{{/fanblower}}{{#waterpump}} WaterPump{{/waterpump}}{{#tanklevel}} TankLevel{{/tanklevel}}{{#flowmeter}} FlowMeter{{/flowmeter}}{{#manometer}} ManoMeter{{/manometer}}{{#uniheater}} UniHeater{{/uniheater}}{{#compare 'custom' '==' tags.0.type}} custom{{/compare}}" style="position: initial;background-color:{{colorRGB tags.0.color}};{{#bar}} background-color:{{bar_attributes.0.glBarColor}};{{/bar}}{{#radiationhazard}}background-color:{{colorRGB radiationhazard_attributes.0.glRadiationHazardBackColor}};{{/radiationhazard}}{{#led}}font-family:{{led_attributes.0.led_font}};{{font-style led_attributes.0.led_style}} color:{{colorRGB led_attributes.0.led_color}};font-size:{{zoom led_attributes.0.led_size}}pt;{{/led}}{{#button}}border-width:{{zoom button_attributes.0.glButtonBevel}}pt;{{/button}}{{#border}}border-width:{{zoom border_attributes.0.glBorderBevel}}pt;border-color:{{colorRGB border_attributes.0.glBorderColor}};{{/border}}{{#progressbar}}padding:{{progressbar_attributes.0.glProgBarBevel}}pt;{{/progressbar}}{{#indicatorcircle}}padding:{{indicatorcircle_attributes.0.glCircleBevel}}pt;{{/indicatorcircle}}">
             {{#radio}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="radio" style="background-color:{{colorRGB radio_attributes.0.glRadioColor}};"></div></div>{{/radio}}
             {{#checkbox}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="checkbox" style="background-color:{{colorRGB checkbox_attributes.0.glCheckBoxColor}};"></div></div>{{/checkbox}}
             {{#simplecross}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="simplecross"></div></div>{{/simplecross}}
-            {{#listbutton_arrow}}<div class="aspect_ratio {{#ifEquals '0' listbutton_arrow_attributes.0.glListBtnArrowLeft}} aspect_ratio_right{{/ifEquals}}"><img src="media/images/aspect1to1.png"/><div class="dropArrow" style="border-width:{{listbutton_arrow_attributes.0.glListBtnArrowBorderWidth}}px;border-color:{{colorRGB listbutton_arrow_attributes.0.glListBtnArrowBorderColor}}"></div></div>{{/listbutton_arrow}}
-            {{#listbutton_triangle}}<div class="aspect_ratio {{#ifEquals '0' listbutton_triangle_attributes.0.glListBtnTriangleLeft}} aspect_ratio_right{{/ifEquals}}"><img src="media/images/aspect1to1.png"/><div class="dropTriangle" style="border-width:{{listbutton_triangle_attributes.0.glListBtnTriangleBorderWidth}}px;border-color:{{colorRGB listbutton_triangle_attributes.0.glListBtnTriangleBorderColor}}"></div></div>{{/listbutton_triangle}}
+            {{#listbutton_arrow}}<div class="aspect_ratio {{#compare '0' '==' listbutton_arrow_attributes.0.glListBtnArrowLeft}} aspect_ratio_right{{/compare}}"><img src="media/images/aspect1to1.png"/><div class="dropArrow" style="border-width:{{listbutton_arrow_attributes.0.glListBtnArrowBorderWidth}}px;border-color:{{colorRGB listbutton_arrow_attributes.0.glListBtnArrowBorderColor}}"></div></div>{{/listbutton_arrow}}
+            {{#listbutton_triangle}}<div class="aspect_ratio {{#compare '0' '==' listbutton_triangle_attributes.0.glListBtnTriangleLeft}} aspect_ratio_right{{/compare}}"><img src="media/images/aspect1to1.png"/><div class="dropTriangle" style="border-width:{{listbutton_triangle_attributes.0.glListBtnTriangleBorderWidth}}px;border-color:{{colorRGB listbutton_triangle_attributes.0.glListBtnTriangleBorderColor}}"></div></div>{{/listbutton_triangle}}
             {{#indicatorcircle}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="indicatorcircle" style="border-width:{{indicatorcircle_attributes.0.glCircleWidth}}pt;border-color:{{colorRGB indicatorcircle_attributes.0.glCircleFaceColor}};background-color:{{colorRGB indicatorcircle_attributes.0.glCircleBackColor}};"></div></div>{{/indicatorcircle}}
             {{#valve}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="valve Type_{{valve_attributes.0.ValveType}} {{valve_attributes.0.ValveDrive}}"></div></div>{{/valve}}
             {{#pump}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="pump {{pump_attributes.0.PumpType}} {{pump_attributes.0.PumpType}}_{{pump_attributes.0.Orientation}}"></div></div>{{/pump}}
@@ -536,7 +536,7 @@
 			{{#flowmeter}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="circleDaqLib FlowMeter_{{flowmeter_attributes.0.Orientation}}" style="border-width: {{flowmeter_attributes.0.glFlowMeterLineWidth}}px;border-color: {{colorRGB flowmeter_attributes.0.glFlowMeterLineColor}};background-color: {{colorRGB flowmeter_attributes.0.glFlowMeterFillColor}};"></div></div>{{/flowmeter}}
 			{{#manometer}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="circleDaqLib" style="border-width: {{manometer_attributes.0.glManoMeterLineWidth}}px;border-color: {{colorRGB manometer_attributes.0.glManoMeterLineColor}};background-color: {{colorRGB manometer_attributes.0.glManoMeterFillColor}};"><div class="ManoMeter icon"></div></div></div>{{/manometer}}
 			{{#uniheater}}<div class="aspect_ratio"><img src="media/images/aspect1to1.png"/><div class="uniheater icon"></div></div>{{/uniheater}}
-            <div class="label" {{^progressbar}}data-attribute="tags.0.label"{{/progressbar}} >{{#progressbar}}{{^tags.0.label}}57.0{{/tags.0.label}}{{/progressbar}}{{unspace tags.0.label}}</div>
+            <div class="label {{led_attributes.0.led_align}}" {{^progressbar}}data-attribute="tags.0.label"{{/progressbar}} >{{#progressbar}}{{^tags.0.label}}57.0{{/tags.0.label}}{{/progressbar}}{{unspace tags.0.label}}{{#compare '' '==' tags.0.label}}{{led_attributes.0.led_fmt}}{{/compare}}</div>
         </div>
     </script>
 
@@ -563,8 +563,7 @@ Sensor <i class="colored2">=</i> {{toUpperCase name}}
 <i class="colored">[{{toUpperCase name}}]</i>
 Pos <i class="colored2">=</i> {{left}}, {{top}}
 {{#led}}
-LED <i class="colored2">=</i> {{led_attributes.0.led_wid}}, {{led_attributes.0.led_dig}}, {{led_attributes.0.led_val}}, {{& led_attributes.0.led_fmt}}, Name:{{underlines led_attributes.0.led_font}}\Style:[{{led_attributes.0.led_style}}]\Size:{{led_attributes.0.led_size}}\Color:{{replaceFuncColors led_attributes.0.led_color}}
-{{/led}}
+LED <i class="colored2">=</i> {{led_attributes.0.led_wid}}, {{led_attributes.0.led_dig}}, {{led_attributes.0.led_val}}, {{#compare  led_attributes.0.led_fmt '==' '*'}}*{{else}}"{{& led_attributes.0.led_fmt}}"{{/compare}}, Name:{{underlines led_attributes.0.led_font}}\Style:[{{led_attributes.0.led_style}}]\Size:{{led_attributes.0.led_size}}\Color:{{replaceFuncColors led_attributes.0.led_color}}{{#if (or led_attributes.0.led_align led_attributes.0.led_gap_x led_attributes.0.led_gap_y led_attributes.0.led_exp)}},{{#if (not (eq led_attributes.0.led_align "CenterMiddle"))}}Align:{{led_attributes.0.led_align}}{{/if}}{{#if (and (neq led_attributes.0.led_gap_x 5) (neq led_attributes.0.led_gap_x ''))}}|GapX:{{led_attributes.0.led_gap_x}}{{/if}}{{#if (and (neq led_attributes.0.led_gap_y 4) (neq led_attributes.0.led_gap_y ''))}}|GapY:{{led_attributes.0.led_gap_y}}{{/if}}{{#if (and (neq led_attributes.0.led_exp 3) (neq led_attributes.0.led_exp ''))}}|Exp:{{led_attributes.0.led_exp}}{{/if}}{{/if}}{{/led}}
 {{#if tageval}}
 TagEval(v) <i class="colored2">=</i> {{& tageval}}
 {{/if}}
@@ -590,29 +589,29 @@ Painter(v) <i class="colored2">=</i> (glBarColor=cl{{bar_attributes.0.glBarColor
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.SimpleBar]
 {{/bar}}
 {{#cmd_home}}
-Painter(v) <i class="colored2">=</i> (glCmdHomeColor0=cl{{cmd_home_attributes.0.glCmdHomeColor0}})+(id_glCmdHomeColor1=cl{{cmd_home_attributes.0.glCmdHomeColor1}})
+{{#if (and cmd_home_attributes.0.glCmdHomeColor0 cmd_home_attributes.0.glCmdHomeColor1)}}Painter(v) <i class="colored2">=</i> (glCmdHomeColor0=cl{{cmd_home_attributes.0.glCmdHomeColor0}})+(glCmdHomeColor1=cl{{cmd_home_attributes.0.glCmdHomeColor1}}){{/if}}
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Home]
 {{/cmd_home}}
 {{#cmd_loadini}}
-Painter(v) <i class="colored2">=</i> (glCmdLoadIniColor0=cl{{cmd_loadini_attributes.0.glCmdLoadiniColor0}})+(glCmdLoadIniColor1=cl{{cmd_loadini_attributes.0.glCmdLoadiniColor1}})
+{{#if (and cmd_loadini_attributes.0.glCmdLoadiniColor0 cmd_loadini_attributes.0.glCmdLoadiniColor1)}}Painter(v) <i class="colored2">=</i> (glCmdLoadIniColor0=cl{{cmd_loadini_attributes.0.glCmdLoadiniColor0}})+(glCmdLoadIniColor1=cl{{cmd_loadini_attributes.0.glCmdLoadiniColor1}}){{/if}}
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Loadini]
 {{/cmd_loadini}}
 {{#cmd_setting}}
-Painter(v) <i class="colored2">=</i> (glCmdSettingColor0=cl{{cmd_setting_attributes.0.glCmdSettingColor0}})+(glCmdSettingColor1=cl{{cmd_setting_attributes.0.glCmdSettingColor1}})
+{{#if (and cmd_setting_attributes.0.glCmdSettingColor0 cmd_setting_attributes.0.glCmdSettingColor1)}}Painter(v) <i class="colored2">=</i> (glCmdSettingColor0=cl{{cmd_setting_attributes.0.glCmdSettingColor0}})+(glCmdSettingColor1=cl{{cmd_setting_attributes.0.glCmdSettingColor1}}){{/if}}
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Setting]
 {{/cmd_setting}}
 {{#cmd_tools}}
-Painter(v) <i class="colored2">=</i> (glCmdToolsColor0=cl{{cmd_tools_attributes.0.glCmdToolsColor0}})+(id_glCmdToolsColor1=cl{{cmd_tools_attributes.0.glCmdToolsColor1}})
+{{#if (and cmd_tools_attributes.0.glCmdToolsColor0 cmd_tools_attributes.0.glCmdToolsColor1)}}Painter(v) <i class="colored2">=</i> (glCmdToolsColor0=cl{{cmd_tools_attributes.0.glCmdToolsColor0}})+(id_glCmdToolsColor1=cl{{cmd_tools_attributes.0.glCmdToolsColor1}}){{/if}}
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Tools]
 {{/cmd_tools}}
-{{#cmdOk}}
-Painter(v) <i class="colored2">=</i> (glCmdOkLineWidth={{cmdOk_attributes.0.glCmdOkLineWidth}})+(glCmdOkLineColor=cl{{cmdOk_attributes.0.glCmdOkLineColor}})+(glCmdOkFillColor=cl{{cmdOk_attributes.0.glCmdOkFillColor}})
+{{#cmd_ok}}
+Painter(v) <i class="colored2">=</i> (glCmdOkLineWidth={{cmd_ok_attributes.0.glCmdOkLineWidth}})+(glCmdokLineColor=cl{{cmd_ok_attributes.0.glCmdOkLineColor}})+(glCmdOkFillColor=cl{{cmd_ok_attributes.0.glCmdOkFillColor}})
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Ok]
-{{/cmdOk}}
-{{#cmdCancel}}
-Painter(v) <i class="colored2">=</i> (glCmdCancelLineWidth={{cmdCancel_attributes.0.glCmdCancelLineWidth}})+(glCmdCancelLineColor=cl{{cmdCancel_attributes.0.glCmdCancelLineColor}})+(glCmdCancelFillColor=cl{{cmdCancel_attributes.0.glCmdCancelFillColor}})
+{{/cmd_ok}}
+{{#cmd_cancel}}
+Painter(v) <i class="colored2">=</i> (glCmdCancelLineWidth={{cmd_cancel_attributes.0.glCmdCancelLineWidth}})+(glCmdCancelLineColor=cl{{cmd_cancel_attributes.0.glCmdCancelLineColor}})+(glCmdCancelFillColor=cl{{cmd_cancel_attributes.0.glCmdCancelFillColor}})
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Cancel]
-{{/cmdCancel}}
+{{/cmd_cancel}}
 {{#indicatorcircle}}
 Painter(v) <i class="colored2">=</i> (glCircleBevel={{indicatorcircle_attributes.0.glCircleBevel}})+(glCircleWidth={{indicatorcircle_attributes.0.glCircleWidth}})+(glCircleFaceColor=cl{{replaceFuncColors indicatorcircle_attributes.0.glCircleFaceColor}})
 Painter(v) <i class="colored2">=</i> (glCircleBackColor=eq(v,1)*clLime+eq(v,0)*clRed)

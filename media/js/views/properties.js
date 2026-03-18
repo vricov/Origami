@@ -49,13 +49,28 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_led_attributes_led_color_label').html('Цвет текста:');
     $('#id_led_attributes_led_style_label').html('Начертание:');
     $('#id_led_style').replaceWith('<select id="id_led_style" name="led_style" data-attribute="led_attributes">' +
-      '<option value = "">Без эффекта</option>' +
-      '<option value = "Bold">Жирный</option>' +
-      '<option value = "Italic">Курсив</option>' +
-      '<option value = "Underline">Подчеркнутый</option>' +
-      '<option value = "StrikeOut">Зачеркнутый</option>' +
-      '</select>');
-    $('#id_led_style').val(this.model.get("led_attributes[0].led_style"));
+     '<option value = "">Без эффекта</option>' +
+     '<option value = "Bold">Жирный</option>' +
+     '<option value = "Italic">Курсив</option>' +
+     '<option value = "Underline">Подчеркнутый</option>' +
+     '<option value = "StrikeOut">Зачеркнутый</option>' +
+    '</select>');
+    $('#id_led_attributes_led_align_label').html('Выравнивание:');
+    $('#id_led_align').replaceWith('<select id="id_led_align" name="led_align" data-attribute="led_attributes">' +
+      '<option value = "LeftTop">↖ сверху слева</option>' +
+      '<option value = "CenterTop">↑ сверху по центру</option>' +
+      '<option value = "RightTop">↗ сверху справа</option>' +
+      '<option value = "LeftMiddle">← слева по центру</option>' +
+      '<option value = "CenterMiddle">◦ по центру</option>' +
+      '<option value = "RightMiddle">→ справа по центру</option>' +
+      '<option value = "LeftBottom">↙ снизу слева</option>' +
+      '<option value = "CenterBottom">↓ снизу по центру</option>' +
+      '<option value = "RightBottom">↘ снизу справа</option>' +
+    '</select>');
+    $('#id_led_align').val(this.model.get("led_attributes[0].led_align"));
+    $('#id_led_attributes_led_gap_x_label').html('Горизонтальный отступ:');
+    $('#id_led_attributes_led_gap_y_label').html('Вертикальный отступ:');
+    $('#id_led_attributes_led_exp_label').html('Чисел в EXP:');
     // подсказка
     $("#id_led_wid").attr('title', '<b>wid</b> - ширина числового поля (максимальное число символов отображения).<ul><li>При указании значения <b>wid=0</b> сенсор работает в режиме <b>логического индикатора</b>.</li><li>При указании значения <b>wid&gt;0</b> сенсор работает в режиме <b>цифрового поля</b>. В этом режиме значение <b>Tag</b> не меняется (поэтому в таблице тегов нужен только один элемент), но на изображение сенсора накладывается надпись - текущее числовое значение входных данных.</li></ul><p></p>');
     $("#id_led_dig").attr('title', '<b>dig</b> - число цифр после запятой при отображении чисел. Этот параметр игнорируется, если указан непустой формат <b>f</b>.');
@@ -137,16 +152,16 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_cmd_tools_attributes_glCmdToolsColor1_label').html('Цвет при нажатии:');
 
     //## Кнопка подтверждения
-    $('#id_cmdOk_attributes_label').replaceWith('<label for="id_cmdOk_attributes_label"><h3>CMD "OK"</h3></label>');
-    $('#id_cmdOk_attributes_glCmdOkLineWidth_label').html('Толщина контура:');
-    $('#id_cmdOk_attributes_glCmdOkLineColor_label').html('Цвет контура:');
-    $('#id_cmdOk_attributes_glCmdOkFillColor_label').html('Цвет заливки:');
+    $('#id_cmd_ok_attributes_label').replaceWith('<label for="id_cmd_ok_attributes_label"><h3>CMD "OK"</h3></label>');
+    $('#id_cmd_ok_attributes_glCmdOkLineWidth_label').html('Толщина контура:');
+    $('#id_cmd_ok_attributes_glCmdOkLineColor_label').html('Цвет контура:');
+    $('#id_cmd_ok_attributes_glCmdOkFillColor_label').html('Цвет заливки:');
 
     //## Кнопка отмены
-    $('#id_cmdCancel_attributes_label').replaceWith('<label for="id_cmdCancel_attributes_label"><h3>CMD "Отмена"</h3></label>');
-    $('#id_cmdCancel_attributes_glCmdCancelLineWidth_label').html('Толщина контура:');
-    $('#id_cmdCancel_attributes_glCmdCancelLineColor_label').html('Цвет контура:');
-    $('#id_cmdCancel_attributes_glCmdCancelFillColor_label').html('Цвет заливки:');
+    $('#id_cmd_cancel_attributes_label').replaceWith('<label for="id_cmd_cancel_attributes_label"><h3>CMD "Отмена"</h3></label>');
+    $('#id_cmd_cancel_attributes_glCmdCancelLineWidth_label').html('Толщина контура:');
+    $('#id_cmd_cancel_attributes_glCmdCancelLineColor_label').html('Цвет контура:');
+    $('#id_cmd_cancel_attributes_glCmdCancelFillColor_label').html('Цвет заливки:');
 
     //## Цветной круглый индикатор
     $('#id_indicatorcircle_attributes_label').replaceWith('<label for="id_indicatorcircle_attributes_label"><h3>Индикатор</h3></label>');

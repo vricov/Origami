@@ -81,7 +81,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 10, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 10, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -158,7 +158,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -225,7 +225,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 13, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 13, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -292,7 +292,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -359,7 +359,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 20, led_dig: 3, led_val: 0, led_fmt: "%20.3f", led_font: "PT Mono", led_size: 10, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 20, led_dig: 3, led_val: 0, led_fmt: "%20.3f", led_font: "PT Mono", led_size: 10, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -437,7 +437,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 10, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 10, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -504,7 +504,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -582,7 +582,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -671,7 +671,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -760,7 +760,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -849,7 +849,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -903,14 +903,14 @@ usemockups.fixtures.toolbox = [
         ]
     },
     {
-        "name": "CmdOk",
+        "name": "Cmd_Ok",
         "category": "GuiLib",
         "template": "#universal-template",
         "min_height": 15,
         "attributes": [
             {
                 "name": "name",
-                "default": "CmdOk"
+                "default": "Cmd_Ok"
             },
             {
                 "name": "left",
@@ -938,7 +938,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -952,13 +952,13 @@ usemockups.fixtures.toolbox = [
                 ]
             },
             {
-                "name": "cmdOk",
+                "name": "cmd_ok",
                 "type": "boolean",
                 "hidden": true,
                 "default": true
             },
             {
-                "name": "cmdOk_attributes",
+                "name": "cmd_ok_attributes",
                 "default": [
                     { glCmdOkLineWidth: 1, glCmdOkLineColor: "Green", glCmdOkFillColor: "Lime" }
                 ]
@@ -992,14 +992,14 @@ usemockups.fixtures.toolbox = [
         ]
     },
     {
-        "name": "CmdCancel",
+        "name": "Cmd_Cancel",
         "category": "GuiLib",
         "template": "#universal-template",
         "min_height": 15,
         "attributes": [
             {
                 "name": "name",
-                "default": "CmdCancel"
+                "default": "Cmd_Cancel"
             },
             {
                 "name": "left",
@@ -1027,7 +1027,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 10, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 10, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3}
                 ]
             },
             {
@@ -1037,17 +1037,17 @@ usemockups.fixtures.toolbox = [
                 "name": "tags",
                 "hidden": true,
                 "default": [
-                    { id: 0, type: 'ledbmp', width: '8ch', height: '20pt', bit: 24, color: 'Silver', label: 'Применить' },
+                    { id: 0, type: 'ledbmp', width: '8ch', height: '20pt', bit: 24, color: 'Silver', label: 'Отменить' },
                 ]
             },
             {
-                "name": "cmdCancel",
+                "name": "cmd_cancel",
                 "type": "boolean",
                 "hidden": true,
                 "default": true
             },
             {
-                "name": "cmdCancel_attributes",
+                "name": "cmd_cancel_attributes",
                 "default": [
                     { glCmdCancelLineWidth: 1, glCmdCancelLineColor: "Green", glCmdCancelFillColor: "Lime" }
                 ]
@@ -1261,7 +1261,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -1339,7 +1339,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 12, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -1812,7 +1812,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -1901,7 +1901,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -1990,7 +1990,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -2079,7 +2079,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -2168,7 +2168,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -2258,7 +2258,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -2347,7 +2347,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
@@ -2436,7 +2436,7 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "led_attributes",
                 "default": [
-                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold" }
+                    { led_wid: 0, led_dig: 0, led_val: 0, led_fmt: "*", led_font: "PT Mono", led_size: 14, led_color: "Black", led_style: "Bold", led_align: "CenterMiddle", led_gap_x: '', led_gap_y: '', led_exp: 3 }
                 ]
             },
             {
