@@ -856,6 +856,7 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C711
 [PUMP.C711]
 Pos = 215, 385
+
 Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Sublimation.Up]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
