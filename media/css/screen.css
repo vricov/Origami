@@ -582,11 +582,9 @@ aside a:hover {
 }
 .RightMiddle {
   float: right;
-  margin-right: 5px;
 }
 .LeftMiddle {
   float: left;
-  margin-left: 5px;
 }
 .LeftBottom {
   float: left;
@@ -611,6 +609,7 @@ aside a:hover {
     border: 0px solid #808080;
     display:none;
     min-inline-size: max-content;
+    padding: 4px;
 }
 .led div.label {display:block;}
 .object .SimpleBorder {
@@ -672,12 +671,13 @@ aside a:hover {
 }
 
 .object .IndicatorCircle .indicatorcircle {
-    width: 100%;
-    height: 100%;
+    width: 70%;
+    height: 70%;
     border: 3px solid Black;
     border-radius: 50%;
     position: absolute;
-    top: 0;
+    top: 15%;
+    left: 15%;
     box-sizing: border-box;
     background-color:silver;
 }
@@ -1402,3 +1402,27 @@ section#documents {
 }
 
 .colored2 {color: #FF0000;}
+
+.led-toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 10000;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    min-width: 200px;
+    text-align: center;
+    margin-bottom: 10px;
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.led-toast.hidden {
+    opacity: 0;
+    transform: translateY(10px);
+}

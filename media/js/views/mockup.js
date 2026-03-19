@@ -32,7 +32,6 @@ Handlebars.registerHelper('spacers', function (text, bmptype) {
     return new Handlebars.SafeString(text);
 });
 
-// Регистрация хелпера сравнения
 Handlebars.registerHelper('compare', function(value, operator, compareValue, options) {
     switch(operator) {
         case '==': // мягкое сравнение (числа со строками)
@@ -62,11 +61,13 @@ Handlebars.registerHelper('and', function() {
 });
 
 Handlebars.registerHelper('eq', function(a, b) {
-    return a === b;
+    // Приведем к строкам для точного сравнения
+    return String(a) === String(b);
 });
 
 Handlebars.registerHelper('neq', function(a, b) {
-    return a !== b;
+    // Приведем к строкам для точного сравнения
+    return String(a) !== String(b);
 });
 
 Handlebars.registerHelper('not', function(value) {
@@ -80,6 +81,12 @@ Handlebars.registerHelper('or', function() {
         }
     }
     return false;
+});
+
+// Хелпер для проверки регистра первой буквы (возвращает true/false)
+Handlebars.registerHelper('isFirstUpper', function(text) {
+    if (!text || typeof text !== 'string') return false;
+    return text.charAt(0) === text.charAt(0).toUpperCase();
 });
 
 Handlebars.registerHelper('zoom', function (text, value) {
@@ -283,8 +290,8 @@ usemockups.views.Mockup = Backbone.View.extend({
                 });
 
             }.bind(this),
-            minWidth: this.tool.get("min_width"),
-            minHeight: this.tool.get("min_height"),
+                minWidth: this.tool && this.tool.get ? this.tool.get("min_width") || 1 : 1,
+    minHeight: this.tool && this.tool.get ? this.tool.get("min_height") || 1 : 1,
         });
 
         return this;

@@ -2,10 +2,19 @@ usemockups.models.Mockup = Backbone.NestedModel.extend({
     idAttribute: "_id",
     defaults: {
         top: 0,
-        left: 0
+        left: 0,
+        tool: "label" // по умолчанию используем "label"
     },
     initialize: function () {
-        this.tool = usemockups.toolbox.get(this.get("tool")); //get the model of the tool/kind of mockup element
+        // Проверяем, существует ли инструмент
+        this.tool = usemockups.toolbox.get(this.get("tool"));
+        
+        // Если tool не найден, используем "label" как fallback
+        if (!this.tool) {
+            console.warn('Tool not found:', this.get("tool"), 'using default "label" tool');
+            this.tool = usemockups.toolbox.get("label");
+        }
+        
         this.get_attributes = this.tool.get_attributes.bind(this.tool, this);
         _.forEach(this.get_attributes(), function (value, key) {
             this.set(key, value);

@@ -563,7 +563,8 @@ Sensor <i class="colored2">=</i> {{toUpperCase name}}
 <i class="colored">[{{toUpperCase name}}]</i>
 Pos <i class="colored2">=</i> {{left}}, {{top}}
 {{#led}}
-LED <i class="colored2">=</i> {{led_attributes.0.led_wid}}, {{led_attributes.0.led_dig}}, {{led_attributes.0.led_val}}, {{#compare  led_attributes.0.led_fmt '==' '*'}}*{{else}}"{{& led_attributes.0.led_fmt}}"{{/compare}}, Name:{{underlines led_attributes.0.led_font}}\Style:[{{led_attributes.0.led_style}}]\Size:{{led_attributes.0.led_size}}\Color:{{replaceFuncColors led_attributes.0.led_color}}{{#if (or led_attributes.0.led_align led_attributes.0.led_gap_x led_attributes.0.led_gap_y led_attributes.0.led_exp)}},{{#if (not (eq led_attributes.0.led_align "CenterMiddle"))}}Align:{{led_attributes.0.led_align}}{{/if}}{{#if (and (neq led_attributes.0.led_gap_x 5) (neq led_attributes.0.led_gap_x ''))}}|GapX:{{led_attributes.0.led_gap_x}}{{/if}}{{#if (and (neq led_attributes.0.led_gap_y 4) (neq led_attributes.0.led_gap_y ''))}}|GapY:{{led_attributes.0.led_gap_y}}{{/if}}{{#if (and (neq led_attributes.0.led_exp 3) (neq led_attributes.0.led_exp ''))}}|Exp:{{led_attributes.0.led_exp}}{{/if}}{{/if}}{{/led}}
+LED <i class="colored2">=</i> {{led_attributes.0.led_wid}}, {{led_attributes.0.led_dig}}, {{led_attributes.0.led_val}}, {{#compare  led_attributes.0.led_fmt '==' '*'}}*{{else}}"{{& led_attributes.0.led_fmt}}"{{/compare}}, Name:{{underlines led_attributes.0.led_font}}\Style:[{{led_attributes.0.led_style}}]\Size:{{led_attributes.0.led_size}}\Color:{{replaceFuncColors led_attributes.0.led_color}}{{#if (or (and led_attributes.0.led_align (not (eq led_attributes.0.led_align "CenterMiddle")))(and led_attributes.0.led_gap_x (neq led_attributes.0.led_gap_x 5))(and led_attributes.0.led_gap_y (neq led_attributes.0.led_gap_y 4))(and led_attributes.0.led_exp (neq led_attributes.0.led_exp 3)))}},{{/if}}{{#if (not (eq led_attributes.0.led_align "CenterMiddle"))}}Align:{{led_attributes.0.led_align}}{{/if}}{{#if (and (neq led_attributes.0.led_gap_x 5) (neq led_attributes.0.led_gap_x ""))}}|GapX:{{led_attributes.0.led_gap_x}}{{/if}}{{#if (and (neq led_attributes.0.led_gap_y 4) (neq led_attributes.0.led_gap_y ""))}}|GapY:{{led_attributes.0.led_gap_y}}{{/if}}{{#if (and (neq led_attributes.0.led_exp 3) (neq led_attributes.0.led_exp ""))}}|Exp:{{led_attributes.0.led_exp}}{{/if}}
+{{/led}}
 {{#if tageval}}
 TagEval(v) <i class="colored2">=</i> {{& tageval}}
 {{/if}}
@@ -585,25 +586,33 @@ Painter(v) <i class="colored2">=</i> (glProgBarMin={{progressbar_attributes.0.gl
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.ProgressBar]
 {{/progressbar}}
 {{#bar}}
-Painter(v) <i class="colored2">=</i> (glBarColor=cl{{bar_attributes.0.glBarColor}})
+Painter(v) <i class="colored2">=</i> (glBarColor={{#if (isFirstUpper bar_attributes.0.glBarColor)}}cl{{/if}}{{bar_attributes.0.glBarColor}})
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.SimpleBar]
 {{/bar}}
 {{#cmd_home}}
-{{#if (and cmd_home_attributes.0.glCmdHomeColor0 cmd_home_attributes.0.glCmdHomeColor1)}}Painter(v) <i class="colored2">=</i> (glCmdHomeColor0=cl{{cmd_home_attributes.0.glCmdHomeColor0}})+(glCmdHomeColor1=cl{{cmd_home_attributes.0.glCmdHomeColor1}}){{/if}}
-Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Home]
+{{#if (and cmd_home_attributes.0.glCmdHomeColor0 cmd_home_attributes.0.glCmdHomeColor1)}}Painter(v) <i class="colored2">=</i> (glCmdHomeColor0=cl{{cmd_home_attributes.0.glCmdHomeColor0}})+(glCmdHomeColor1=cl{{cmd_home_attributes.0.glCmdHomeColor1}})
+{{/if}}Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Home]
 {{/cmd_home}}
 {{#cmd_loadini}}
-{{#if (and cmd_loadini_attributes.0.glCmdLoadiniColor0 cmd_loadini_attributes.0.glCmdLoadiniColor1)}}Painter(v) <i class="colored2">=</i> (glCmdLoadIniColor0=cl{{cmd_loadini_attributes.0.glCmdLoadiniColor0}})+(glCmdLoadIniColor1=cl{{cmd_loadini_attributes.0.glCmdLoadiniColor1}}){{/if}}
-Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Loadini]
+{{#if (and cmd_loadini_attributes.0.glCmdLoadiniColor0 cmd_loadini_attributes.0.glCmdLoadiniColor1)}}Painter(v) <i class="colored2">=</i> (glCmdLoadIniColor0=cl{{cmd_loadini_attributes.0.glCmdLoadiniColor0}})+(glCmdLoadIniColor1=cl{{cmd_loadini_attributes.0.glCmdLoadiniColor1}})
+{{/if}}Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Loadini]
 {{/cmd_loadini}}
 {{#cmd_setting}}
-{{#if (and cmd_setting_attributes.0.glCmdSettingColor0 cmd_setting_attributes.0.glCmdSettingColor1)}}Painter(v) <i class="colored2">=</i> (glCmdSettingColor0=cl{{cmd_setting_attributes.0.glCmdSettingColor0}})+(glCmdSettingColor1=cl{{cmd_setting_attributes.0.glCmdSettingColor1}}){{/if}}
-Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Setting]
+{{#if (and cmd_setting_attributes.0.glCmdSettingColor0 cmd_setting_attributes.0.glCmdSettingColor1)}}Painter(v) <i class="colored2">=</i> (glCmdSettingColor0=cl{{cmd_setting_attributes.0.glCmdSettingColor0}})+(glCmdSettingColor1=cl{{cmd_setting_attributes.0.glCmdSettingColor1}})
+{{/if}}Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Setting]
 {{/cmd_setting}}
 {{#cmd_tools}}
-{{#if (and cmd_tools_attributes.0.glCmdToolsColor0 cmd_tools_attributes.0.glCmdToolsColor1)}}Painter(v) <i class="colored2">=</i> (glCmdToolsColor0=cl{{cmd_tools_attributes.0.glCmdToolsColor0}})+(id_glCmdToolsColor1=cl{{cmd_tools_attributes.0.glCmdToolsColor1}}){{/if}}
-Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Tools]
+{{#if (and cmd_tools_attributes.0.glCmdToolsColor0 cmd_tools_attributes.0.glCmdToolsColor1)}}Painter(v) <i class="colored2">=</i> (glCmdToolsColor0=cl{{cmd_tools_attributes.0.glCmdToolsColor0}})+(id_glCmdToolsColor1=cl{{cmd_tools_attributes.0.glCmdToolsColor1}})
+{{/if}}Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Tools]
 {{/cmd_tools}}
+{{#cmd_arrowcirc_cw}}
+{{#if (and cmd_arrowcirc_cw_attributes.0.glCmdArrowCircCWColor0 cmd_arrowcirc_cw_attributes.0.glCmdArrowCircCWColor1)}}Painter(v) <i class="colored2">=</i> (glCmdArrowCircCWColor0=cl{{cmd_arrowcirc_cw_attributes.0.glCmdArrowCircCWColor0}})+(id_glCmdArrowCircCWColor1=cl{{cmd_arrowcirc_cw_attributes.0.glCmdArrowCircCWColor1}})
+{{/if}}Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.ArrowCircCW]
+{{/cmd_arrowcirc_cw}}
+{{#cmd_arrowcirc_ccw}}
+{{#if (and cmd_arrowcirc_ccw_attributes.0.glCmdArrowCircCCWColor0 cmd_arrowcirc_ccw_attributes.0.glCmdArrowCircCCWColor1)}}Painter(v) <i class="colored2">=</i> (glCmdArrowCircCCWColor0=cl{{cmd_arrowcirc_ccw_attributes.0.glCmdArrowCircCCWColor0}})+(id_glCmdArrowCircCCWColor1=cl{{cmd_arrowcirc_ccw_attributes.0.glCmdArrowCircCCWColor1}})
+{{/if}}Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.ArrowCircCCW]
+{{/cmd_arrowcirc_ccw}}
 {{#cmd_ok}}
 Painter(v) <i class="colored2">=</i> (glCmdOkLineWidth={{cmd_ok_attributes.0.glCmdOkLineWidth}})+(glCmdokLineColor=cl{{cmd_ok_attributes.0.glCmdOkLineColor}})+(glCmdOkFillColor=cl{{cmd_ok_attributes.0.glCmdOkFillColor}})
 Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.Cmd.Ok]

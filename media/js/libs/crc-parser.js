@@ -175,11 +175,11 @@ function ConvertModel(data){
 
                 // Отступ по X
                 const gapXMatch = sixthPart.match(/GapX:(\d+)/);
-                if (gapXMatch) {attributes.led_gap_x = gapXMatch ? Number(gapXMatch[1]) : ''}
+                if (gapXMatch) {attributes.led_gap_x = gapXMatch ? Number(gapXMatch[1]) : 5}
 
                 // Отступ по Y
                 const gapYMatch = sixthPart.match(/GapY:(\d+)/);
-                if (gapYMatch) {attributes.led_gap_y = gapYMatch ? Number(gapYMatch[1]) : ''}
+                if (gapYMatch) {attributes.led_gap_y = gapYMatch ? Number(gapYMatch[1]) : 4}
 
                 // Exp
                 const expMatch = sixthPart.match(/Exp:(\d+)/);

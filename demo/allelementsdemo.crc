@@ -64,9 +64,11 @@ Hint = Sensor Check.c83
 Sensor = PROGRESS.C93
 [PROGRESS.C93]
 Pos = 230, 5
-LED = 20, 3, 0, %20.3f, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
+LED = 20, 3, 0, "%20.3f", Name:PT_Mono\Style:[Bold]\Size:10\Color:Black,Align:RightMiddle
 Painter(v) = (glProgBarMin=0)+(glProgBarMax=100)+(glProgBarHor=1)+(glProgBarColor=clLime)+(glProgBarBevel=0)
 Painter(v) = [Painter(v).GuiLib.ProgressBar]
+Painter(v) = (glBorderBevel=1)+(glBorderColor=clFuchsia)
+Painter(v) = [Painter(v).GuiLib.SimpleBorder]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_100_30_24_silver.bmp 
 Hint = Sensor Progress.c93
 []
@@ -87,7 +89,7 @@ Sensor = CMDOK.C109
 [CMDOK.C109]
 Pos = 10, 80
 LED = 0, 0, 0, *, Name:PT_Mono\Style:[]\Size:10\Color:Black
-Painter(v) = (glCmdOkLineWidth=1)+(glCmdOkLineColor=clGreen)+(glCmdOkFillColor=clLime)
+Painter(v) = (glCmdOkLineWidth=1)+(glCmdokLineColor=clGreen)+(glCmdOkFillColor=clLime)
 Painter(v) = [Painter(v).GuiLib.Cmd.Ok]
 Painter(v) = (glBorderBevel=2)+(glBorderColor=clRed)
 Painter(v) = [Painter(v).GuiLib.SimpleBorder]
@@ -96,11 +98,11 @@ Hint = Sensor Cmd_Ok.c109
 []
 
 [SensorList]
-Sensor = Cmd_Cancel.C115
-[Cmd_Cancel.C115]
+Sensor = CMD_CANCEL.C115
+[CMD_CANCEL.C115]
 Pos = 145, 80
 LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
-Painter(v) = (glCmdCancelLineWidth=1)+(glCmdCancelLineColor=clGreen)+(glCmdCancelFillColor=clLime)
+Painter(v) = (glCmdCancelLineWidth=1)+(glCmdCancelLineColor=clBlack)+(glCmdCancelFillColor=clRed)
 Painter(v) = [Painter(v).GuiLib.Cmd.Cancel]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\ledbmp_8_20_24_silver_PTMono.bmp "    Применить"
 Hint = Sensor Cmd_Cancel.c115
@@ -856,7 +858,6 @@ Hint = Sensor Pump.c437
 Sensor = PUMP.C711
 [PUMP.C711]
 Pos = 215, 385
-
 Painter(v) = (glPumpSpeedBit=0)+(glPumpErrorBit=1)+(glPumpEdgeBevel=3)
 Painter(v) = [Painter(v).GostLib.Pump.Sublimation.Up]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
@@ -1609,8 +1610,8 @@ Hint = Sensor Valve.c149
 [SensorList]
 Sensor = CMD_TOOLS.C564
 [CMD_TOOLS.C564]
-Pos = 400, 590
-Painter(v) = (glCmdToolsColor0=clGray)+(id_glCmdToolsColor1=clGreen)
+Pos = 190, 580
+Painter(v) = (glCmdToolsColor0=clYellow)+(id_glCmdToolsColor1=clGreen)
 Painter(v) = [Painter(v).GuiLib.Cmd.Tools]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Cmd_Tools.c564
@@ -1619,8 +1620,7 @@ Hint = Sensor Cmd_Tools.c564
 [SensorList]
 Sensor = CMD_LOADINI.C564
 [CMD_LOADINI.C564]
-Pos = 320, 590
-Painter(v) = (glCmdLoadIniColor0=clGray)+(glCmdLoadIniColor1=clGreen)
+Pos = 190, 520
 Painter(v) = [Painter(v).GuiLib.Cmd.Loadini]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Cmd_Loadini.c564
@@ -1629,8 +1629,8 @@ Hint = Sensor Cmd_Loadini.c564
 [SensorList]
 Sensor = CMD_HOME.C572
 [CMD_HOME.C572]
-Pos = 280, 590
-Painter(v) = (glCmdHomeColor0=clGray)+(glCmdHomeColor1=clGreen)
+Pos = 190, 490
+Painter(v) = (glCmdHomeColor0=clYellow)+(glCmdHomeColor1=clGreen)
 Painter(v) = [Painter(v).GuiLib.Cmd.Home]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Cmd_Home.c572
@@ -1639,18 +1639,106 @@ Hint = Sensor Cmd_Home.c572
 [SensorList]
 Sensor = CMD_SETTING.C568
 [CMD_SETTING.C568]
-Pos = 360, 590
-Painter(v) = (glCmdSettingColor0=clGray)+(glCmdSettingColor1=clGreen)
+Pos = 190, 550
+Painter(v) = (glCmdSettingColor0=clYellow)+(glCmdSettingColor1=clGreen)
 Painter(v) = [Painter(v).GuiLib.Cmd.Setting]
 Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_32_32_24_silver.bmp 
 Hint = Sensor Cmd_Setting.c568
 []
 
 [SensorList]
-Sensor = TestLed
-[TestLed]
-Pos = 10, 220
-LED = 21, 0, 0, "Test %12.5e LED", Style:[], Align:Right|Exp:2
-Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_240_14_24_silver.bmp
-Hint = TestLedFormat - тестирование формата LED
+Sensor = BUTTON.C597.C892
+[BUTTON.C597.C892]
+Pos = 480, 340
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black,Align:LeftTop
+Painter(v) = (glButtonBit=0)+(glButtonBevel=1)+(glButtonMoveX=1)+(glButtonMoveY=1)
+Painter(v) = [Painter(v).GuiLib.SimpleButton]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_111_60_24_silver.bmp "Button"
+Hint = Sensor Button.c597
+[]
+
+[SensorList]
+Sensor = LABEL.C563
+[LABEL.C563]
+Pos = 375, 30
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:10\Color:Black
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_100_50_24_silver.bmp "Label"
+Hint = allElementsDemo
+[]
+
+[SensorList]
+Sensor = BUTTON.C597.C579
+[BUTTON.C597.C579]
+Pos = 480, 405
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black,Align:CenterTop
+Painter(v) = (glButtonBit=0)+(glButtonBevel=1)+(glButtonMoveX=1)+(glButtonMoveY=1)
+Painter(v) = [Painter(v).GuiLib.SimpleButton]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_111_60_24_silver.bmp "Button"
+Hint = Sensor Button.c597
+[]
+
+[SensorList]
+Sensor = BUTTON.C597.C584
+[BUTTON.C597.C584]
+Pos = 480, 470
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black,Align:RightTop
+Painter(v) = (glButtonBit=0)+(glButtonBevel=1)+(glButtonMoveX=1)+(glButtonMoveY=1)
+Painter(v) = [Painter(v).GuiLib.SimpleButton]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_111_60_24_silver.bmp "Button"
+Hint = Sensor Button.c597
+[]
+
+[SensorList]
+Sensor = BUTTON.C597.C589
+[BUTTON.C597.C589]
+Pos = 480, 535
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black,Align:LeftMiddle
+Painter(v) = (glButtonBit=0)+(glButtonBevel=1)+(glButtonMoveX=1)+(glButtonMoveY=1)
+Painter(v) = [Painter(v).GuiLib.SimpleButton]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_111_60_24_silver.bmp "Button"
+Hint = Sensor Button.c597
+[]
+
+[SensorList]
+Sensor = BUTTON.C597.C594
+[BUTTON.C597.C594]
+Pos = 480, 600
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black,Align:RightMiddle
+Painter(v) = (glButtonBit=0)+(glButtonBevel=1)+(glButtonMoveX=1)+(glButtonMoveY=1)
+Painter(v) = [Painter(v).GuiLib.SimpleButton]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_111_60_24_silver.bmp "Button"
+Hint = Sensor Button.c597
+[]
+
+[SensorList]
+Sensor = BUTTON.C597.C619
+[BUTTON.C597.C619]
+Pos = 365, 600
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black,Align:RightBottom
+Painter(v) = (glButtonBit=0)+(glButtonBevel=1)+(glButtonMoveX=1)+(glButtonMoveY=1)
+Painter(v) = [Painter(v).GuiLib.SimpleButton]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_111_60_24_silver.bmp "Button"
+Hint = Sensor Button.c597
+[]
+
+[SensorList]
+Sensor = BUTTON.C597.C624
+[BUTTON.C597.C624]
+Pos = 250, 600
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black,Align:LeftBottom
+Painter(v) = (glButtonBit=0)+(glButtonBevel=1)+(glButtonMoveX=1)+(glButtonMoveY=1)
+Painter(v) = [Painter(v).GuiLib.SimpleButton]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_111_60_24_silver.bmp "Button"
+Hint = Sensor Button.c597
+[]
+
+[SensorList]
+Sensor = BUTTON.C597.C629
+[BUTTON.C597.C629]
+Pos = 305, 535
+LED = 0, 0, 0, *, Name:PT_Mono\Style:[Bold]\Size:12\Color:Black,Align:CenterBottom
+Painter(v) = (glButtonBit=0)+(glButtonBevel=1)+(glButtonMoveX=1)+(glButtonMoveY=1)
+Painter(v) = [Painter(v).GuiLib.SimpleButton]
+Tag#1 = 0, ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_111_60_24_silver.bmp "Button"
+Hint = Sensor Button.c597
 []
