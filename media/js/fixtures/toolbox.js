@@ -29,6 +29,10 @@ usemockups.fixtures.toolbox = [
                 "hidden": true
             },
             {
+                "name": "z-index",
+                "default": 100
+            },
+            {
                 "name": "tageval"
             },
             {
@@ -38,10 +42,10 @@ usemockups.fixtures.toolbox = [
                     { id: 0, type: 'barbmp', width: 100, height: 1, bit: 24, color: 'Black', label: '' },
                 ]
             },
-            // {
-            // "name":"hint",
-            // "default":"line sensor"
-            // }
+            {
+            "name":"hint",
+            "default":"line sensor"
+            }
         ]
     },
     {
@@ -71,6 +75,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 50,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -119,6 +127,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "label sensor"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -149,6 +161,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 40,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -186,6 +202,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo Button"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -216,6 +236,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 50,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -253,6 +277,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo RadioButton"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -283,6 +311,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 12,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -320,6 +352,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo CheckBox"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -350,6 +386,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 30,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -398,6 +438,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo ProgressBar"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -428,6 +472,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 30,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -465,6 +513,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo Border"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -495,6 +547,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 30,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -543,6 +599,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo Bar"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -573,6 +633,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 32,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -632,6 +696,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Home"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -662,6 +730,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 32,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -721,6 +793,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "LoadIni"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },    
@@ -751,6 +827,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 32,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -810,6 +890,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Setting"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },    
@@ -840,6 +924,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 32,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -899,6 +987,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Tools"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -929,6 +1021,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 30,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -988,6 +1084,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Apply button"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -1018,6 +1118,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 30,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -1077,6 +1181,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Apply button"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -1107,6 +1215,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 32,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "tageval"
@@ -1155,6 +1267,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo Indicator"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -1185,6 +1301,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 32,
                 "hidden": true
+            },
+           {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "tageval"
@@ -1222,6 +1342,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo Cross"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -1252,6 +1376,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 32,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -1300,6 +1428,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo ListButton.Arrow"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -1330,6 +1462,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 32,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -1378,6 +1514,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo ListButton.Triangle"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -1409,6 +1549,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 32,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "tageval"
@@ -1457,6 +1601,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Valve"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -1488,6 +1636,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 32,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "tageval"
@@ -1536,6 +1688,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Pump"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -1567,6 +1723,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 32,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "tageval"
@@ -1615,6 +1775,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo Penning vacuometer"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -1646,6 +1810,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 32,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "tageval"
@@ -1694,6 +1862,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo Leak detector"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -1725,6 +1897,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 32,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "tageval"
@@ -1773,6 +1949,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo Compressor"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -1803,6 +1983,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 48,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -1862,6 +2046,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo RadiationHazard"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -1892,6 +2080,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 48,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -1951,6 +2143,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo AirBlower"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -1981,6 +2177,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 48,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -2040,6 +2240,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo FanBlower"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -2070,6 +2274,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 48,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -2129,6 +2337,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo WaterPump"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -2159,6 +2371,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 48,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -2219,6 +2435,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo TankLevel"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -2249,6 +2469,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 48,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -2308,6 +2532,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo FlowMeter"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -2338,6 +2566,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 48,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -2397,6 +2629,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo ManoMeter"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },
@@ -2427,6 +2663,10 @@ usemockups.fixtures.toolbox = [
                 "name": "height",
                 "default": 48,
                 "hidden": true
+            },
+            {
+                "name": "z-index",
+                "default": 100
             },
             {
                 "name": "led",
@@ -2486,6 +2726,10 @@ usemockups.fixtures.toolbox = [
             {
                 "name": "hint",
                 "default": "Demo UniHeater"
+            },
+            {
+                "name": "membership",
+                "default": ""
             }
         ]
     },

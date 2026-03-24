@@ -4,18 +4,23 @@ usemockups.models.Tool = Backbone.Model.extend({
         attributes: [],
         min_width: 20,
         min_height: 20,
-        hint: 'def value'
+        hint: 'def value',
+        "z-index": 100,
+        tageval: "",
+        membership: ""
     },
     initialize: function () {
     },
     get_attributes: function (mockup) {
         var attributes = {};
+        // Получаем атрибуты из модели, если они есть
+        var modelAttributes = this.get("attributes") || [];
+
         _.forEach(this.get("attributes"), function (attribute) {
             var value, default_value;
 
             if (_.isArray(attribute.default)) {
-                // deep copy for multi dimensional arrays.
-                // http://stackoverflow.com/a/817050/498402
+                // deep copy для многомерных массивов
                 default_value = $.extend(true, [], attribute.default);
             } else {
                 default_value = attribute.default;
@@ -23,8 +28,9 @@ usemockups.models.Tool = Backbone.Model.extend({
             if (mockup)
                 value = mockup.get(attribute.name);
 
-            if (value === undefined)
+            if (value === undefined || value === null) {
                 value = default_value;
+            }
 
             attributes[attribute.name] = value;
 

@@ -138,6 +138,14 @@
                 <p>Built with Backbone, Backbone-LocalStorage, Backbone-Nested, Underscore and Handlebars.</p>
                 <p></p>
                 <textarea name="textarea" rows="30" id="id_changelog" disabled>
+24.03.2026
++ Добавлена поддержка нового формата LED "Align:Right|GapX:5|GapY:4|Exp:2"
++ Добавлена поддержка zindex (наслоение сенсоров)
++ Добавлена поддержка групп сенсоров (Membership)
++ Добавлена возможность упорядочивания сенсоров (Drag & Drop в списке сенсоров)
++ Добавлено выделение сенсора по клику в списке сенсоров (фокус (клик) по сенсору или его названию подсвечивает и отображает сенсор над всеми остальными)
++ Добавлена метка отрицательного zindex у сенсоров в списке сенсоров
+
 12.03.2026
 + Изменение положения и размеров сенсора просто колесиком мыши над полем ввода
 + Добавлен функционал "связывания" размеров тегов у сенсоров, то есть меняя первый тег меняются и остальные (отключаемо кнопкой)
@@ -540,7 +548,9 @@
         </div>
     </script>
 
-    <script type="text/html" id="sensor-list">{{name}}</script>
+    <script type="text/html" id="sensor-list">{{name}}
+        {{#compare  z-index '<' 0}}<span class="hidden-sensor">{{z-index}}</span>{{/compare}}
+    </script>
 
     <script type="text/html" id="crc-template">{{#if hasHeader}}<i class="colored">[Circuit]</i>
 {{#if generalmap_name}}GeneralMap <i class="colored2">=</i> ..\Bitmaps\\{{&generalmap_name}}{{else}}GeneralMap <i class="colored2">=</i>  ~~\Resource\DaqSite\StdLib\Bitmaps\barbmp_{{width}}_{{height}}_{{generalmap_bit}}_silver.bmp{{/if}}
@@ -561,9 +571,10 @@ ConfigFile <i class="colored2">=</i> ~~\Resource\DaqSite\Default\Painter.crc
 <i class="colored">[SensorList]</i>
 Sensor <i class="colored2">=</i> {{toUpperCase name}}
 <i class="colored">[{{toUpperCase name}}]</i>
-Pos <i class="colored2">=</i> {{left}}, {{top}}
+Pos <i class="colored2">=</i> {{left}}, {{top}}{{#if (and (neq z-index 100) (neq z-index ""))}}
+Zindex = {{z-index}}{{/if}}
 {{#led}}
-LED <i class="colored2">=</i> {{led_attributes.0.led_wid}}, {{led_attributes.0.led_dig}}, {{led_attributes.0.led_val}}, {{#compare  led_attributes.0.led_fmt '==' '*'}}*{{else}}"{{& led_attributes.0.led_fmt}}"{{/compare}}, Name:{{underlines led_attributes.0.led_font}}\Style:[{{led_attributes.0.led_style}}]\Size:{{led_attributes.0.led_size}}\Color:{{replaceFuncColors led_attributes.0.led_color}}{{#if (or (and led_attributes.0.led_align (not (eq led_attributes.0.led_align "CenterMiddle")))(and led_attributes.0.led_gap_x (neq led_attributes.0.led_gap_x 5))(and led_attributes.0.led_gap_y (neq led_attributes.0.led_gap_y 4))(and led_attributes.0.led_exp (neq led_attributes.0.led_exp 3)))}},{{/if}}{{#if (not (eq led_attributes.0.led_align "CenterMiddle"))}}Align:{{led_attributes.0.led_align}}{{/if}}{{#if (and (neq led_attributes.0.led_gap_x 5) (neq led_attributes.0.led_gap_x ""))}}|GapX:{{led_attributes.0.led_gap_x}}{{/if}}{{#if (and (neq led_attributes.0.led_gap_y 4) (neq led_attributes.0.led_gap_y ""))}}|GapY:{{led_attributes.0.led_gap_y}}{{/if}}{{#if (and (neq led_attributes.0.led_exp 3) (neq led_attributes.0.led_exp ""))}}|Exp:{{led_attributes.0.led_exp}}{{/if}}
+LED <i class="colored2">=</i> {{led_attributes.0.led_wid}}, {{led_attributes.0.led_dig}}, {{led_attributes.0.led_val}}, {{#compare  led_attributes.0.led_fmt '==' '*'}}*{{else}}"{{& led_attributes.0.led_fmt}}"{{/compare}}, Name:{{underlines led_attributes.0.led_font}}\Style:[{{led_attributes.0.led_style}}]\Size:{{led_attributes.0.led_size}}\Color:{{replaceFuncColors led_attributes.0.led_color}}{{#if (or (and led_attributes.0.led_align (not (eq led_attributes.0.led_align "CenterMiddle")))(and led_attributes.0.led_gap_x (neq led_attributes.0.led_gap_x 5))(and led_attributes.0.led_gap_y (neq led_attributes.0.led_gap_y 4))(and led_attributes.0.led_exp (neq led_attributes.0.led_exp 3)))}}, {{/if}}{{#if (not (eq led_attributes.0.led_align "CenterMiddle"))}}Align:{{led_attributes.0.led_align}}{{/if}}{{#if (and (neq led_attributes.0.led_gap_x 5) (neq led_attributes.0.led_gap_x ""))}}|GapX:{{led_attributes.0.led_gap_x}}{{/if}}{{#if (and (neq led_attributes.0.led_gap_y 4) (neq led_attributes.0.led_gap_y ""))}}|GapY:{{led_attributes.0.led_gap_y}}{{/if}}{{#if (and (neq led_attributes.0.led_exp 3) (neq led_attributes.0.led_exp ""))}}|Exp:{{led_attributes.0.led_exp}}{{/if}}
 {{/led}}
 {{#if tageval}}
 TagEval(v) <i class="colored2">=</i> {{& tageval}}
@@ -701,7 +712,8 @@ Painter(v) <i class="colored2">=</i> [Painter(v).GuiLib.SimpleBorder]
 {{#tags}}
 Tag#{{inc @index}} <i class="colored2">=</i> {{id}}, {{^custom}}~~\Resource\DaqSite\StdLib\Bitmaps\\{{custom}}{{type}}_{{ch width}}_{{pt height}}_{{bit}}_{{replaceFuncColorsLower color}}{{spacers ../led_attributes.0.led_font type}}.bmp{{/custom}}{{#custom}}{{../custom}}{{/custom}} {{quoted label}}
 {{/tags}}
-Hint <i class="colored2">=</i> {{& hint}}
+Hint <i class="colored2">=</i> {{& hint}}{{#if (and membership (neq membership ""))}}
+Membership <i class="colored2">=</i>  {{& membership}}{{/if}}
 <i class="colored">[]</i>
 
 {{/mockups}}

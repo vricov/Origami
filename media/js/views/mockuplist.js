@@ -4,9 +4,8 @@ usemockups.views.MockupList = Backbone.View.extend({
     tagName: "div",
     className: "sensor",
     events: {
-        'click': 'show_property_dialog',
+        'click': 'handleListItemClick', // Изменяем на собственный обработчик
         'update-sort': 'updateSort',
-
         'drop': 'drop'
     },
     initialize: function () {
@@ -19,27 +18,42 @@ usemockups.views.MockupList = Backbone.View.extend({
     drop: function (event, index) {
         this.$el.trigger('update-sort', [this.model, index]);
     },
-    render: function (rendering_options) {
+
+render: function (rendering_options) {
         var options = _.extend({
             focus: true,
             show_property_dialog: true
         }, rendering_options);
         this.$el.children().remove();
-        // usemockups.collections.Mockups
-        // this.model.collection.each(this.appendModelView,this);
+        
         this.$el.html(HandlebarMockupList(this.model.get_attributes()));
-
-        this.$el.bind("click mousedown", function (event) {
-            this.$el.focus();
-        }.bind(this));
-
+        
         if (options.show_property_dialog)
             this.show_property_dialog();
-
         if (options.focus)
             this.focus();
-
         return this;
+    },
+    handleListItemClick: function(event) {
+        // Добавляем обработчик клика на элемент списка
+        if (!$(event.target).is("input")) {
+            this.focusElementInUniversalTemplate();
+            this.show_property_dialog();
+        }
+    },
+    focusElementInUniversalTemplate: function() {
+        // Найдем соответствующий элемент в #universal-template
+        var modelAttributes = this.model.get_attributes();
+        var elementId = this.model.cid;
+        
+        // Найдем элемент в #universal-template по id или другим критериям
+        var universalTemplateElement = $('.object[data-model-id="' + elementId + '"]');
+        if (universalTemplateElement.length > 0) {
+            // Установим фокус на найденный элемент
+            universalTemplateElement.focus();
+        } else {
+            console.warn("Элемент в #universal-template не найден для модели", elementId);
+        }
     },
     appendModelView: function (model) {
         var el = new usemockups.View.Item({ model: model }).render().el;

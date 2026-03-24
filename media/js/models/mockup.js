@@ -3,6 +3,9 @@ usemockups.models.Mockup = Backbone.NestedModel.extend({
     defaults: {
         top: 0,
         left: 0,
+        "z-index": 100,
+        tageval: "",
+        membership: "",
         tool: "label" // по умолчанию используем "label"
     },
     initialize: function () {
@@ -16,9 +19,17 @@ usemockups.models.Mockup = Backbone.NestedModel.extend({
         }
         
         this.get_attributes = this.tool.get_attributes.bind(this.tool, this);
-        _.forEach(this.get_attributes(), function (value, key) {
-            this.set(key, value);
+
+        // Получаем атрибуты из инструмента
+        var toolAttributes = this.get_attributes();
+
+        // Применяем defaults и потом значения из tool
+        _.forEach(toolAttributes, function (value, key) {
+            if (!this.has(key)) {  // Если ключа нет в текущей модели
+                this.set(key, value);
+            }
         }, this);
+
         this.on("change persist", this.persist, this);
         this.document = this.collection;
     },

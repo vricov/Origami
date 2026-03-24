@@ -213,7 +213,8 @@ usemockups.views.Mockup = Backbone.View.extend({
             "font-size": zoomValuePt(this.model.get("tags[0].height"), zoom),
             "font-family": this.model.get("led_attributes[0].led_font"),
             "width": zoomValueCh(this.model.get("tags[0].width"), zoom) || "auto",
-            "height": zoomValuePt(this.model.get("tags[0].height"), zoom) || "auto"
+            "height": zoomValuePt(this.model.get("tags[0].height"), zoom) || "auto",
+            "z-index": this.model.get("z-index") || "100"
         }).draggable({
             snap: ".object",
             snapTolerance: 3,

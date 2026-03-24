@@ -391,6 +391,12 @@ nav .width, nav .height, nav .prefix, nav .generalmap_bit {
     background: #dedede;
 }
 
+.hidden-sensor {
+  background: tomato;
+  color: white;
+  padding: 3px;
+}
+
 aside .ui-icon {
     width: 17px;
     height: 17px;
@@ -478,7 +484,7 @@ label {
     background-color: #e8e8e8;
     margin-bottom:5px;
 }
-.line.name, .line.left, .line.top,.line.hint, .line.tageval {
+.line.name, .line.left, .line.top, .line.z-index, .line.hint, .line.tageval, .line.membership {
   border: 0;
   background-color: #f3f3f3;
 }
@@ -507,7 +513,7 @@ aside form input, aside form select {
     box-sizing: border-box;
     width: 50%;
 }
-aside form input#id_name, aside form input#id_hint {
+aside form input#id_name, aside form input#id_hint, aside form input#id_membership {
     width: 100%;
 }
 aside .line.tools {
@@ -1108,7 +1114,7 @@ aside a:hover {
     width: 10px;
     visibility: hidden;
 }
-.object:focus {border:1px solid orange;box-sizing: border-box;}
+.object:focus {border:1px solid orange;box-sizing: border-box;z-index: 999 !important;box-shadow: 0px 0px 3px orange;}
 .object:focus .ui-resizable-handle {
     visibility: visible;
 }

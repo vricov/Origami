@@ -68,9 +68,14 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
       '<option value = "RightBottom">↘ снизу справа</option>' +
     '</select>');
     $('#id_led_align').val(this.model.get("led_attributes[0].led_align"));
-    $('#id_led_attributes_led_gap_x_label').html('Горизонтальный отступ:');
-    $('#id_led_attributes_led_gap_y_label').html('Вертикальный отступ:');
+    $('#id_led_attributes_led_gap_x_label').html('Отступ по X:');
+    $('#id_led_attributes_led_gap_y_label').html('Отступ по Y:');
     $('#id_led_attributes_led_exp_label').html('Чисел в EXP:');
+    $('#id_led_exp').replaceWith('<select id="id_led_exp" name="led_exp" data-attribute="led_attributes">' +
+     '<option value = "1">1</option>' +
+     '<option value = "2">2</option>' +
+     '<option value = "3">3</option>' +
+    '</select>');
     // подсказка
     $("#id_led_wid").attr('title', '<b>wid</b> - ширина числового поля (максимальное число символов отображения).<ul><li>При указании значения <b>wid=0</b> сенсор работает в режиме <b>логического индикатора</b>.</li><li>При указании значения <b>wid&gt;0</b> сенсор работает в режиме <b>цифрового поля</b>. В этом режиме значение <b>Tag</b> не меняется (поэтому в таблице тегов нужен только один элемент), но на изображение сенсора накладывается надпись - текущее числовое значение входных данных.</li></ul><p></p>');
     $("#id_led_dig").attr('title', '<b>dig</b> - число цифр после запятой при отображении чисел. Этот параметр игнорируется, если указан непустой формат <b>f</b>.');

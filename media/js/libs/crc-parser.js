@@ -121,6 +121,8 @@ function ConvertModel(data){
             format['mockups'][i]['top'] = Number(posArray[1]);
         }
 
+        format['mockups'][i]['z-index'] = Number(value[sensor]['zindex']) || 100;
+
         format['mockups'][i]['tool'] = 'label';
         if (value[sensor]['LED']) {
             format['mockups'][i]['led'] = true;
@@ -782,6 +784,7 @@ function ConvertModel(data){
         }
 
         format['mockups'][i]['hint'] = value[sensor]['Hint'] !== undefined ? value[sensor]['Hint'] : value[sensor];
+        format['mockups'][i]['membership'] = value[sensor]['Membership'];
         format['mockups'][i]['toolbarkey'] = value[sensor]['ToolBarKey'];
         i++;
         

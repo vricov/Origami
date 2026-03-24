@@ -2,7 +2,6 @@
 let readResult = '';
 usemockups.views.Page = Backbone.View.extend({
     "el": "article",
-
     mockup_count: 0,
 
     initialize: function () {
@@ -13,45 +12,45 @@ usemockups.views.Page = Backbone.View.extend({
     },
 
     add_mockup: function (mockup, options) {
-        var mockup_view = new (usemockups.views.Mockup)({
-            model: mockup
-        });
-        var mockupList_view = new (usemockups.views.MockupList)({
-            model: mockup
-        });
+        var mockup_view = new (usemockups.views.Mockup)({ model: mockup });
+        var mockupList_view = new (usemockups.views.MockupList)({ model: mockup });
         var mockupListEl = mockupList_view.render(options).el;
+
         mockupList_view.$el.data('model', mockup);
-
         this.$el.append(mockup_view.render(options).el);
-        $(".sensorList").append(mockupListEl);
-
+        $(".sensorList").append(mockupListEl); 
+        mockup_view.$el.attr("data-model-id", mockup.cid);
         mockup_view.$el.attr("tabindex", this.mockup_count++);
-        // this.model.save(); // Removed this, to make only one call after adding all elements
+       
         return this;
     },
-
 
     render_mockups: function () {
         this.$el.empty();
         $(".sensorList").empty();
-
-        _.forEach(this.model.mockups.models, function (model) {
+        
+        // Рендерим все макеты
+        _.forEach(this.model.mockups.models, (model) => {
             this.add_mockup(model, { focus: true, show_property_dialog: false });
-        }, this);
-        this.model.mockups.off("reset");
-        this.model.save(); // save after adding all elements
+        });
+        
+        // Инициализация sortable только один раз
         if (!$('.sensorList').data('sortable')) {
             $('.sensorList').sortable({
-                // consider using update instead of stop
-                update: function (event, ui) {
-                    ui.item.data('model').trigger('update-sort', ui.item.index());
+                update: (event, ui) => {
+                    var model = ui.item.data('model');
+                    var newIndex = ui.item.index();
+                    
+                    // Перемещаем модель в нужную позицию
+                    this.model.mockups.remove(model);
+                    this.model.mockups.add(model, { at: newIndex });
+                    
+                    // Сохраняем изменения
+                    this.model.save();
                 }
             }).data('sortable', true);
         }
-
     },
-
-
     resize_document: function () {
         var zoom = this.$el.attr('zoom')
         this.$el
@@ -62,6 +61,7 @@ usemockups.views.Page = Backbone.View.extend({
     render: function () {
         this.resize_document();
         var zoom = Number($('article').attr('zoom'));
+
         this.$el.droppable({
             accept: ".toolbox li",
             drop: function (event, ui) {
@@ -74,12 +74,16 @@ usemockups.views.Page = Backbone.View.extend({
                     left: left,
                     tool: tool_name
                 });
+
                 mockup.attributes.name = mockup.attributes.name + '.' + mockup.cid;
                 mockup.attributes.hint = 'Sensor ' + mockup.attributes.name;
+                
                 if (this.model.get("prefix") != '') { mockup.attributes.name = this.model.get("prefix") + '.' + mockup.attributes.name }
+                
                 if ((mockup.attributes.tool == 'line') || (mockup.attributes.tool == 'label')) {
                     mockup.attributes.hint = this.model.get("title");
                 }
+
                 this.model.mockups.add(mockup);
                 this.model.save();
                 this.render();
