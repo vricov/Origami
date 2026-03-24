@@ -110,7 +110,7 @@ function ConvertModel(data){
         console.log('Импортируем '+sensor+'..');
 
         const pos = value[sensor]['Pos'];
-        const posParts = pos.split(', ');
+        const posParts = pos.split(',');
         const posArray = pos.match(/\d+/g); // Извлекаем числа
         
         if (posParts.length >= 2) {
@@ -129,7 +129,8 @@ function ConvertModel(data){
             format['mockups'][i]['led_attributes'] = [{}];
 
             const ledData = value[sensor]['LED'];
-            const ledParts = ledData.split(', ');
+            const ledParts = ledData.split(',');
+            console.log(ledParts);
 
             // Обработка основных значений
             const attributes = format['mockups'][i]['led_attributes'][0];
@@ -173,6 +174,7 @@ function ConvertModel(data){
 
                 // Выравнивание
                 const alignMatch = sixthPart.match(/Align:([a-zA-Z]+)/);
+                console.log(alignMatch);
                 attributes.led_align = alignMatch ? alignMatch[1] : 'CenterMiddle';
 
                 // Отступ по X
@@ -199,7 +201,7 @@ function ConvertModel(data){
         format['mockups'][i]['tags']  = [];
         while(value[sensor]['Tag#'+tag]) {
             const tagData = value[sensor]['Tag#' + tag];
-            const tagParts = tagData.split(', ');
+            const tagParts = tagData.split(',');
 
             // Определяем тип тега
             const bitmapPath = tagParts[1].replace("~~\\Resource\\DaqSite\\StdLib\\Bitmaps\\", "").replace("~~\\resource\\daqsite\\stdlib\\bitmaps\\", "");
