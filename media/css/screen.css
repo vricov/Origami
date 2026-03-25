@@ -504,6 +504,16 @@ label {
     margin-bottom:0;
  }
 .line .line {margin:0;}
+.line.line-param.led_gap_x, .line.line-param.led_gap_y {
+  display: inline-block;
+}
+.line.line-param.led_gap_x label, .line.line-param.led_gap_y label {
+  display: inline;
+}
+.line.line-param.led_gap_x input, .line.line-param.led_gap_y input {
+max-width: 59px;
+min-width: 57px;
+}
 .line input[type="checkbox"] {
     float: right;
     margin: 4px 5px 0 0;
@@ -1287,14 +1297,10 @@ footer table input {
 
 .add-tag, .copy {
     display: inline-block;
-    color: white;
-    background-color: #525252;
     padding: 3px 8px;
-    text-decoration: none;
     margin: 3px 0;
     font-size: 14px;
     border-radius: 3px;
-    margin-left: 1em;
 }
 .add-tag:hover, .copy:hover {
     background-color: #298c37;
@@ -1432,3 +1438,41 @@ section#documents {
     opacity: 0;
     transform: translateY(10px);
 }
+
+.led-style-buttons {
+  display: flex;
+  gap: 5px;
+  padding: 2px 0px;
+}
+
+.led-btn {
+  cursor: pointer;
+  background-color: #f8f9fa;
+  border-radius: 3px;
+  min-width: 47px;
+}
+
+.led-btn:hover {
+  background-color: #e9ecef;
+}
+
+.led-btn.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.underline {
+  text-decoration: underline;
+}
+.strike {
+  text-decoration: line-through;
+}
+.italic {
+  font-style: Italic;
+}
+.bold {
+  font-weight: Bold;
+}
+
+#id_led_attributes_led_style_label, #id_led_style {display: none;}

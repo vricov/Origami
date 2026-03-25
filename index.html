@@ -145,6 +145,7 @@
 + Добавлена возможность упорядочивания сенсоров (Drag & Drop в списке сенсоров)
 + Добавлено выделение сенсора по клику в списке сенсоров (фокус (клик) по сенсору или его названию подсвечивает и отображает сенсор над всеми остальными)
 + Добавлена метка отрицательного zindex у сенсоров в списке сенсоров
++ Косметические изменения
 
 12.03.2026
 + Изменение положения и размеров сенсора просто колесиком мыши над полем ввода
@@ -574,7 +575,7 @@ Sensor <i class="colored2">=</i> {{toUpperCase name}}
 Pos <i class="colored2">=</i> {{left}}, {{top}}{{#if (and (neq z-index 100) (neq z-index ""))}}
 Zindex = {{z-index}}{{/if}}
 {{#led}}
-LED <i class="colored2">=</i> {{led_attributes.0.led_wid}}, {{led_attributes.0.led_dig}}, {{led_attributes.0.led_val}}, {{#compare  led_attributes.0.led_fmt '==' '*'}}*{{else}}"{{& led_attributes.0.led_fmt}}"{{/compare}}, Name:{{underlines led_attributes.0.led_font}}\Style:[{{led_attributes.0.led_style}}]\Size:{{led_attributes.0.led_size}}\Color:{{replaceFuncColors led_attributes.0.led_color}}{{#if (or (and led_attributes.0.led_align (not (eq led_attributes.0.led_align "CenterMiddle")))(and led_attributes.0.led_gap_x (neq led_attributes.0.led_gap_x 5))(and led_attributes.0.led_gap_y (neq led_attributes.0.led_gap_y 4))(and led_attributes.0.led_exp (neq led_attributes.0.led_exp 3)))}}, {{/if}}{{#if (not (eq led_attributes.0.led_align "CenterMiddle"))}}Align:{{led_attributes.0.led_align}}{{/if}}{{#if (and (neq led_attributes.0.led_gap_x 5) (neq led_attributes.0.led_gap_x ""))}}|GapX:{{led_attributes.0.led_gap_x}}{{/if}}{{#if (and (neq led_attributes.0.led_gap_y 4) (neq led_attributes.0.led_gap_y ""))}}|GapY:{{led_attributes.0.led_gap_y}}{{/if}}{{#if (and (neq led_attributes.0.led_exp 3) (neq led_attributes.0.led_exp ""))}}|Exp:{{led_attributes.0.led_exp}}{{/if}}
+LED <i class="colored2">=</i> {{led_attributes.0.led_wid}}, {{led_attributes.0.led_dig}}, {{led_attributes.0.led_val}}, {{#compare  led_attributes.0.led_fmt '==' '*'}}*{{else}}"{{& led_attributes.0.led_fmt}}"{{/compare}}, Name:{{underlines led_attributes.0.led_font}}\Style:[{{led_attributes.0.led_style}}]\Size:{{led_attributes.0.led_size}}\Color:{{replaceFuncColors led_attributes.0.led_color}}{{#if (or (and led_attributes.0.led_align (not (eq led_attributes.0.led_align "CenterMiddle")))(and led_attributes.0.led_gap_x (neq led_attributes.0.led_gap_x 5))(and led_attributes.0.led_gap_y (neq led_attributes.0.led_gap_y 4))(and led_attributes.0.led_exp (neq led_attributes.0.led_exp 3)))}}, {{/if}}{{#if (not (eq led_attributes.0.led_align "CenterMiddle"))}}Align:{{led_attributes.0.led_align}}{{/if}}{{#if (and (neq led_attributes.0.led_gap_x led_attributes.0.led_gap_x 5) (neq led_attributes.0.led_gap_x ""))}}|GapX:{{led_attributes.0.led_gap_x}}{{/if}}{{#if (and led_attributes.0.led_gap_y (neq led_attributes.0.led_gap_y 4) (neq led_attributes.0.led_gap_y ""))}}|GapY:{{led_attributes.0.led_gap_y}}{{/if}}{{#if (and (neq led_attributes.0.led_exp 3) (neq led_attributes.0.led_exp ""))}}|Exp:{{led_attributes.0.led_exp}}{{/if}}
 {{/led}}
 {{#if tageval}}
 TagEval(v) <i class="colored2">=</i> {{& tageval}}

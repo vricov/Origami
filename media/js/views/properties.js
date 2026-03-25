@@ -35,8 +35,9 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_name_label').html('Наименование:');
     $('#id_top_label').html('Y:');
     $('#id_left_label').html('X:');
+    $('#id_left_label').html('X:');
     $('#id_tageval_label').html('TagEval(v):');
-    $('#id_hint_label').html('Подсказка (hint):');
+    $('#id_z-index_label').html('Слой (Z-index):');
 
     //## LED
     $('#id_led_attributes_label').replaceWith('<label for="id_led_attributes_label"><h3>Надпись</h3></label>');
@@ -47,14 +48,48 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_led_attributes_led_font_label').html('Шрифт:');
     $('#id_led_attributes_led_size_label').html('Размер:');
     $('#id_led_attributes_led_color_label').html('Цвет текста:');
-    $('#id_led_attributes_led_style_label').html('Начертание:');
-    $('#id_led_style').replaceWith('<select id="id_led_style" name="led_style" data-attribute="led_attributes">' +
-     '<option value = "">Без эффекта</option>' +
-     '<option value = "Bold">Жирный</option>' +
-     '<option value = "Italic">Курсив</option>' +
-     '<option value = "Underline">Подчеркнутый</option>' +
-     '<option value = "StrikeOut">Зачеркнутый</option>' +
-    '</select>');
+    //## LED - заменяем выпадающий список на кнопки
+    $('#id_led_style').after(
+      '<div class="led-style-buttons">' +
+        '<button type="button" data-value="Bold" class="led-btn bold">Ж</    button>' +
+        '<button type="button" data-value="Italic" class="led-btn     italic">К</button>' +
+        '<button type="button" data-value="Underline" class="led-btn     underline">П</button>' +
+        '<button type="button" data-value="StrikeOut" class="led-btn     strike">З</button>' +
+      '</div>'
+    );
+
+    // Обработчик кликов для кнопок
+    $('.led-style-buttons').on('click', '.led-btn', function() {
+      const value = $(this).data('value');
+      
+      // Если кликаем по уже активной кнопке, сбрасываем состояние
+      if ($(this).hasClass('active') && value !== "") {
+        // Сбрасываем к "Без эффекта"
+        $('.led-btn').removeClass('active');
+        $('.led-btn[data-value=""]').addClass('active');
+        $('#id_led_style').val('').trigger('change');
+        return;
+      }
+      
+      // Убираем активное состояние со всех кнопок
+      $('.led-btn').removeClass('active');
+      
+      // Добавляем активное состояние к нажатой кнопке
+      $(this).addClass('active');
+      
+      // Обновляем значение в скрытом input (для формы)
+      $('#id_led_style').val(value).trigger('change');
+    });
+    
+    // Инициализация при загрузке
+    const currentValue = $('#id_led_style').val();
+    if (currentValue !== undefined && currentValue !== null) {
+      $('.led-btn[data-value="' + currentValue + '"]').addClass('active');
+    } else {
+      // Активируем "Без эффекта" по умолчанию
+      $('.led-btn[data-value=""]').addClass('active');
+    }
+    
     $('#id_led_attributes_led_align_label').html('Выравнивание:');
     $('#id_led_align').replaceWith('<select id="id_led_align" name="led_align" data-attribute="led_attributes">' +
       '<option value = "LeftTop">↖ сверху слева</option>' +
@@ -68,8 +103,8 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
       '<option value = "RightBottom">↘ снизу справа</option>' +
     '</select>');
     $('#id_led_align').val(this.model.get("led_attributes[0].led_align"));
-    $('#id_led_attributes_led_gap_x_label').html('Отступ по X:');
-    $('#id_led_attributes_led_gap_y_label').html('Отступ по Y:');
+    $('#id_led_attributes_led_gap_x_label').html('Отступ X:');
+    $('#id_led_attributes_led_gap_y_label').html('Y:');
     $('#id_led_attributes_led_exp_label').html('Чисел в EXP:');
     $('#id_led_exp').replaceWith('<select id="id_led_exp" name="led_exp" data-attribute="led_attributes">' +
      '<option value = "1">1</option>' +
