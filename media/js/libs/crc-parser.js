@@ -759,7 +759,5 @@ function ConvertModel(data){
         
     }
 	// console.log(format);
-    $("#id_models_ori").val(JSON.stringify(format, null, 2));
-
-    return value;
+    return format;
 }
