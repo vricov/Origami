@@ -86,7 +86,6 @@ usemockups.views.Page = Backbone.View.extend({
 
                 this.model.mockups.add(mockup);
                 this.model.save();
-                this.render();
             }.bind(this)
         });
     }
@@ -126,6 +125,11 @@ usemockups.views.Document = Backbone.View.extend({
         this.export_form.render();
     },
     update_zoom: function () {
+        // Снимаем все обработчики старого Page view, чтобы не накапливались
+        if (this.article) {
+            this.article.model.mockups.off(null, null, this.article);
+            this.article.model.off(null, null, this.article);
+        }
         this.article = (new usemockups.views.Page({
             model: this.model
         }));
@@ -241,12 +245,21 @@ usemockups.views.DocumentImportForm = Backbone.View.extend({
     render: function () {
         // makes sure previous content is voided
         this.$el.find("#id_models").val("");
-        this.$el.find("#id_models_ori").val("");
     },
 
     import_form: function () {
-        val = ConvertModel($("#id_models").val());
-        var mockups = JSON.parse(this.$el.find("#id_models_ori").val());
+        var rawText = $("#id_models").val();
+        var mockups;
+
+        // Пробуем распарсить как Origami JSON, если не выходит — конвертируем из CRC
+        try {
+            mockups = JSON.parse(rawText);
+        } catch (e) {
+            mockups = ConvertModel(rawText);
+        }
+
+        if (!mockups) return false;
+
         if (mockups.title) this.model.attributes.title = mockups.title;
         if (mockups.width) this.model.attributes.width = mockups.width;
         if (mockups.height) this.model.attributes.height = mockups.height;
@@ -254,7 +267,6 @@ usemockups.views.DocumentImportForm = Backbone.View.extend({
         this.model.mockups.add(mockups.mockups);
         this.model.save();
         this.model.trigger('importDone');
-        console.log('-/- IMPORT DONE -/-');
         $("#document-import").hide();
         return false;
     },
@@ -347,63 +359,32 @@ usemockups.views.Navigation = Backbone.View.extend({
             model: this.model
         }).render();
     },
-    toggle_documents: function () {
-        this.$el.find("#document-properties").hide();
-        this.$el.find("#document-export").hide();
-        this.$el.find("#document-import").hide();
-        this.$el.find("#crc-help").hide();
-        this.$el.find("#about").hide();
-        this.$el.find("#documents").toggle();
+    _toggle_panel: function (targetId, triggerSave) {
+        var allPanels = ["#documents", "#document-properties", "#document-import",
+                         "#document-export", "#crc-help", "#about"];
+        allPanels.forEach(function (id) {
+            if (id !== targetId) this.$el.find(id).hide();
+        }, this);
+        this.$el.find(targetId).toggle();
+        if (triggerSave) $('#save').submit();
         return false;
+    },
+    toggle_documents: function () {
+        return this._toggle_panel("#documents");
     },
     toggle_document_properties: function () {
-        this.$el.find("#documents").hide();
-        this.$el.find("#document-import").hide();
-        this.$el.find("#document-export").hide();
-        this.$el.find("#crc-help").hide();
-        this.$el.find("#about").hide();
-        this.$el.find("#document-properties").toggle();
-
-        return false;
+        return this._toggle_panel("#document-properties");
     },
     toggle_import: function () {
-        this.$el.find("#documents").hide();
-        this.$el.find("#document-properties").hide();
-        this.$el.find("#document-export").hide();
-        this.$el.find("#crc-help").hide();
-        this.$el.find("#about").hide();
-        this.$el.find("#document-import").toggle();
-
-        return false;
+        return this._toggle_panel("#document-import");
     },
     toggle_export: function () {
-        this.$el.find("#documents").hide();
-        this.$el.find("#document-properties").hide();
-        this.$el.find("#document-import").hide();
-        this.$el.find("#crc-help").hide();
-        this.$el.find("#about").hide();
-        this.$el.find("#document-export").toggle();
-
-        $('#save').submit();
-        return false;
+        return this._toggle_panel("#document-export", true);
     },
     toggle_help: function () {
-        this.$el.find("#documents").hide();
-        this.$el.find("#document-properties").hide();
-        this.$el.find("#document-import").hide();
-        this.$el.find("#document-export").hide();
-        this.$el.find("#about").hide();
-        this.$el.find("#crc-help").toggle();
-        $('#save').submit();
-        return false;
+        return this._toggle_panel("#crc-help", true);
     },
     toggle_about: function () {
-        this.$el.find("#documents").hide();
-        this.$el.find("#document-properties").hide();
-        this.$el.find("#document-import").hide();
-        this.$el.find("#document-export").hide();
-        this.$el.find("#crc-help").hide();
-        this.$el.find("#about").toggle();
-        return false;
+        return this._toggle_panel("#about");
     }
 });

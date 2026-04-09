@@ -35,7 +35,6 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_name_label').html('Наименование:');
     $('#id_top_label').html('Y:');
     $('#id_left_label').html('X:');
-    $('#id_left_label').html('X:');
     $('#id_tageval_label').html('TagEval(v):');
     $('#id_z-index_label').html('Слой (Z-index):');
 
@@ -210,7 +209,6 @@ usemockups.views.PropertyDialog = Backbone.View.extend({
     $('#id_indicatorcircle_attributes_glCircleFaceColor_label').html('Цвет контура:');
     $('#id_indicatorcircle_attributes_glCircleBackColor_label').html('Цвет заливки:');
     // подсказка
-    $("#id_glCircleBevel").attr('title', 'Отступ окружности от края изображения');
     $("#id_glCircleBevel").attr('title', 'Отступ окружности от края изображения');
     $("#id_glCircleWidth").attr('title', 'Толщина контура окружности');
     $("#id_glCrossBevel").attr('title', 'Отступ крестика от края сенсора');

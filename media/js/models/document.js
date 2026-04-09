@@ -15,10 +15,14 @@ usemockups.models.Document = Backbone.Model.extend({
     initialize: function () {
         this.mockups = new usemockups.collections.Mockups;
         this.mockups.on("add remove persist", this.persist, this);
+        // Дебаунс: сериализуем и сохраняем не чаще одного раза в 300мс
+        this._debouncedSave = _.debounce(function () {
+            this.set("mockups", this.mockups.toJSON());
+            this.save();
+        }.bind(this), 300);
     },
     persist: function () {
-        this.set("mockups", this.mockups.toJSON());
-        this.save();
+        this._debouncedSave();
     },
     parse: function (result) {
         if (this.mockups && !this.mockups.length)

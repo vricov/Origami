@@ -16,9 +16,6 @@ function parseINIString(data){
                 if (value[section][match[1]] === undefined) value[section][match[1]] = '';
                 value[section][match[1]] = value[section][match[1]]+match[2].replace(/\\/g, "\\");
             }else{
-                value[match[1]]=value[match[1]]+match[2];
-               
-                // Handle global parameters outside of sections.  This is a design choice and might need adjustment based on desired behavior.
                 if (value[match[1]] === undefined) {
                     value[match[1]] = match[2];
                 } else {
@@ -36,8 +33,8 @@ function parseINIString(data){
     return value;
 }
 function ConvertModel(data){
-    value = parseINIString(data);
-    format = {};
+    var value = parseINIString(data);
+    var format = {};
     format['mockups'] = [];
     if (value?.Circuit) {
         const circuit = value.Circuit;
@@ -104,10 +101,10 @@ function ConvertModel(data){
     delete value.Circuit;
     
     var i = 0;
-    for (sensor in value) {
+    for (var sensor in value) {
+        if (!value.hasOwnProperty(sensor)) continue;
         format['mockups'][i]  = {};
         format['mockups'][i]['name'] = sensor;
-        console.log('Импортируем '+sensor+'..');
 
         const pos = value[sensor]['Pos'];
         const posParts = pos.replace(/ /g, '').split(',');
@@ -195,7 +192,6 @@ function ConvertModel(data){
             }
         }
         var tag = 1;
-        var TagType = '';
         format['mockups'][i]['tags']  = [];
         while(value[sensor]['Tag#'+tag]) {
             const tagData = value[sensor]['Tag#' + tag];
@@ -244,11 +240,9 @@ function ConvertModel(data){
             tag++;
         }
         if (value[sensor]['TagEval(v)']) {
-            console.log('-- TAGEVAL SECTION --');
             format['mockups'][i]['tageval'] = value[sensor]['TagEval(v)'];}
         if (value[sensor]['Painter(v)']) {
             if (value[sensor]['Painter(v)'].match('SimpleButton')) {
-                console.log('-- PAINTER SECTION SIMPLEBUTTON --');
                 format['mockups'][i]['button'] = true;
                 format['mockups'][i]['button_attributes'] = [{}];    
                 const painterValue = value[sensor]['Painter(v)'];
@@ -278,7 +272,6 @@ function ConvertModel(data){
                 }
             }
             if (value[sensor]['Painter(v)'].match('RadioButton')) {
-                console.log('-- PAINTER SECTION RADIOBUTTON --');
                 format['mockups'][i]['tool'] = 'RadioButton';
                 format['mockups'][i]['radio'] = true;
                 format['mockups'][i]['radio_attributes'] = [{}];
@@ -306,7 +299,6 @@ function ConvertModel(data){
                 });
             }
             if (value[sensor]['Painter(v)'].match('CheckBox')) {
-                console.log('-- PAINTER SECTION CheckBox --');
                 format['mockups'][i]['tool'] = 'CheckBox';
                 format['mockups'][i]['checkbox'] = true;
                 format['mockups'][i]['checkbox_attributes'] = [{}];
@@ -334,7 +326,6 @@ function ConvertModel(data){
                 });
             }
             if (value[sensor]['Painter(v)'].match('ProgressBar')) {
-                console.log('-- PAINTER SECTION PROGRESSBAR --');
                 format['mockups'][i]['tool'] = 'ProgressBar';
                 format['mockups'][i]['progressbar'] = true;
                 format['mockups'][i]['progressbar_attributes'] = [{}];
@@ -380,7 +371,6 @@ function ConvertModel(data){
                 });
             }
             if (value[sensor]['Painter(v)'].match('SimpleBorder')) {
-                console.log('-- PAINTER SECTION SIMPLEBORDER --');
                 format['mockups'][i]['border'] = true;
                 format['mockups'][i]['border_attributes'] = [{}];
                 const painterValue = value[sensor]['Painter(v)'];
@@ -393,7 +383,6 @@ function ConvertModel(data){
                 attributes.glBorderColor = colorMatch ? colorMatch[1] : "gray";
             }
             if (value[sensor]['Painter(v)'].match('SimpleBar')) {
-                console.log('-- PAINTER SECTION SIMPLEBAR --');
                 format['mockups'][i]['tool'] = 'SimpleBar';
                 format['mockups'][i]['bar'] = true;
                 format['mockups'][i]['bar_attributes'] = [{}];
@@ -435,7 +424,6 @@ function ConvertModel(data){
 
             actionTypes.forEach(action => {
                 if (value[sensor]['Painter(v)'].match(`GuiLib.Cmd.${action.type}`)) {
-                    console.log(`-- PAINTER SECTION CMD_${action.type} --`);
                     format['mockups'][i]['tool'] = `Cmd_${action.type}`;
                     format['mockups'][i]['cmd_' + action.name] = true;
                     format['mockups'][i]['cmd_' +action.name+ '_attributes'] = [{}];
@@ -489,7 +477,6 @@ function ConvertModel(data){
 
             toolBarTypes.forEach(tool => {
                 if (value[sensor]['Painter(v)'].match(`GuiLib.Cmd.${tool.type}`)) {
-                    console.log(`-- PAINTER SECTION CMD_${tool.type} --`);
                     format['mockups'][i]['tool'] = `Cmd_${tool.type}`;
                     format['mockups'][i]['cmd_' + tool.name] = true;
                     format['mockups'][i]['cmd_' + tool.name + '_attributes'] = [{}];
@@ -513,7 +500,6 @@ function ConvertModel(data){
             });
 
             if (value[sensor]['Painter(v)'].match('Cmd.Ok')) {
-                console.log('-- PAINTER SECTION CMD.OK --');
                 format['mockups'][i]['tool'] = 'Cmd_Ok';
                 format['mockups'][i]['cmd_ok'] = true;
                 format['mockups'][i]['cmd_ok_attributes'] = [{}];
@@ -530,7 +516,6 @@ function ConvertModel(data){
                 attributes.glCmdOkFillColor = fillColorMatch ? fillColorMatch[1] : "lime";
             }  
             if (value[sensor]['Painter(v)'].match('Cmd.Cancel')) {
-                console.log('-- PAINTER SECTION CMD.CANCEL --');
                 format['mockups'][i]['tool'] = 'Cmd_Cancel';
                 format['mockups'][i]['cmd_cancel'] = true;
                 format['mockups'][i]['cmd_cancel_attributes'] = [{}];
@@ -547,7 +532,6 @@ function ConvertModel(data){
                 attributes.glCmdCancelFillColor = fillColorMatch ? fillColorMatch[1] : "lime";
             }
             if (value[sensor]['Painter(v)'].match('Indicator.Circle')) {
-               console.log('-- PAINTER SECTION CIRCLE --');
                format['mockups'][i]['tool'] = 'IndicatorCircle';
                format['mockups'][i]['indicatorcircle'] = true;
                format['mockups'][i]['indicatorcircle_attributes'] = [{}];
@@ -567,7 +551,6 @@ function ConvertModel(data){
                attributes.glCircleBackColor = backColorMatch ? backColorMatch[1] : 'silver';
             }
             if (value[sensor]['Painter(v)'].match('SimpleCross')) {
-                console.log('-- PAINTER SECTION SIMPLECROSS --');
                 format['mockups'][i]['tool'] = 'SimpleCross';
                 format['mockups'][i]['simplecross'] = true;
                 format['mockups'][i]['simplecross_attributes'] = [{}];
@@ -584,7 +567,6 @@ function ConvertModel(data){
                 attributes.glCrossColor = colorMatch ? colorMatch[1] : 'black';
             }     
             if (value[sensor]['Painter(v)'].match('ListButton.Arrow')) {
-                console.log('-- PAINTER SECTION LISTBUTTON_ARROW --');
                 format['mockups'][i]['tool'] = 'ListButton_Arrow';
                 format['mockups'][i]['listbutton_arrow'] = true;
                 format['mockups'][i]['listbutton_arrow_attributes'] = [{}];
@@ -607,7 +589,6 @@ function ConvertModel(data){
                 attributes.glListBtnArrowBorderColor = borderColorMatch ? borderColorMatch[1] : 'black';
             }
             if (value[sensor]['Painter(v)'].match('ListButton.Triangle')) {
-                console.log('-- PAINTER SECTION LISTBUTTON_TRIANGLE --');
                 format['mockups'][i]['tool'] = 'ListButton_Triangle';
                 format['mockups'][i]['listbutton_triangle'] = true;
                 format['mockups'][i]['listbutton_triangle_attributes']  = [];
@@ -619,7 +600,6 @@ function ConvertModel(data){
                 if(value[sensor]['Painter(v)'].match(/glListBtnTriangleBorderColor\=\w{1,}/)){format['mockups'][i]['listbutton_triangle_attributes'][0]['glListBtnTriangleBorderColor'] = value[sensor]['Painter(v)'].match(/glListBtnTriangleBorderColor\=\w{1,}/)[0].replace("glListBtnTriangleBorderColor=cl","");}else{format['mockups'][i]['listbutton_triangle_attributes'][0]['glListBtnTriangleBorderColor'] = 'black'}
             }
             if (value[sensor]['Painter(v)'].match('Valve')) {
-                console.log('-- PAINTER SECTION VALVE --');
                 format['mockups'][i]['tool'] = 'Valve';
                 format['mockups'][i]['valve'] = true;
                 format['mockups'][i]['valve_attributes']  = [];
@@ -633,7 +613,6 @@ function ConvertModel(data){
                 if(value[sensor]['Painter(v)'].match(/glValveCloseBit\=\d{1,}/)){format['mockups'][i]['valve_attributes'][0]['glValveCloseBit'] = value[sensor]['Painter(v)'].match(/glValveCloseBit\=\d{1,}/)[0].replace("glValveCloseBit=","");}else{format['mockups'][i]['valve_attributes'][0]['glValveCloseBit'] = 2;}
             }
             if (value[sensor]['Painter(v)'].match(/\.Pump/)) {
-                console.log('-- PAINTER SECTION PUMP --');
                 format['mockups'][i]['tool'] = 'Pump';
                 format['mockups'][i]['pump'] = true;
                 format['mockups'][i]['pump_attributes']  = [];
@@ -646,7 +625,6 @@ function ConvertModel(data){
                 if(value[sensor]['Painter(v)'].match(/glPumpErrorBit\=\d{1,}/)){format['mockups'][i]['pump_attributes'][0]['glPumpErrorBit'] = value[sensor]['Painter(v)'].match(/glPumpErrorBit\=\d{1,}/)[0].replace("glPumpErrorBit=","");}else{format['mockups'][i]['pump_attributes'][0]['glPumpErrorBit'] = 0;}if(value[sensor]['Painter(v)'].match(/glPumpEdgeBevel\=\d{1,}/)){format['mockups'][i]['pump_attributes'][0]['glPumpEdgeBevel'] = value[sensor]['Painter(v)'].match(/glPumpEdgeBevel\=\d{1,}/)[0].replace("glPumpEdgeBevel=","");}else{format['mockups'][i]['pump_attributes'][0]['glPumpEdgeBevel'] = 0;}
             }            
             if (value[sensor]['Painter(v)'].match(/Vacuometer/)) {
-                console.log('-- PAINTER SECTION VACUOMETER --');
                 format['mockups'][i]['tool'] = 'Vacuometer';
                 format['mockups'][i]['vacuometer'] = true;
                 format['mockups'][i]['vacuometer_attributes']  = [];
@@ -659,7 +637,6 @@ function ConvertModel(data){
                 if(value[sensor]['Painter(v)'].match(/glVacuometerLineColor\=\w{1,}/)){format['mockups'][i]['vacuometer_attributes'][0]['glVacuometerLineColor'] = value[sensor]['Painter(v)'].match(/glVacuometerLineColor\=\w{1,}/)[0].replace("glVacuometerLineColor=cl","");}else{format['mockups'][i]['vacuometer_attributes'][0]['glVacuometerLineColor'] = 'Black'}
             }            
             if (value[sensor]['Painter(v)'].match('LeakDetector')) {
-                console.log('-- PAINTER SECTION LEAKDETECTOR --');
                 format['mockups'][i]['tool'] = 'LeakDetector';
                 format['mockups'][i]['leakdetector'] = true;
                 format['mockups'][i]['leakdetector_attributes']  = [];
@@ -670,7 +647,6 @@ function ConvertModel(data){
                 if(value[sensor]['Painter(v)'].match(/glLeakDetLineColor\=\w{1,}/)){format['mockups'][i]['leakdetector_attributes'][0]['glLeakDetLineColor'] = value[sensor]['Painter(v)'].match(/glLeakDetLineColor\=\w{1,}/)[0].replace("glLeakDetLineColor=cl","");}else{format['mockups'][i]['leakdetector_attributes'][0]['glLeakDetLineColor'] = 'Black'}
             }
             if (value[sensor]['Painter(v)'].match(/\.Compressor/)) {
-                console.log('-- PAINTER SECTION COMPRESSOR --');
                 format['mockups'][i]['tool'] = 'Compressor';
                 format['mockups'][i]['compressor'] = true;
                 format['mockups'][i]['compressor_attributes']  = [];
@@ -682,7 +658,6 @@ function ConvertModel(data){
                 if(value[sensor]['Painter(v)'].match(/glCompressorLineColor\=\w{1,}/)){format['mockups'][i]['compressor_attributes'][0]['glCompressorLineColor'] = value[sensor]['Painter(v)'].match(/glCompressorLineColor\=\w{1,}/)[0].replace("glCompressorLineColor=cl","");}else{format['mockups'][i]['compressor_attributes'][0]['glCompressorLineColor'] = 'Black'}
             }   
 			if (value[sensor]['Painter(v)'].match('RadiationHazard')) {
-                console.log('-- PAINTER SECTION RADIATIONHAZARD --');
                 format['mockups'][i]['tool'] = 'RadiationHazard';
                 format['mockups'][i]['radiationhazard'] = true;
                 format['mockups'][i]['radiationhazard_attributes']  = [];
@@ -693,7 +668,6 @@ function ConvertModel(data){
 				if(value[sensor]['Painter(v)'].match(/glRadiationHazardFillColor\=\w{1,}/)){format['mockups'][i]['radiationhazard_attributes'][0]['glRadiationHazardFillColor'] = value[sensor]['Painter(v)'].match(/glRadiationHazardFillColor\=\w{1,}/)[0].replace("glRadiationHazardFillColor=cl","");}else{format['mockups'][i]['radiationhazard_attributes'][0]['glRadiationHazardFillColor'] = 'Black';}
             }
 			if (value[sensor]['Painter(v)'].match('AirBlower')) {
-                console.log('-- PAINTER SECTION AIRBLOWER --');
                 format['mockups'][i]['tool'] = 'AirBlower';
                 format['mockups'][i]['airblower'] = true;
                 format['mockups'][i]['airblower_attributes']  = [];
@@ -706,7 +680,6 @@ function ConvertModel(data){
 				if(value[sensor]['Painter(v)'].match(/glAirBlowerLineColor\=\w{1,}/)){format['mockups'][i]['airblower_attributes'][0]['glAirBlowerLineColor'] = value[sensor]['Painter(v)'].match(/glAirBlowerLineColor\=\w{1,}/)[0].replace("glAirBlowerLineColor=cl","");}else{format['mockups'][i]['airblower_attributes'][0]['glAirBlowerLineColor'] = 'Black';}
             }
 			if (value[sensor]['Painter(v)'].match('FanBlower')) {
-                console.log('-- PAINTER SECTION FANBLOWER --');
                 format['mockups'][i]['tool'] = 'FanBlower';
                 format['mockups'][i]['fanblower'] = true;
                 format['mockups'][i]['fanblower_attributes']  = [];
@@ -719,7 +692,6 @@ function ConvertModel(data){
 				if(value[sensor]['Painter(v)'].match(/glFanBlowerLineColor\=\w{1,}/)){format['mockups'][i]['fanblower_attributes'][0]['glFanBlowerLineColor'] = value[sensor]['Painter(v)'].match(/glFanBlowerLineColor\=\w{1,}/)[0].replace("glFanBlowerLineColor=cl","");}else{format['mockups'][i]['fanblower_attributes'][0]['glFanBlowerLineColor'] = 'Black';}
             }
 			if (value[sensor]['Painter(v)'].match('WaterPump')) {
-                console.log('-- PAINTER SECTION WATERPUMP --');
                 format['mockups'][i]['tool'] = 'WaterPump';
                 format['mockups'][i]['waterpump'] = true;
                 format['mockups'][i]['waterpump_attributes']  = [];
@@ -732,7 +704,6 @@ function ConvertModel(data){
 				if(value[sensor]['Painter(v)'].match(/glWaterPumpLineColor\=\w{1,}/)){format['mockups'][i]['waterpump_attributes'][0]['glWaterPumpLineColor'] = value[sensor]['Painter(v)'].match(/glWaterPumpLineColor\=\w{1,}/)[0].replace("glWaterPumpLineColor=cl","");}else{format['mockups'][i]['waterpump_attributes'][0]['glWaterPumpLineColor'] = 'Black';}
             }
 			if (value[sensor]['Painter(v)'].match('TankLevel')) {
-                console.log('-- PAINTER SECTION MANOMETER --');
                 format['mockups'][i]['tool'] = 'TankLevel';
                 format['mockups'][i]['tanklevel'] = true;
                 format['mockups'][i]['tanklevel_attributes']  = [];
@@ -746,7 +717,6 @@ function ConvertModel(data){
 				if(value[sensor]['Painter(v)'].match(/glTankLevelPercent\=\d{1,}/)){format['mockups'][i]['tanklevel_attributes'][0]['glTankLevelPercent'] = Number(value[sensor]['Painter(v)'].match(/glTankLevelPercent\=\d{1,}/)[0].replace("glTankLevelPercent=",""));}else{format['mockups'][i]['tanklevel_attributes'][0]['glTankLevelPercent'] = 0;}
             }
 			if (value[sensor]['Painter(v)'].match('FlowMeter')) {
-                console.log('-- PAINTER SECTION FLOWMETER --');
                 format['mockups'][i]['tool'] = 'FlowMeter';
                 format['mockups'][i]['flowmeter'] = true;
                 format['mockups'][i]['flowmeter_attributes']  = [];
@@ -759,7 +729,6 @@ function ConvertModel(data){
 				if(value[sensor]['Painter(v)'].match(/glFlowMeterLineColor\=\w{1,}/)){format['mockups'][i]['flowmeter_attributes'][0]['glFlowMeterLineColor'] = value[sensor]['Painter(v)'].match(/glFlowMeterLineColor\=\w{1,}/)[0].replace("glFlowMeterLineColor=cl","");}else{format['mockups'][i]['flowmeter_attributes'][0]['glFlowMeterLineColor'] = 'Black';}
             }
 			if (value[sensor]['Painter(v)'].match('ManoMeter')) {
-                console.log('-- PAINTER SECTION MANOMETER --');
                 format['mockups'][i]['tool'] = 'ManoMeter';
                 format['mockups'][i]['manometer'] = true;
                 format['mockups'][i]['manometer_attributes']  = [];
@@ -772,7 +741,6 @@ function ConvertModel(data){
 				if(value[sensor]['Painter(v)'].match(/glManoMeterAngle\=\d{1,}/)){format['mockups'][i]['manometer_attributes'][0]['glManoMeterAngle'] = Number(value[sensor]['Painter(v)'].match(/glManoMeterAngle\=\d{1,}/)[0].replace("glManoMeterAngle=",""));}else{format['mockups'][i]['manometer_attributes'][0]['glManoMeterAngle'] = 45;}
             }
 			if (value[sensor]['Painter(v)'].match('UniHeater')) {
-                console.log('-- PAINTER SECTION UNUHEATER --');
                 format['mockups'][i]['tool'] = 'UniHeater';
                 format['mockups'][i]['uniheater'] = true;
                 format['mockups'][i]['uniheater_attributes']  = [];
@@ -791,8 +759,5 @@ function ConvertModel(data){
         
     }
 	// console.log(format);
-    console.log('-/- PARSING DONE -/-');
-    $("#id_models_ori").val(JSON.stringify(format, null, 2));
-
-    return value;
+    return format;
 }

@@ -19,7 +19,7 @@ Handlebars.registerHelper('underlines', function (text) {
 Handlebars.registerHelper('unspace', function (text) {
     text = Handlebars.Utils.escapeExpression(text);
     text = text.toString();
-    text = text.replace(' ', '&nbsp');
+    text = text.replace(/ /g, '&nbsp');
     return new Handlebars.SafeString(text);
 });
 
@@ -194,7 +194,6 @@ usemockups.views.Mockup = Backbone.View.extend({
     },
     initialize: function () {
         this.model.on("change", this.render, this);
-        this.model.on("change:top", this.render, this);
         this.article = $("article");
         this.tool = usemockups.toolbox.get(this.model.get("tool")); //gets which kind of mockup element it is (called tool, since they are created via tools). Get model via text string like "text"(for text tool) ,since the toolbox-model�s ids are actually human readable text strings for the represented tools.
         this.model.on("destroy", this.detach, this);
@@ -243,7 +242,7 @@ usemockups.views.Mockup = Backbone.View.extend({
             }.bind(this)
         }).html(HandlebarMockup(this.model.get_attributes()));
 
-        this.$el.bind("click mousedown", function (event) {
+        this.$el.off("click mousedown").on("click mousedown", function (event) {
             if (!$(event.target).is("input")) {
                 this.focus();
             }
@@ -387,7 +386,7 @@ usemockups.views.Mockup = Backbone.View.extend({
     },
 
     keyup: function (e) {
-        if (event.code == 'KeyC' && (event.ctrlKey || event.metaKey)) {
+        if (e.code == 'KeyC' && (e.ctrlKey || e.metaKey)) {
             var copy = this.model.clone();
             copy.attributes.top = copy.attributes.top + 5;
             copy.attributes.left = copy.attributes.left + 5;
